@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a43fc0aad42c42c19499964f519d2e0e)](https://app.codacy.com/app/LordLukin/LogicalImages?utm_source=github.com&utm_medium=referral&utm_content=LordLukin/LogicalImages&utm_campaign=Badge_Grade_Settings)
 # LogicalImages [![Build Status](https://www.travis-ci.org/LordLukin/LogicalImages.svg?branch=master)](https://www.travis-ci.org/LordLukin/LogicalImages)
 
 Program do rozwiązywania obrazków logicznych - LogicalImagesSolver 
