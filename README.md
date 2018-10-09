@@ -2,10 +2,10 @@
 [![Build Status](https://www.travis-ci.org/LordLukin/LogicalImages.svg?branch=master)](https://www.travis-ci.org/LordLukin/LogicalImages) 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a43fc0aad42c42c19499964f519d2e0e)](https://app.codacy.com/app/LordLukin/LogicalImages?utm_source=github.com&utm_medium=referral&utm_content=LordLukin/LogicalImages&utm_campaign=Badge_Grade_Settings)
 
-Program for Logigal Images Solving - LogicalImagesSolver
+Program LogicalImagesSolver
 ===================
 [Logical images](https://www.wydawnictwologi.pl/obrazki-logiczne)
-The main goal is to come up with algorithms for solving logical images. We will use a lot of combinations of images solving techniques and with the help of certain heuristics we try to put togheter a full algorithm that is not known at the beginning. 
+The main goal is to come up with algorithms for solving logical images. We will use a lot of combinations of images solving techniques and with the help of certain heuristics we will try to put together a full algorithm that is not known at the beginning. 
  If we manage to the end, we will try to optimize it. Maybe we will even use a graphic library.
 
 **Input:**
@@ -54,8 +54,8 @@ Text file with a solved board drawn with ASCII characters:
 ```
 
 **Assumptions:**
-3 field values - UNKNOWN, BLACK, WHITE with their representations in ASCII characters, values  wartości configured in the text file.
-Maksimum number given in row or column: 99
+3 field values - UNKNOWN, BLACK, WHITE with their representations in ASCII characters, values configured in the text file.
+Maximum number given in row or column: 99
 
 **Required functionalities**, that must be met in this order:
 
