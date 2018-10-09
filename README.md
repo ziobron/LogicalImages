@@ -4,7 +4,7 @@
 
 Program for Logigal Images Solving - LogicalImagesSolver
 ===================
-[Obrazki logiczne](https://www.wydawnictwologi.pl/obrazki-logiczne)
+[Logical images](https://www.wydawnictwologi.pl/obrazki-logiczne)
 The main goal is to come up with algorithms for solving logical images. We will use a lot of combinations of images solving techniques and with the help of certain heuristics we try to put togheter a full algorithm that is not known at the beginning. 
  If we manage to the end, we will try to optimize it. Maybe we will even use a graphic library.
 
