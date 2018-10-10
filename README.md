@@ -2,15 +2,16 @@
 [![Build Status](https://www.travis-ci.org/LordLukin/LogicalImages.svg?branch=master)](https://www.travis-ci.org/LordLukin/LogicalImages) 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a43fc0aad42c42c19499964f519d2e0e)](https://app.codacy.com/app/LordLukin/LogicalImages?utm_source=github.com&utm_medium=referral&utm_content=LordLukin/LogicalImages&utm_campaign=Badge_Grade_Settings)
 
-Program do rozwiązywania obrazków logicznych - LogicalImagesSolver 
+## Program LogicalImagesSolver
 ===================
-[Obrazki logiczne](https://www.wydawnictwologi.pl/obrazki-logiczne)
-Głównym celem jest wymyślenie algorytmów do rozwiązywania obrazków logicznych. Wykorzystamy w tym celu wiele kombinacji pomniejszych technik na rozwiązywanie obrazków i za pomocą pewnych heurysytk spróbujemy złożyć je w pełny algorytm, który nie jest znany na początku. Jeśli dotrwamy do końca, to będziemy próbowali go także optymalizować. Być może wykorzystamy też jakąś bibliotekę graficzną.
+[Logical images](https://www.wydawnictwologi.pl/obrazki-logiczne)
+The main goal is to come up with algorithms for solving logical images. We will use a lot of combinations of images solving techniques and with the help of certain heuristics we will try to put together a full algorithm that is not known at the beginning. 
+ If we manage to the end, we will try to optimize it. Maybe we will even use a graphic library.
 
 **Input:**
-Plik tekstowy w formacie JSON reprezentujący dane wejściowe, np.
+A text file in JSON format representing input data, e.g.
 
-```
+```jason
 {
   "rowNumber": 3,
   "colNumber": 3,
@@ -27,9 +28,8 @@ Plik tekstowy w formacie JSON reprezentujący dane wejściowe, np.
 }
 ```
 
-Reprezentuje on taką planszę:
-
-```
+Represents this board:
+```jason
     +------+
     | 1    |
     | 1 1 2|
@@ -41,9 +41,8 @@ Reprezentuje on taką planszę:
 ```
 
 **Output:**
-Plik tekstowy z narysowaną rozwiązaną planszą za pomocą znaków ASCII:
-
-```
+Text file with a solved board drawn with ASCII characters:
+```jason
     +------+
     | 1    |
     | 1 1 2|
@@ -54,32 +53,31 @@ Plik tekstowy z narysowaną rozwiązaną planszą za pomocą znaków ASCII:
 +---+------+
 ```
 
-**Założenia:**
-3 wartości pola - UNKNOWN, BLACK, WHITE z ich odpowiednikami w formie znaków ASCII, wartości konfigurowalne w pliku tekstowym.
-Maksymalna liczba podana w wierszu lub kolumnie: 99
+**Assumptions:**
+3 field values - UNKNOWN, BLACK, WHITE with their representations in ASCII characters, values configured in the text file.
+Maximum number given in row or column: 99
 
-**Wymagania obowiązkowe**, które muszą być spełnione w takiej właśnie kolejności:
+**Required functionalities**, that must be met in this order:
 
-1. Przetwarzanie pliku wejściowego i parsowanie go do odpowiedniej struktury danych
-2. Wyświetlanie pustej planszy w formacie ASCII na ekranie
-3. Zapisywanie planszy w formacie ASCII do pliku
-4. Rozwiązywanie obrazków o wielkości planszy 3x3 (w TDD przetestowane wszystkie możliwe przypadki)
-5. Rozwiązywanie obrazków o wielkości planszy 4x3 (w TDD przetestowane wszystkie możliwe przypadki)
-6. Rozwiązywanie obrazków o wielkości planszy 3x4 (w TDD przetestowane wszystkie możliwe przypadki)
-7. Rozwiązywanie obrazków o wielkości planszy 4x4 (w TDD przetestowane wszystkie możliwe przypadki)
-8. Wizualizacja rozwiązywania obrazków krok po kroku na ekranie
+1.  Processing the input file and parsing it to a suitable data structure
+2.  Display of an empty board in ASCII format on the screen
+3.  Saving the board in ASCII format to a file
+4.  Solving images with 3x3 board size (all possible cases tested in TDD)
+5.  Solving images with 4x3 board size (all possible cases tested in TDD)
+6.  Solving images with 3x4 board size (all possible cases tested in TDD)
+7.  Solving images with 4x4 board size (all possible cases tested in TDD)
+8.  Visualization of solving pictures step by step on the screen
 
-**Wymagania dodatkowe**, kolejność również istotna. Weryfikacja przynajmniej za pomocą [próbek](https://www.wydawnictwologi.pl/pliki/probkaOL.pdf):
+**Extra functionalities**, order is important. Verification at least with the help of samples [próbek](https://www.wydawnictwologi.pl/pliki/probkaOL.pdf):
 
-1. Rozwiązywanie przykładów o stopniu trudności 1 (wg skali wydawnictwa Logi, do zweryfikowania z kilkoma przykładami takich obrazków)
-2. Rozwiązywanie przykładów o stopniu trudności 2 (wg skali wydawnictwa Logi, do zweryfikowania z kilkoma przykładami takich obrazków)
-3. Rozwiązywanie przykładów o stopniu trudności 3 (wg skali wydawnictwa Logi, do zweryfikowania z kilkoma przykładami takich obrazków)
-4. Rozwiązywanie przykładów o stopniu trudności 4 (wg skali wydawnictwa Logi, do zweryfikowania z kilkoma przykładami takich obrazków - tutaj zacznie się ciekawa praca algorytmiczna)
-5. Rozwiązywanie przykładów o stopniu trudności 5 (wg skali wydawnictwa Logi, do zweryfikowania z kilkoma przykładami takich obrazków)
+1.  Solving examples with difficulty level 1 (according to the Logi Publishing House scale, to be verified with several examples of such pictures)
+2.  Solving examples with difficulty level 2 (according to the Logi Publishing House scale, to be verified with several examples of such pictures)
+3.  Solving examples with difficulty level 3 (according to the Logi Publishing House scale, to be verified with several examples of such pictures)
+4.  Solving examples with difficulty level 4 (according to the Logi Publishing House scale, to be verified with several examples of such pictures - this is where the interesting algorithmic work starts)
+5.  Solving examples with difficulty level 5 (according to the Logi Publishing House scale, to be verified with several examples of such pictures)
 
-**Wymaganie dodatkowe**, do spełnienia w dowolnej kolejności po spełnieniu wszystkich wymagań obowiązkowych:
+**Extra functionalities**, in any order, but after all required functionalities have been delivered:
 
-6. Wizualizacja rozwiązywania obrazków krok po kroku z wykorzystaniem biblioteki graficznej (Qt lub OpenCV)
-7. Wczytywanie obrazków w formie graficznej oprócz formy tekstowej - ze zdjęcia lub ze skanu i przetwarzania ich do formatu JSON (może to być oddzielna binarka)
-8. Optymalizacja algorytmów pod kątem czasu rozwiązywania obrazków
-
+6.  Visualization of solving pictures step by step using a graphics library (Qt or OpenCV)
+7.  Loading pictures in a graphic form in addition to the text form - from a photo or from a scan and processing them to JSON format(could be in separate binary file)
+8.  Optimization of algorithms in terms of time
