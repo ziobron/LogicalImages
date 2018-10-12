@@ -9,7 +9,8 @@ class Board
     std::vector<std::vector<int>> board_;
 
 public:
-    Board(int row_number, int col_number, std::vector<std::vector<int>> rows,
-          std::vector<std::vector<int>> cols) noexcept;
+    Board(int row_number, int col_number,
+          const std::vector<std::vector<int>> &rows,
+          const std::vector<std::vector<int>> &cols) noexcept;
     ~Board();
 };
