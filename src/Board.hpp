@@ -1,16 +1,21 @@
 #pragma once
 #include <vector>
 
+using Line = std::vector<int>;
+using Lines = std::vector<Line>;
+
 class Board
 {
-    const int row_number_, col_number_;
-    std::vector<std::vector<int>> rows_;
-    std::vector<std::vector<int>> cols_;
-    std::vector<std::vector<int>> board_;
+    const int rowNumber_;
+    const int colNumber_;
+    Lines rows_;
+    Lines cols_;
+    Lines board_;
 
 public:
-    Board(int row_number, int col_number,
-          const std::vector<std::vector<int>> &rows,
-          const std::vector<std::vector<int>> &cols) noexcept;
+    Board(int rowNumber,
+          int colNumber,
+          const Lines& rows,
+          const Lines& cols) noexcept;
     ~Board();
 };

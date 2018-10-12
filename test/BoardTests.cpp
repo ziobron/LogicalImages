@@ -11,8 +11,8 @@ TEST_F(BoardTests, checkConstructorNoexception)
     nlohmann::json j;
     j["col"] = {{1, 1}, {1}};
     j["row"] = {{1}, {1}, {1}};
-    j["row_num"] = 3;
-    j["col_num"] = 2;
+    j["rowNum"] = 3;
+    j["colNum"] = 2;
 
-    Board board(j["row_num"], j["col_num"], j["row"], j["col"]);
+    Board board(j["rowNum"], j["colNum"], j["row"], j["col"]);
 }
