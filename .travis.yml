@@ -34,8 +34,6 @@ script:
   - cd build
   - cmake ..
   - make
-  - ./LogicalImages -h
-  - ./LogicalImages results
   - ./LogicalImages-ut
 
 after_succes:
