@@ -1,7 +1,6 @@
 #include "Board.hpp"
 #include "json.hpp"
 #include <gtest/gtest.h>
-#include <fstream>
 
 struct BoardTests : public ::testing::Test
 {
@@ -21,9 +20,7 @@ TEST_F(BoardTests, checkConstructorNoexception)
 
 TEST_F(BoardTests, checkReadingJSON)
 {
-    std::ifstream i("../test/ReadMeBoardTestFile.json");
-    json j;
-    i >> j;
+    std::string path = "../test/ReadMeBoardTestFile.json";
 
-    Board board(j["rowNumber"], j["colNumber"], j["rows"], j["cols"]);
+    Board board(path);
 }
