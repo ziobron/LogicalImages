@@ -1,5 +1,6 @@
 #include "Board.hpp"
 #include "json.hpp"
+#include "JSONFileReader.hpp"
 #include <fstream>
 
 using json = nlohmann::json;
@@ -35,20 +36,20 @@ int getColNumberFromFile(std::string path)
 }
 
 Board::Board(std::string path)
-    : rowNumber_(getRowNumberFromFile(path)),
-      colNumber_(getColNumberFromFile(path))
 {
-    std::ifstream inputFile(path);
-    json j;
-    inputFile >> j;
+    JSONFileReader fileReader(path);
 
-    if ((rowNumber_ < 3) or (colNumber_ < 3))
-        throw InvalidDimensions();
+    if ((fileReader.readRowsNumber() < 3) or (fileReader.readColsNumber() < 3))
+        throw InvalidDimensions("Both dimensions must be at least 3");
+    else if ((fileReader.readRowsNumber() != fileReader.readRows().size()) or
+             (fileReader.readColsNumber() != fileReader.readCols().size()))
+        throw InvalidDimensions("Number of lines is different than rows or cols");
 
-    Lines rows = j["rows"];
-    Lines cols = j["cols"];
-    rows_ = rows;
-    cols_ = cols;
+    rowNumber_ = fileReader.readRowsNumber();
+    colNumber_ = fileReader.readColsNumber();
+
+    rows_ = fileReader.readRows();
+    cols_ = fileReader.readCols();
 
     Line singleRow;
     singleRow.assign(colNumber_, 0);
@@ -56,3 +57,13 @@ Board::Board(std::string path)
 }
 
 Board::~Board() {}
+
+int Board::getRowsNumber() const
+{
+    return rowNumber_;
+}
+
+int Board::getColsNumber() const
+{
+    return colNumber_;
+}

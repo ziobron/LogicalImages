@@ -1,14 +1,16 @@
 #pragma once
+#include "json.hpp"
 #include <vector>
-#include <stdexcept>
+#include <exception>
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
+using json = nlohmann::json;
 
 class Board
 {
-    const int rowNumber_;
-    const int colNumber_;
+    int rowNumber_;
+    int colNumber_;
     Lines rows_;
     Lines cols_;
     Lines board_;
@@ -20,12 +22,21 @@ public:
           const Lines& cols) noexcept;
     Board(std::string path);
     ~Board();
+
+    int getRowsNumber() const;
+    int getColsNumber() const;
 };
 
-class InvalidDimensions : public std::invalid_argument
+class InvalidDimensions : public std::exception
 {
+    std::string reason;
 public:
-    InvalidDimensions()
-        : invalid_argument("Both dimensions must be at least 3")
+    InvalidDimensions(const char* why)
+        : reason(why)
     {}
+
+    virtual const char* what() const throw()
+    {
+        return reason.c_str();
+    }
 };

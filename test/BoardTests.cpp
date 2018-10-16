@@ -20,7 +20,8 @@ TEST_F(BoardTests, checkConstructorNoexception)
 
 TEST_F(BoardTests, checkReadingJSON)
 {
-    std::string path = "../test/ReadMeBoardTestFile.json";
+    Board board("../test/ReadMeBoardTestFile.json");
 
-    Board board(path);
+    ASSERT_EQ(board.getRowsNumber(), 3);
+    ASSERT_EQ(board.getColsNumber(), 3);
 }

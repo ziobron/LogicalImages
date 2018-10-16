@@ -46,6 +46,8 @@ set(SRC_LIST
     src/LogicalImages.cpp
     src/Board.hpp
     src/Board.cpp
+    src/JSONFileReader.hpp
+    src/JSONFileReader.cpp
 )
 
 include_directories(src)
