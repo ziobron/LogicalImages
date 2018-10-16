@@ -46,6 +46,7 @@ set(SRC_LIST
     src/LogicalImages.cpp
     src/Board.hpp
     src/Board.cpp
+    src/FieldsEnum.hpp
 )
 
 include_directories(src)
@@ -62,6 +63,7 @@ endif (UNIX)
 set(TEST_SRC_LIST
     test/LogicalImagesTests.cpp
     test/BoardTests.cpp
+    test/FieldsEnumTests.cpp
     test/test_main.cpp
 )
 
