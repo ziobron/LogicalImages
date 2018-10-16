@@ -16,3 +16,6 @@ coverage:
                 default:
                     enabled: no
 
+
+ignore:
+    -"josn"
