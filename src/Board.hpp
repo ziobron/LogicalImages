@@ -1,7 +1,6 @@
 #pragma once
 #include "json.hpp"
 #include <vector>
-#include <exception>
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;

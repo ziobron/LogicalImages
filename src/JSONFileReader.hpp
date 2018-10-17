@@ -1,5 +1,6 @@
 #pragma once
 #include "Board.hpp"
+#include <stdexcept>
 
 using json = nlohmann::json;
 
@@ -14,16 +15,9 @@ public:
     Lines readCols();
 };
 
-class InvalidDimensions : public std::exception
+struct InvalidDimensions : public std::out_of_range
 {
-    std::string reason;
-public:
-    explicit InvalidDimensions(const char* why)
-        : reason(why)
-    {}
-
-    virtual const char* what() const throw()
-    {
-        return reason.c_str();
-    }
+    InvalidDimensions() : std::out_of_range("Number of lines is different than "
+                                            "number of cols/rows or number of "
+                                            "cols/rows must be at least 3") {}
 };
