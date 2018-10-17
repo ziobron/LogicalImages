@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include "JSONFileReader.hpp"
 #include "json.hpp"
 #include <gtest/gtest.h>
 
@@ -24,4 +25,12 @@ TEST_F(BoardTests, checkReadingJSON)
 
     ASSERT_EQ(board.getRowsNumber(), 3);
     ASSERT_EQ(board.getColsNumber(), 3);
+}
+
+TEST_F(BoardTests, checkJSONFileReaderExceptions)
+{
+    ASSERT_THROW(Board board("../test/JSONFileReaderWrongColNumberTestFile.json"), InvalidDimensions);
+    ASSERT_THROW(Board board("../test/JSONFileReaderWrongRowNumberTestFile.json"), InvalidDimensions);
+    ASSERT_THROW(Board board("../test/JSONFileReaderNumberOfLinesAndColsNoMatch.json"), InvalidDimensions);
+    ASSERT_THROW(Board board("../test/JSONFileReaderNumberOfLinesAndRowsNoMatch.json"), InvalidDimensions);
 }
