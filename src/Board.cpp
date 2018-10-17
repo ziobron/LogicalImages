@@ -3,8 +3,6 @@
 #include "JSONFileReader.hpp"
 #include <fstream>
 
-using json = nlohmann::json;
-
 Board::Board(int rowNumber,
              int colNumber,
              const Lines& rows,
@@ -19,31 +17,9 @@ Board::Board(int rowNumber,
     board_.assign(rowNumber_, singleRow);
 }
 
-int getRowNumberFromFile(std::string path)
-{
-    std::ifstream inputFile(path);
-    json j;
-    inputFile >> j;
-    return j["rowNumber"];
-}
-
-int getColNumberFromFile(std::string path)
-{
-    std::ifstream inputFile(path);
-    json j;
-    inputFile >> j;
-    return j["colNumber"];
-}
-
 Board::Board(std::string path)
 {
     JSONFileReader fileReader(path);
-
-    if ((fileReader.readRowsNumber() < 3) or (fileReader.readColsNumber() < 3))
-        throw InvalidDimensions("Both dimensions must be at least 3");
-    else if ((fileReader.readRowsNumber() != fileReader.readRows().size()) or
-             (fileReader.readColsNumber() != fileReader.readCols().size()))
-        throw InvalidDimensions("Number of lines is different than rows or cols");
 
     rowNumber_ = fileReader.readRowsNumber();
     colNumber_ = fileReader.readColsNumber();
