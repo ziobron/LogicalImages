@@ -18,4 +18,5 @@ coverage:
 
 
 ignore:
-    - "json"
+    - "json/*"
+    - "test/*"
