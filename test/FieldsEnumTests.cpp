@@ -1,6 +1,5 @@
 #include "FieldsEnum.hpp"
 #include <gtest/gtest.h>
-#include <iostream>
 
 class FieldsEnumTests :public ::testing::Test
 {
