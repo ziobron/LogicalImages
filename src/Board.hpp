@@ -7,8 +7,8 @@ using Lines = std::vector<Line>;
 
 class Board
 {
-    int rowNumber_;
-    int colNumber_;
+    const int rowNumber_;
+    const int colNumber_;
     Lines rows_;
     Lines cols_;
     Lines board_;
@@ -18,7 +18,6 @@ public:
           int colNumber,
           const Lines& rows,
           const Lines& cols) noexcept;
-    explicit Board(std::string path);
     ~Board();
 
     int getRowsNumber() const;

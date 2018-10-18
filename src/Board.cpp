@@ -1,6 +1,6 @@
 #include "Board.hpp"
 #include "json.hpp"
-#include "JSONFileReader.hpp"
+//#include "JSONFileReader.hpp"
 #include <fstream>
 
 Board::Board(int rowNumber,
@@ -12,21 +12,6 @@ Board::Board(int rowNumber,
       rows_(rows),
       cols_(cols)
 {
-    Line singleRow;
-    singleRow.assign(colNumber_, 0);
-    board_.assign(rowNumber_, singleRow);
-}
-
-Board::Board(std::string path)
-{
-    JSONFileReader fileReader(path);
-
-    rowNumber_ = fileReader.readRowsNumber();
-    colNumber_ = fileReader.readColsNumber();
-
-    rows_ = fileReader.readRows();
-    cols_ = fileReader.readCols();
-
     Line singleRow;
     singleRow.assign(colNumber_, 0);
     board_.assign(rowNumber_, singleRow);
