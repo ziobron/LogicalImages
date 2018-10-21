@@ -1,4 +1,7 @@
 #include "Board.hpp"
+#include "json.hpp"
+//#include "JSONFileReader.hpp"
+#include <fstream>
 
 Board::Board(int rowNumber,
              int colNumber,
@@ -15,3 +18,13 @@ Board::Board(int rowNumber,
 }
 
 Board::~Board() {}
+
+int Board::getRowsNumber() const
+{
+    return rowNumber_;
+}
+
+int Board::getColsNumber() const
+{
+    return colNumber_;
+}
