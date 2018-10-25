@@ -2,7 +2,7 @@
 
 enum class FieldsEnum : unsigned char
 {
-    BLACK = '#',
-    WHITE = ' ',
-    UNKNOWN = '?'
+    BLACK,
+    WHITE,
+    UNKNOWN
 };
