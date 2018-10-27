@@ -24,7 +24,7 @@ A text file in JSON format representing input data, e.g.
   "cols": [
     [1, 1],
     [1],
-    [2]
+    [3]
   ]
 }
 ```
@@ -33,7 +33,7 @@ Represents this board:
 ```jason
     +------+
     | 1    |
-    | 1 1 2|
+    | 1 1 3|
 +---+------+
 |1 1|??????|
 |  2|??????|
@@ -46,11 +46,11 @@ Text file with a solved board drawn with ASCII characters:
 ```jason
     +------+
     | 1    |
-    | 1 1 2|
+    | 1 1 3|
 +---+------+
 |1 1|■■  ■■|
 |  2|  ■■■■|
-|1 1|■■    |
+|1 1|■■  ■■|
 +---+------+
 ```
 
