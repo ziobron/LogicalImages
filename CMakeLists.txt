@@ -48,6 +48,7 @@ set(SRC_LIST
     src/Board.cpp
     src/JSONFileReader.hpp
     src/JSONFileReader.cpp
+    src/FieldsEnum.hpp
 )
 
 include_directories(src)
