@@ -64,12 +64,12 @@ Maximum number given in row or column: 99
 2.  Display of an empty board in ASCII format on the screen
 3.  Saving the board in ASCII format to a file
 4.  Solving images with 3x3 board size (all possible cases tested in TDD)
-5.  Solving images with 4x3 board size (all possible cases tested in TDD)
-6.  Solving images with 3x4 board size (all possible cases tested in TDD)
-7.  Solving images with 4x4 board size (all possible cases tested in TDD)
+5.  Solving images with 3x4 and 4x3 board size (all possible cases tested in TDD)
+6.  Solving images with 4x4 board size (all possible cases tested in TDD)
+7.  Solving images with 4x5 and 5x4 board size
 8.  Visualization of solving pictures step by step on the screen
 
-**Extra functionalities**, order is important. Verification at least with the help of samples [próbek](https://www.wydawnictwologi.pl/pliki/probkaOL.pdf):
+**Extra functionalities**, order is important. Verification at least with the help of [these samples](https://www.wydawnictwologi.pl/pliki/probkaOL.pdf):
 
 1.  Solving examples with difficulty level 1 (according to the Logi Publishing House scale, to be verified with several examples of such pictures)
 2.  Solving examples with difficulty level 2 (according to the Logi Publishing House scale, to be verified with several examples of such pictures)
