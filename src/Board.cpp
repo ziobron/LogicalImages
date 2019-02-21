@@ -12,8 +12,8 @@ Board::Board(int rowNumber,
       rows_(rows),
       cols_(cols)
 {
-    Line singleRow;
-    singleRow.assign(colNumber_, 0);
+    BLine singleRow;
+    singleRow.assign(colNumber_, FieldsEnum::UNKNOWN);
     board_.assign(rowNumber_, singleRow);
     drawBoard(3, 3);
 }

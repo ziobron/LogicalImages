@@ -1,4 +1,5 @@
 #pragma once
+#include "FieldsEnum.hpp"
 #include "json.hpp"
 #include "FieldsEnum.hpp"
 #include <vector>
@@ -15,7 +16,7 @@ class Board
     const int colNumber_;
     Lines rows_;
     Lines cols_;
-    Lines board_;
+    BLines board_;
 
 public:
     Board(int rowNumber,
