@@ -8,6 +8,14 @@ struct BoardTests : public ::testing::Test
     using json = nlohmann::json;
 };
 
+TEST_F(BoardTests, checkDrawingTable)
+{
+    std::vector<Line> lCol = {{1}, {1}, {1}};
+    std::vector<Line> lRow = {{1}, {1}, {1}};
+    Board board(1, 1, lRow, lCol);
+    board.drawBoard(board.getBoard());
+}
+
 TEST_F(BoardTests, checkConstructorNoexception)
 {
     json j;

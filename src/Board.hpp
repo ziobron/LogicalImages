@@ -27,10 +27,11 @@ public:
 
     int getRowsNumber() const;
     int getColsNumber() const;
+    BLines getBoard() const;
     std::string drawPadding(const int & numberOfElements) const;
     std::string drawEndLine(const int & numberOfElements) const;
     std::string drawEmptyLine(const int & numberOfElements) const;
-    void drawBoard(const auto & board) const;
+    void drawBoard(const BLines & board) const;
 
     const char HORIZONTAL = '-';
     const char VERTICAL = '|';

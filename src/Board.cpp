@@ -29,6 +29,11 @@ int Board::getColsNumber() const
     return colNumber_;
 }
 
+BLines Board::getBoard() const
+{
+    return board_;
+}
+
 std::string Board::drawPadding(const int & numberOfElements) const
 {
     std::string result;
@@ -55,7 +60,7 @@ std::string Board::drawEmptyLine(const int & numberOfElements) const
     return result;
 }
 
-void Board::drawBoard(const auto & board) const
+void Board::drawBoard(const BLines & board) const
 {
     std::cout << drawEndLine(sizeof(board));
     std::cout << "\n";
