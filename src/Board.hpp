@@ -1,10 +1,13 @@
 #pragma once
+#include "FieldsEnum.hpp"
 #include "json.hpp"
 #include <vector>
 #include <iostream>
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
+using BLine = std::vector<FieldsEnum>;
+using BLines = std::vector<BLine>;
 
 class Board
 {
@@ -12,7 +15,7 @@ class Board
     const int colNumber_;
     Lines rows_;
     Lines cols_;
-    Lines board_;
+    BLines board_;
 
 public:
     Board(int rowNumber,
