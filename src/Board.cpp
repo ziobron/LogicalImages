@@ -56,7 +56,7 @@ std::string Board::drawEmptyLine(const int & numberOfElements) const
     return result;
 }
 
-void Board::drawBoard(const Lines & board) const
+void Board::drawBoard(const auto & board) const
 {
     std::cout << drawEndLine(sizeof(board));
     std::cout << "\n";
