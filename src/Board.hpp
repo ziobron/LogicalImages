@@ -30,10 +30,11 @@ public:
     std::string drawEndLine(const int & el) const;
     std::string drawEmptyLine(const int & el) const;
     std::string drawBoard(const int & rowNo, const int & colNo) const;
-    std::ostream & operator<<( std::ostream & stream);
 
     const char HORIZONTAL = '-';
     const char VERTICAL = '|';
     const char INTERSECTION = '+';
     const char PADDING = ' ';
 };
+
+std::ostream & operator<<( std::ostream & stream, const Board & board);
