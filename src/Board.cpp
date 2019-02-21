@@ -15,6 +15,7 @@ Board::Board(int rowNumber,
     Line singleRow;
     singleRow.assign(colNumber_, 0);
     board_.assign(rowNumber_, singleRow);
+    drawBoard(3, 3);
 }
 
 Board::~Board() {}
@@ -32,7 +33,7 @@ int Board::getColsNumber() const
 std::string Board::drawPadding(const int & el) const
 {
     std::string result;
-    for (auto it = 0; it < el; it++)
+    for (auto it = 0; it < (el * 2); it++)
         result += PADDING;
     return result;
 }
@@ -40,7 +41,7 @@ std::string Board::drawPadding(const int & el) const
 std::string Board::drawEndLine(const int & el) const
 {
     std::string result {INTERSECTION};
-    for (auto it = 0; it < el; it++)
+    for (auto it = 0; it < (el * 2); it++)
         result += HORIZONTAL;
     result += INTERSECTION;
     return result;
@@ -49,7 +50,7 @@ std::string Board::drawEndLine(const int & el) const
 std::string Board::drawEmptyLine(const int & el) const
 {
     std::string result {VERTICAL};
-    for (auto it = 0; it < el; it++)
+    for (auto it = 0; it < (el * 2); it++)
         result += PADDING;
     result += VERTICAL;
     return result;
@@ -61,15 +62,14 @@ std::string Board::drawBoard(const int & rowNo, const int & colNo) const
     result += drawEndLine(colNo);
     result += "\n";
     for (auto it = 0; it < rowNo; it++)
-    {
-        result += drawEmptyLine(colNo);
-        result += "\n";
-    }
-    drawEndLine(colNo);
+        result += drawEmptyLine(colNo) + "\n";
+
+    result += drawEndLine(colNo);
     return result;
 }
 
-std::ostream & Board::operator<<( std::ostream & stream)
+std::ostream & operator<<( std::ostream & stream, const Board & board)
 {
-    return stream << drawBoard(rowNumber_, colNumber_);
+    stream << board.drawBoard(board.getRowsNumber(), board.getColsNumber());
+    return stream;
 }
