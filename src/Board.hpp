@@ -23,10 +23,10 @@ public:
 
     int getRowsNumber() const;
     int getColsNumber() const;
-    std::string drawPadding(const int & el) const;
-    std::string drawEndLine(const int & el) const;
-    std::string drawEmptyLine(const int & el) const;
-    std::string drawBoard(const int & rowNo, const int & colNo) const;
+    std::string drawPadding(const int & numberOfElements) const;
+    std::string drawEndLine(const int & numberOfElements) const;
+    std::string drawEmptyLine(const int & numberOfElements) const;
+    void drawBoard(const Lines & board) const;
 
     const char HORIZONTAL = '-';
     const char VERTICAL = '|';

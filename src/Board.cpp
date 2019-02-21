@@ -15,7 +15,7 @@ Board::Board(int rowNumber,
     Line singleRow;
     singleRow.assign(colNumber_, 0);
     board_.assign(rowNumber_, singleRow);
-    drawBoard(3, 3);
+    drawBoard(board_);
 }
 
 Board::~Board() {}
@@ -30,46 +30,39 @@ int Board::getColsNumber() const
     return colNumber_;
 }
 
-std::string Board::drawPadding(const int & el) const
+std::string Board::drawPadding(const int & numberOfElements) const
 {
     std::string result;
-    for (auto it = 0; it < (el * 2); it++)
+    for (auto it = 0; it < (numberOfElements * 2); it++)
         result += PADDING;
     return result;
 }
 
-std::string Board::drawEndLine(const int & el) const
+std::string Board::drawEndLine(const int & numberOfElements) const
 {
     std::string result {INTERSECTION};
-    for (auto it = 0; it < (el * 2); it++)
+    for (auto it = 0; it < numberOfElements; it++)
         result += HORIZONTAL;
     result += INTERSECTION;
     return result;
 }
 
-std::string Board::drawEmptyLine(const int & el) const
+std::string Board::drawEmptyLine(const int & numberOfElements) const
 {
     std::string result {VERTICAL};
-    for (auto it = 0; it < (el * 2); it++)
+    for (auto it = 0; it < numberOfElements; it++)
         result += PADDING;
     result += VERTICAL;
     return result;
 }
 
-std::string Board::drawBoard(const int & rowNo, const int & colNo) const
+void Board::drawBoard(const Lines & board) const
 {
-    std::string result;
-    result += drawEndLine(colNo);
-    result += "\n";
-    for (auto it = 0; it < rowNo; it++)
-        result += drawEmptyLine(colNo) + "\n";
-
-    result += drawEndLine(colNo);
-    return result;
-}
-
-std::ostream & operator<<( std::ostream & stream, const Board & board)
-{
-    stream << board.drawBoard(board.getRowsNumber(), board.getColsNumber());
-    return stream;
+    std::cout << drawEndLine(sizeof(board));
+    std::cout << "\n";
+    for (const auto & it : board[0]){
+        std::cout << drawEmptyLine(sizeof(board));
+        std::cout << "\n";
+    }
+    std::cout << drawEndLine(sizeof(board));
 }
