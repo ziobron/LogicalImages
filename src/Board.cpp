@@ -15,7 +15,6 @@ Board::Board(int rowNumber,
     BLine singleRow;
     singleRow.assign(colNumber_, FieldsEnum::UNKNOWN);
     board_.assign(rowNumber_, singleRow);
-    drawBoard(board_);
 }
 
 Board::~Board() {}
@@ -28,6 +27,11 @@ int Board::getRowsNumber() const
 int Board::getColsNumber() const
 {
     return colNumber_;
+}
+
+BLines Board::getBoard() const
+{
+    return board_;
 }
 
 std::string Board::drawPadding(const int & numberOfElements) const
@@ -56,7 +60,7 @@ std::string Board::drawEmptyLine(const int & numberOfElements) const
     return result;
 }
 
-void Board::drawBoard(const Lines & board) const
+void Board::drawBoard(const BLines & board) const
 {
     std::cout << drawEndLine(sizeof(board));
     std::cout << "\n";
