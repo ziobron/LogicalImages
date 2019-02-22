@@ -8,38 +8,6 @@ struct BoardTests : public ::testing::Test
     using json = nlohmann::json;
 };
 
-TEST_F(BoardTests, checkDrawPaddingFor2Elements)
-{
-    Board board(2,2,{{1}},{{1}});
-    std::string comparePad = "    ";
-    std::string padding = board.drawPadding();
-    ASSERT_EQ(padding,comparePad);
-}
-TEST_F(BoardTests, checkDrawEndLineFor2Element)
-{
-    Board board(2,2,{{1}},{{1}});
-    std::string comparePad = "+----+";
-    std::string endLine = board.drawEndLine();
-    ASSERT_EQ(endLine,comparePad);
-}
-TEST_F(BoardTests, checkDrawEmptyLineFor2Element)
-{
-    Board board(2,2,{{1}},{{1}});
-    std::string comparePad = "|    |";
-    std::string emptyLine = board.drawEmptyLine();
-    ASSERT_EQ(emptyLine, comparePad);
-}
-
-TEST_F(BoardTests, checkDrawingTable)
-{
-    std::vector<Line> lCol = {{1}};
-    std::vector<Line> lRow = {{1}};
-    Board board(1, 1, lRow, lCol);
-    std::string drawBoard = board.drawBoard().str();
-    std::string compareBoard = "+--+\n|  |\n+--+";
-    ASSERT_EQ(drawBoard,compareBoard);
-}
-
 TEST_F(BoardTests, checkConstructorNoexception)
 {
     json j;
