@@ -29,44 +29,44 @@ int Board::getColsNumber() const
     return colNumber_;
 }
 
-BLines Board::getBoard() const
+BLines Board::getBoardLines() const
 {
     return board_;
 }
 
-std::string Board::drawPadding(const int & numberOfElements) const
+std::string Board::drawPadding() const
 {
     std::string result;
-    for (auto it = 0; it < (numberOfElements * 2); it++)
+    for (auto it = 0; it < (colNumber_ * 2); it++)
         result += PADDING;
     return result;
 }
 
-std::string Board::drawEndLine(const int & numberOfElements) const
+std::string Board::drawEndLine() const
 {
     std::string result {INTERSECTION};
-    for (auto it = 0; it < numberOfElements; it++)
+    for (auto it = 0; it < (colNumber_ *2); it++)
         result += HORIZONTAL;
     result += INTERSECTION;
     return result;
 }
 
-std::string Board::drawEmptyLine(const int & numberOfElements) const
+std::string Board::drawEmptyLine() const
 {
     std::string result {VERTICAL};
-    for (auto it = 0; it < numberOfElements; it++)
+    for (auto it = 0; it < (colNumber_ * 2); it++)
         result += PADDING;
     result += VERTICAL;
     return result;
 }
 
-void Board::drawBoard(const BLines & board) const
+std::stringstream Board::drawBoard() const
 {
-    std::cout << drawEndLine(sizeof(board));
-    std::cout << "\n";
-    for (const auto & it : board[0]){
-        std::cout << drawEmptyLine(sizeof(board));
-        std::cout << "\n";
+    std::stringstream s;
+    s << drawEndLine() << std::endl;
+    for (int i = rowNumber_;i > 0 ; --i){
+        s << drawEmptyLine() << std::endl;
     }
-    std::cout << drawEndLine(sizeof(board));
+    s << drawEndLine();
+    return  s;
 }
