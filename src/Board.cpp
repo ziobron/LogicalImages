@@ -34,39 +34,3 @@ BLines Board::getBoardLines() const
     return board_;
 }
 
-std::string Board::drawPadding() const
-{
-    std::string result;
-    for (auto it = 0; it < (colNumber_ * 2); it++)
-        result += PADDING;
-    return result;
-}
-
-std::string Board::drawEndLine() const
-{
-    std::string result {INTERSECTION};
-    for (auto it = 0; it < (colNumber_ *2); it++)
-        result += HORIZONTAL;
-    result += INTERSECTION;
-    return result;
-}
-
-std::string Board::drawEmptyLine() const
-{
-    std::string result {VERTICAL};
-    for (auto it = 0; it < (colNumber_ * 2); it++)
-        result += PADDING;
-    result += VERTICAL;
-    return result;
-}
-
-std::stringstream Board::drawBoard() const
-{
-    std::stringstream s;
-    s << drawEndLine() << std::endl;
-    for (int i = rowNumber_;i > 0 ; --i){
-        s << drawEmptyLine() << std::endl;
-    }
-    s << drawEndLine();
-    return  s;
-}
