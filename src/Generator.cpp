@@ -18,3 +18,18 @@ Lines getAllVectorPermutation_(int vSize)
         }
     }
 }
+
+BLines ConvertIntToFieldEnum(Lines board)
+{
+    BLines result;
+
+    for(auto line : board)
+    {
+        BLine row(line.size());
+        std::transform(line.begin(), line.end(), row.begin(),
+            [](int elem){return (elem ? FieldsEnum::BLACK : FieldsEnum::WHITE);});
+
+        result.emplace_back(row);
+    }
+    return result;
+}

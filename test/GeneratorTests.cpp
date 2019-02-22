@@ -13,3 +13,13 @@ TEST_F(GeneratorTests, checkSizeOfSAllPermutationOfSingleVector)
     std::set<Line> s(result.begin(), result.end());
     ASSERT_EQ(s.size(), pow(2,3));
 }
+
+TEST_F(GeneratorTests, checkConversionFromIntToFieldsEnum)
+{
+    Lines input = {{1, 1, 0},
+                   {0, 1, 0}};
+    BLines result = {{FieldsEnum::BLACK, FieldsEnum::BLACK, FieldsEnum::WHITE},
+                     {FieldsEnum::WHITE, FieldsEnum::BLACK, FieldsEnum::WHITE}};
+
+    ASSERT_EQ(result, ConvertIntToFieldEnum(input));
+}
