@@ -2,6 +2,7 @@
 #include "json.hpp"
 //#include "JSONFileReader.hpp"
 #include <fstream>
+#include <algorithm>
 
 Board::Board(int rowNumber,
              int colNumber,
@@ -29,44 +30,26 @@ int Board::getColsNumber() const
     return colNumber_;
 }
 
-BLines Board::getBoard() const
+BLines Board::getBoardLines() const
 {
     return board_;
 }
 
-std::string Board::drawPadding(const int & numberOfElements) const
+int Board::getMaxNumbEleInRow() const
 {
-    std::string result;
-    for (auto it = 0; it < (numberOfElements * 2); it++)
-        result += PADDING;
-    return result;
-}
+    auto it = std::max_element(rows_.begin(),
+                               rows_.end(),
+                               [](Line lhs, Line rhs){
+            return lhs.size() < rhs.size();});
+    return it->size();
+ }
 
-std::string Board::drawEndLine(const int & numberOfElements) const
-{
-    std::string result {INTERSECTION};
-    for (auto it = 0; it < numberOfElements; it++)
-        result += HORIZONTAL;
-    result += INTERSECTION;
-    return result;
-}
+ int Board::getMaxNumbEleInCol() const
+ {
+     auto it = std::max_element(cols_.begin(),
+                                cols_.end(),
+                                [](Line lhs, Line rhs){
+             return lhs.size() < rhs.size();});
+     return it->size();
 
-std::string Board::drawEmptyLine(const int & numberOfElements) const
-{
-    std::string result {VERTICAL};
-    for (auto it = 0; it < numberOfElements; it++)
-        result += PADDING;
-    result += VERTICAL;
-    return result;
-}
-
-void Board::drawBoard(const BLines & board) const
-{
-    std::cout << drawEndLine(sizeof(board));
-    std::cout << "\n";
-    for (const auto & it : board[0]){
-        std::cout << drawEmptyLine(sizeof(board));
-        std::cout << "\n";
-    }
-    std::cout << drawEndLine(sizeof(board));
-}
+ }

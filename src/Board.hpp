@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 
+
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
 using BLine = std::vector<FieldsEnum>;
@@ -26,16 +27,10 @@ public:
 
     int getRowsNumber() const;
     int getColsNumber() const;
-    BLines getBoard() const;
-    std::string drawPadding(const int & numberOfElements) const;
-    std::string drawEndLine(const int & numberOfElements) const;
-    std::string drawEmptyLine(const int & numberOfElements) const;
-    void drawBoard(const BLines & board) const;
+    BLines getBoardLines() const;
 
-    const char HORIZONTAL = '-';
-    const char VERTICAL = '|';
-    const char INTERSECTION = '+';
-    const char PADDING = ' ';
+    int getMaxNumbEleInRow() const;
+    int getMaxNumbEleInCol() const;
+
 };
 
-std::ostream & operator<<( std::ostream & stream, const Board & board);
