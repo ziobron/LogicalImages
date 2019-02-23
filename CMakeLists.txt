@@ -49,6 +49,7 @@ set(SRC_LIST
     src/JSONFileReader.hpp
     src/JSONFileReader.cpp
     src/FieldsEnum.hpp
+    src/Utilities.cpp
 )
 
 include_directories(src)
@@ -65,6 +66,7 @@ endif (UNIX)
 set(TEST_SRC_LIST
     test/LogicalImagesTests.cpp
     test/BoardTests.cpp
+    test/BoardFileTests.cpp
     test/test_main.cpp
 )
 
