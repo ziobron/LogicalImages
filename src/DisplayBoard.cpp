@@ -1,6 +1,5 @@
 #include "DisplayBoard.hpp"
 
-
 namespace
 {
     std::string drawPadding(const int width);
@@ -30,8 +29,18 @@ namespace DisplayBoard
             ss << drawEmptyLine(width) << "\n";
         }
         ss << s << drawEndLine(width);
-        return  ss;
+        return ss;
     }
+
+        void printBoard(const int width,
+                    const int height,
+                    const int widthRows,
+                    const int heightCol)
+    {
+        std::stringstream tmp = drawBoard(width, height, widthRows, heightCol);
+        std::cout << tmp.str() << "\n";
+    }
+
 }
 
 

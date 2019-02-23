@@ -3,7 +3,7 @@
 #include "json.hpp"
 #include <vector>
 #include <iostream>
-
+#include "DisplayBoard.hpp"
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
@@ -31,6 +31,9 @@ public:
 
     int getMaxNumbEleInRow() const;
     int getMaxNumbEleInCol() const;
-
+    friend std::stringstream DisplayBoard::drawBoard(const int width,
+                                                     const int height,
+                                                     const int widthRows,
+                                                     const int heightCol);
 };
 
