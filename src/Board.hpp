@@ -29,5 +29,8 @@ public:
     int getColsNumber() const;
     BLines getBoardLines() const;
 
+    int getMaxNumbEleInRow() const;
+    int getMaxNumbEleInCol() const;
+
 };
 
