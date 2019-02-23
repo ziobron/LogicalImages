@@ -26,13 +26,42 @@ std::string drawEmptyLine(const int width)
     return result;
 }
 
-std::stringstream drawBoard(const int width, const int height)
+std::string drawColumns(const int maxElementsInRows, const int colNumber, const int heightCol)
 {
-    std::stringstream s;
-    s << drawEndLine(width) << std::endl;
-    for (int i = height;i > 0 ; --i){
-        s << drawEmptyLine(width) << std::endl;
+    std::string columns;
+    for(int i = heightCol; i > 0; --i)
+    {
+        columns += " " + drawPadding(maxElementsInRows);
+        columns += drawEmptyLine(colNumber);
+        columns += "\n";
     }
-    s << drawEndLine(width);
-    return  s;
+    return columns;
+}
+
+std::string drawRow(const int maxElementsInRows)
+{
+    std::string rows;
+    rows += VERTICAL;
+    rows += drawPadding(maxElementsInRows);
+    return rows;
+}
+
+std::stringstream drawBoard(const int width,
+                            const int height,
+                            const int widthRows,
+                            const int heightCol)
+{
+    std::stringstream ss;
+    std::string s = drawEndLine(widthRows);
+    s.pop_back();
+
+    ss << drawColumns(widthRows, width, heightCol);
+    ss << s << drawEndLine(width) << "\n";
+    for (int i = height;i > 0 ; --i)
+    {
+        ss << drawRow(widthRows);
+        ss << drawEmptyLine(width) << "\n";
+    }
+    ss << s << drawEndLine(width);
+    return  ss;
 }
