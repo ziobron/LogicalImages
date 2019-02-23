@@ -24,5 +24,17 @@ bool loadFromFile(const std::string & filename)
     data.close();
 }
 
-
+bool saveToFile(const std::string & filename)
+{
+    std::ofstream data;
+    data.open(filename, std::ofstream::out);
+    if (data)
+    {}
+    else
+    {
+        std::cout << "File creation failed, check disk space" << std::endl;
+        return false;
+    }
+    data.close();
+}
 
