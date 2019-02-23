@@ -11,10 +11,13 @@ Lines getAllVectorPermutation_(int vSize)
 
         for (int i = row.size() - 1; ; --i)
         {
-            if (i < 0) return result;
+            if (i < 0)
+                return result;
 
-            if (++row[i] == 2) row[i] = 0;
-            else break;
+            if (++row[i] == 2)
+                row[i] = 0;
+            else
+                break;
         }
     }
 }
