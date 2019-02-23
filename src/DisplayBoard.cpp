@@ -80,6 +80,8 @@ namespace
     std::string drawColumns(const int maxElementsInRows, const int colNumber, const int heightCol)
     {
         std::string columns;
+        columns += " " + drawPadding(maxElementsInRows);
+        columns += drawEndLine(colNumber) + "\n";
         for(int i = heightCol; i > 0; --i)
         {
             columns += " " + drawPadding(maxElementsInRows);
