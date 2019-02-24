@@ -8,12 +8,13 @@ std::ostream& operator<<(std::ostream& os,const Board& b);
 
 namespace DisplayBoard
 {
-    std::stringstream drawBoard(const int width,
-                                const int height,
-                                const int widthRows,
-                                const int heightCol);
+    std::stringstream drawBoard(const unsigned int width,
+                                const unsigned int height,
+                                const unsigned int widthRows,
+                                const unsigned int heightCol,
+                                const char padding = ' ');
 
-    const void printBoard(const Board& b);
+    std::stringstream printBoard(const Board& b);
 
 }
 
