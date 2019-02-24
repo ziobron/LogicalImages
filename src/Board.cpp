@@ -1,6 +1,5 @@
 #include "Board.hpp"
 #include "json.hpp"
-//#include "JSONFileReader.hpp"
 #include <fstream>
 #include <algorithm>
 
@@ -53,3 +52,4 @@ int Board::getMaxNumbEleInRow() const
      return it->size();
 
  }
+

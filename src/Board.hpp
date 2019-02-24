@@ -32,7 +32,7 @@ public:
 
     int getMaxNumbEleInRow() const;
     int getMaxNumbEleInCol() const;
-    friend std::stringstream DisplayBoard::drawBoard(const int width,
+    friend std::ostringstream DisplayBoard::drawBoard(const int width,
                                                      const int height,
                                                      const int widthRows,
                                                      const int heightCol);
