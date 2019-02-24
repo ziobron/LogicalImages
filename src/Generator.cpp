@@ -22,7 +22,7 @@ Lines getAllVectorPermutation_(int vSize)
     }
 }
 
-BLines ConvertIntToFieldEnum(Lines board)
+BLines ConvertIntToFieldEnum(const Lines & board)
 {
     BLines result;
 
