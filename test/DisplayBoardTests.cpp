@@ -20,14 +20,13 @@ TEST_F(DisplayBoardTests, checkDrawEndLineFor2Element)
     std::string endLine = drawEndLine(2);
     ASSERT_EQ(endLine,comparePad);
 }
+
 TEST_F(DisplayBoardTests, checkDrawEmptyLineFor2Element)
 {
     std::string comparePad = "|    |";
     std::string emptyLine = drawEmptyLine(2);
     ASSERT_EQ(emptyLine, comparePad);
 }
-
-
 
 TEST_F(DisplayBoardTests, checkDrawingEmptyColumnsForHeightOne)
 {
@@ -53,6 +52,6 @@ TEST_F(DisplayBoardTests, checkDrawingEmptyRowsForMaxOneElementInRow)
 TEST_F(DisplayBoardTests, checkDrawingTable)
 {
     std::string drawB = DisplayBoard::drawBoard(1,1,1,1).str();
-    std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |  |\n+--+--+";
+    std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+";
     ASSERT_EQ(drawB,compareBoard);
 }
