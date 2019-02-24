@@ -16,6 +16,8 @@ Board::Board(int rowNumber,
     BLine singleRow;
     singleRow.assign(colNumber_, FieldsEnum::UNKNOWN);
     board_.assign(rowNumber_, singleRow);
+    labelColsWidth_ = checkLabelColsHeight();
+    labelRowsWidth_ = checkLabelRowsWidth();
 }
 
 Board::~Board() {}
@@ -35,7 +37,7 @@ BLines Board::getBoardLines() const
     return board_;
 }
 
-int Board::getMaxNumbEleInRow() const
+int Board::checkLabelRowsWidth() const
 {
     auto it = std::max_element(rows_.begin(),
                                rows_.end(),
@@ -44,12 +46,21 @@ int Board::getMaxNumbEleInRow() const
     return it->size();
  }
 
- int Board::getMaxNumbEleInCol() const
+ int Board::checkLabelColsHeight() const
  {
      auto it = std::max_element(cols_.begin(),
                                 cols_.end(),
                                 [](Line lhs, Line rhs){
              return lhs.size() < rhs.size();});
      return it->size();
-
  }
+
+ int Board::getLabelRowsWidth() const
+ {
+     return labelRowsWidth_;
+  }
+
+  int Board::getLabelColsHeight() const
+  {
+      return labelColsWidth_;
+  }
