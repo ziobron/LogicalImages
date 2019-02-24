@@ -3,7 +3,6 @@
 #include "json.hpp"
 #include <vector>
 #include <iostream>
-#include "DisplayBoard.hpp"
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
@@ -17,6 +16,10 @@ class Board
     Lines rows_;
     Lines cols_;
     BLines board_;
+    int labelRowsWidth_;
+    int labelColsWidth_;
+    int checkLabelRowsWidth() const;
+    int checkLabelColsHeight() const;
 
 public:
     Board(int rowNumber,
@@ -29,11 +32,7 @@ public:
     int getColsNumber() const;
     BLines getBoardLines() const;
 
-    int getMaxNumbEleInRow() const;
-    int getMaxNumbEleInCol() const;
-    friend std::stringstream DisplayBoard::drawBoard(const int width,
-                                                     const int height,
-                                                     const int widthRows,
-                                                     const int heightCol);
+    int getLabelRowsWidth() const;
+    int getLabelColsHeight() const;
 };
 
