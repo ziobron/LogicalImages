@@ -2,18 +2,13 @@
 #include "LogicalImages.hpp"
 #include "DisplayBoard.hpp"
 
-
 int main()
 {
     std::cout << "LogicalImages!\n\n";
 
-    //added temporarily
-    Board board(11,
-                13,
-                {{1},{3},{5}},
-                {{3},{5},{6},{2,7}});
+    DisplayBoard::printBoard(3,3,2,2);
 
-    std::cout << board;
+
 
     return 0;
 }
