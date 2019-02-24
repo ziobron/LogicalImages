@@ -32,9 +32,13 @@ namespace DisplayBoard
         return ss;
     }
 
-    const void printBoard(const Board& b)
+        void printBoard(const int width,
+                    const int height,
+                    const int widthRows,
+                    const int heightCol)
     {
-        std::cout << b;
+        std::stringstream tmp = drawBoard(width, height, widthRows, heightCol);
+        std::cout << tmp.str() << "\n";
     }
 
 }
@@ -95,16 +99,5 @@ namespace
         return rows;
     }
 
-}
-
-std::ostream& operator<<(std::ostream& os,const Board& b)
-{
-    int width = b.getColsNumber();
-    int height = b.getRowsNumber();
-    int widthRows = b.getLabelRowsWidth();
-    int heightCol = b.getLabelColsHeight();
-
-    std::stringstream tmp = DisplayBoard::drawBoard(width, height, widthRows, heightCol);
-    return os << tmp.str() << "\n";
 }
 
