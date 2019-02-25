@@ -13,7 +13,7 @@ std::ifstream openFileToRead(const std::string & filename)
     }
     catch (std::exception)
     {
-        std::cout << "Input operation failed (formatting or extraction error)." << std::endl;
+        std::cout << "Failed to open file: " << filename << std::endl;
         throw;
     }
 }
@@ -28,7 +28,7 @@ std::ofstream openFileToWrite(const std::string & filename)
     }
     catch (std::exception)
     {
-        std::cout << "Input operation failed (formatting or extraction error)." << std::endl;
+        std::cout << "Failed to open file: " << filename << std::endl;
         throw;
     }
 }
