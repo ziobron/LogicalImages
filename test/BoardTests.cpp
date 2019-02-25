@@ -93,11 +93,3 @@ TEST_F(BoardTests, findLongestVectorOfCluesInCols)
                 {{4},{3,2},{2,2,2},{2,5},{2,5},{2,2,2},{2,3},{4}});
     ASSERT_EQ(board.findLongestVectorInCols(),3);
 }
-
-TEST_F(BoardTests, checkDrawingTable)
-{
-    Board board(1, 1, {{1}}, {{1}});
-    std::string drawB = board.drawBoard().str();
-    std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+";
-    ASSERT_EQ(drawB,compareBoard);
-}
