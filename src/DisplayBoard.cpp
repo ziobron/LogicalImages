@@ -37,6 +37,9 @@ namespace DisplayBoard
         std::cout << b;
     }
 
+    void foo(Board& b){
+        std::cout << b.rowNumber_;
+    }
 }
 
 

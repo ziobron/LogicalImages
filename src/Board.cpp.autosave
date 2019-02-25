@@ -53,7 +53,7 @@ int Board::checkLabelColsHeight() const
                                [](Line lhs, Line rhs){
             return lhs.size() < rhs.size();});
     return it->size();
-}
+}this
 
 int Board::getLabelRowsWidth() const
 {

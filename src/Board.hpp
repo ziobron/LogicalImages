@@ -3,11 +3,14 @@
 #include "json.hpp"
 #include <vector>
 #include <iostream>
+#include "DisplayBoard.hpp"
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
 using BLine = std::vector<FieldsEnum>;
 using BLines = std::vector<BLine>;
+
+extern void foo();
 
 class Board
 {
@@ -34,5 +37,8 @@ public:
 
     int getLabelRowsWidth() const;
     int getLabelColsHeight() const;
+    friend void DisplayBoard::foo(Board& b);
+    void newDraw();
+
 };
 

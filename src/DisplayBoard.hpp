@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Board.hpp"
 
+class Board;
 
 std::ostream& operator<<(std::ostream& os,const Board& b);
 
@@ -14,6 +15,7 @@ namespace DisplayBoard
                                 const int heightCol);
 
     const void printBoard(const Board& b);
+    void foo(Board& b);
 
 }
 
