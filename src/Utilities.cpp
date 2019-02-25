@@ -1,40 +1,21 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <exception>
 
-bool loadFromFile(const std::string & filename)
+std::ifstream openFileToRead(const std::string & filename)
 {
-    std::ifstream data;
-    data.open(filename, std::ifstream::in);
-    if (data)
+    try
     {
-        try
-        {}
-        catch (...)
-        {
-            std::cout << "Empty board file.";
-            return false;
-        }
+        std::ifstream data(filename);
+        data.exceptions(std::ifstream::failbit);
+        return data;
     }
-    else
+    catch (std::exception)
     {
-        std::cout << "Board file doesn't exist.";
-        return false;
+        std::cout << "Input operation failed (formatting or extraction error)." << std::endl;
+        throw;
     }
-    data.close();
 }
 
-bool saveToFile(const std::string & filename)
-{
-    std::ofstream data;
-    data.open(filename, std::ofstream::out);
-    if (data)
-    {}
-    else
-    {
-        std::cout << "File creation failed, check disk space" << std::endl;
-        return false;
-    }
-    data.close();
-}
 
