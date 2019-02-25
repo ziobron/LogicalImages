@@ -7,12 +7,9 @@ struct GeneratorTests : public ::testing::Test
 {
 };
 
-TEST_F(GeneratorTests, checkSizeOfSAllPermutationOfSingleVector)
+struct GeneratorParamTests : public ::testing::TestWithParam<std::tuple<int, int>>
 {
-    auto result = getAllVectorPermutation_(3);
-    std::set<Line> s(result.begin(), result.end());
-    ASSERT_EQ(s.size(), pow(2,3));
-}
+};
 
 TEST_F(GeneratorTests, checkConversionFromIntToFieldsEnum)
 {
@@ -22,4 +19,20 @@ TEST_F(GeneratorTests, checkConversionFromIntToFieldsEnum)
                      {FieldsEnum::WHITE, FieldsEnum::BLACK, FieldsEnum::WHITE}};
 
     ASSERT_EQ(result, ConvertIntToFieldEnum(input));
+}
+
+INSTANTIATE_TEST_CASE_P(Default,
+                        GeneratorParamTests,
+                        testing::Combine(testing::Range(3, 5),   // rows
+                                         testing::Range(3, 5))); // cols
+
+TEST_P(GeneratorParamTests, checkSizeOfAllPermutationForGivenBoard)
+{
+    int rows = std::get<0>(GetParam());
+    int cols = std::get<1>(GetParam());
+
+    auto result = GenerateAllBoardPermutations(rows, cols);
+    std::set<Lines> s(result.begin(), result.end());
+
+    ASSERT_EQ(s.size(), pow(2, (rows * cols)));
 }
