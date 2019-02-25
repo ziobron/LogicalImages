@@ -53,9 +53,9 @@ int Board::getMaxNumbEleInRow() const
 
  }
 
- std::ostringstream Board::drawBoard()
+ std::stringstream Board::drawBoard()
  {
-     std::ostringstream ss;
+     std::stringstream ss;
      const int widthRows = getMaxNumbEleInRow();
      const int heightCol = getMaxNumbEleInCol();
      std::string s = DisplayBoard::drawEndLine(widthRows);

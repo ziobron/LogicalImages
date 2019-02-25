@@ -32,6 +32,5 @@ public:
 
     int getMaxNumbEleInRow() const;
     int getMaxNumbEleInCol() const;
-    std::ostringstream drawBoard();
+    std::stringstream drawBoard();
 };
-
