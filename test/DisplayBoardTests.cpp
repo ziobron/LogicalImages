@@ -1,4 +1,4 @@
-#include "DisplayBoard.cpp"
+#include "Board.hpp"
 #include "json.hpp"
 #include <gtest/gtest.h>
 
@@ -47,7 +47,12 @@ TEST_F(DisplayBoardTests, checkDrawingEmptyRowsForMaxOneElementInRow)
 {
     std::string compareRow = "|  ";
     std::string drawR = drawRow(1);
-    ASSERT_EQ(drawR,compareRow);
+    ASSERT_EQ(drawR, compareRow);
 }
 
-
+TEST_F(DisplayBoardTests, checkDrawingTable)
+{
+    Board board(3,3,{},{});
+    std::string compareBoard = " +---+\n++---+\n||  |\n||  |\n||  |\n++---+";
+    ASSERT_EQ((board.drawBoard()).str(), compareBoard);
+}
