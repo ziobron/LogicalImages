@@ -20,6 +20,16 @@ TEST_F(BoardFileTests, whenWrongFileToReadPathIsGiven)
     ASSERT_ANY_THROW(openFileToRead(path));
 }
 
+TEST_F(BoardFileTests, whenWrongPathIsGiven)
+{
+    std::string path = "./Test/";
 
+    ASSERT_ANY_THROW(openFileToWrite(path));
+}
 
+TEST_F(BoardFileTests, whenFileToWritePathIsGiven)
+{
+    std::string path = "./EmptyFile.txt";
 
+    ASSERT_NO_THROW(openFileToWrite(path));
+}
