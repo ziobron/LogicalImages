@@ -34,41 +34,39 @@ BLines Board::getBoardLines() const
     return board_;
 }
 
-int Board::getMaxNumbEleInRow() const
+int Board::findLongestVectorInLines(Lines &v) const
 {
-    auto it = std::max_element(rows_.begin(),
-                               rows_.end(),
-                               [](Line lhs, Line rhs){
-            return lhs.size() < rhs.size();});
+    auto it = std::max_element(v.begin(),
+                               v.end(),
+                               [](Line lhs, Line rhs){return lhs.size() < rhs.size();});
     return it->size();
- }
+}
 
- int Board::getMaxNumbEleInCol() const
- {
-     auto it = std::max_element(cols_.begin(),
-                                cols_.end(),
-                                [](Line lhs, Line rhs){
-             return lhs.size() < rhs.size();});
-     return it->size();
+int Board::findLongestVectorInRows()
+{
+    return findLongestVectorInLines(rows_);
+}
 
- }
+int Board::findLongestVectorInCols()
+{
+    return findLongestVectorInLines(cols_);
+}
 
- std::stringstream Board::drawBoard()
- {
-     std::stringstream ss;
-     const int widthRows = getMaxNumbEleInRow();
-     const int heightCol = getMaxNumbEleInCol();
-     std::string s = DisplayBoard::drawEndLine(widthRows);
-     s.pop_back();
+std::stringstream Board::drawBoard()
+{
+    std::stringstream ss;
+    const int widthRows = findLongestVectorInLines(rows_);
+    const int heightCol = findLongestVectorInLines(cols_);
+    std::string s = DisplayBoard::drawEndLine(widthRows);
+    s.pop_back();
 
-     ss << DisplayBoard::drawColumns(widthRows, colNumber_, heightCol);
-     ss << s << DisplayBoard::drawEndLine(colNumber_) << "\n";
-     for (int i = rowNumber_;i > 0 ; --i)
-     {
-         ss << DisplayBoard::drawRow(widthRows);
-         ss << DisplayBoard::drawEmptyLine(colNumber_, '?') << "\n";
-     }
-     ss << s << DisplayBoard::drawEndLine(colNumber_);
-     return ss;
-
- }
+    ss << DisplayBoard::drawColumns(widthRows, colNumber_, heightCol);
+    ss << s << DisplayBoard::drawEndLine(colNumber_) << "\n";
+    for (int i = rowNumber_; i > 0 ; --i)
+    {
+        ss << DisplayBoard::drawRow(widthRows);
+        ss << DisplayBoard::drawEmptyLine(colNumber_, '?') << "\n";
+    }
+    ss << s << DisplayBoard::drawEndLine(colNumber_);
+    return ss;
+}
