@@ -1,6 +1,6 @@
 #include "Generator.hpp"
 
-bool nextPermutation(Line &row)
+bool nextPermutation(Line& row)
 {
     for (int i = row.size() - 1; ; --i)
     {
@@ -15,7 +15,7 @@ bool nextPermutation(Line &row)
     return false;
 }
 
-BLines ConvertIntToFieldEnum(const Lines & board)
+BLines ConvertIntToFieldEnum(const Lines& board)
 {
     BLines result;
 
