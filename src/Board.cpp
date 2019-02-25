@@ -53,3 +53,22 @@ int Board::getMaxNumbEleInRow() const
 
  }
 
+ std::ostringstream Board::drawBoard()
+ {
+     std::ostringstream ss;
+     const int widthRows = getMaxNumbEleInRow();
+     const int heightCol = getMaxNumbEleInCol();
+     std::string s = DisplayBoard::drawEndLine(widthRows);
+     s.pop_back();
+
+     ss << DisplayBoard::drawColumns(widthRows, colNumber_, heightCol);
+     ss << s << DisplayBoard::drawEndLine(colNumber_) << "\n";
+     for (int i = rowNumber_;i > 0 ; --i)
+     {
+         ss << DisplayBoard::drawRow(widthRows);
+         ss << DisplayBoard::drawEmptyLine(colNumber_, '?') << "\n";
+     }
+     ss << s << DisplayBoard::drawEndLine(colNumber_);
+     return ss;
+
+ }
