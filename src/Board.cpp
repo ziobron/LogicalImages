@@ -2,9 +2,10 @@
 #include "json.hpp"
 #include <fstream>
 #include <algorithm>
+#include "DisplayBoard.hpp"
 
-Board::Board(int rowNumber,
-             int colNumber,
+Board::Board(const u_int rowNumber,
+             const u_int colNumber,
              const Lines& rows,
              const Lines& cols) noexcept
     : rowNumber_(rowNumber),
@@ -19,12 +20,12 @@ Board::Board(int rowNumber,
 
 Board::~Board() {}
 
-int Board::getRowsNumber() const
+u_int Board::getRowsNumber() const
 {
     return rowNumber_;
 }
 
-int Board::getColsNumber() const
+u_int Board::getColsNumber() const
 {
     return colNumber_;
 }
@@ -34,7 +35,7 @@ BLines Board::getBoardLines() const
     return board_;
 }
 
-int Board::findLongestVectorInLines(Lines &v) const
+u_int Board::findLongestVectorInLines(const Lines& v) const
 {
     auto it = std::max_element(v.begin(),
                                v.end(),
@@ -42,31 +43,17 @@ int Board::findLongestVectorInLines(Lines &v) const
     return it->size();
 }
 
-int Board::findLongestVectorInRows()
+u_int Board::findLongestVectorInRows() const
 {
     return findLongestVectorInLines(rows_);
 }
 
-int Board::findLongestVectorInCols()
+u_int Board::findLongestVectorInCols() const
 {
     return findLongestVectorInLines(cols_);
 }
 
-std::stringstream Board::drawBoard()
+void Board::display() const
 {
-    std::stringstream ss;
-    const int widthRows = findLongestVectorInLines(rows_);
-    const int heightCol = findLongestVectorInLines(cols_);
-    std::string s = DisplayBoard::drawEndLine(widthRows);
-    s.pop_back();
-
-    ss << DisplayBoard::drawColumns(widthRows, colNumber_, heightCol);
-    ss << s << DisplayBoard::drawEndLine(colNumber_) << "\n";
-    for (int i = rowNumber_; i > 0 ; --i)
-    {
-        ss << DisplayBoard::drawRow(widthRows);
-        ss << DisplayBoard::drawEmptyLine(colNumber_, '?') << "\n";
-    }
-    ss << s << DisplayBoard::drawEndLine(colNumber_);
-    return ss;
+    DisplayBoard::displayInterface(*this);
 }

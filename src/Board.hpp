@@ -3,8 +3,8 @@
 #include "json.hpp"
 #include <vector>
 #include <iostream>
-#include "DisplayBoard.hpp"
 
+using u_int = unsigned int;
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
 using BLine = std::vector<FieldsEnum>;
@@ -12,26 +12,26 @@ using BLines = std::vector<BLine>;
 
 class Board
 {
-    const int rowNumber_;
-    const int colNumber_;
+    const u_int rowNumber_;
+    const u_int colNumber_;
     Lines rows_;
     Lines cols_;
     BLines board_;
 
 public:
-    Board(int rowNumber,
-          int colNumber,
+    Board(const u_int rowNumber,
+          const u_int colNumber,
           const Lines& rows,
           const Lines& cols) noexcept;
     ~Board();
 
-    int getRowsNumber() const;
-    int getColsNumber() const;
+    u_int getRowsNumber() const;
+    u_int getColsNumber() const;
     BLines getBoardLines() const;
 
-    int findLongestVectorInLines(Lines &v) const;
-    int findLongestVectorInRows();
-    int findLongestVectorInCols();
-    
-    std::stringstream drawBoard();
+    u_int findLongestVectorInLines(const Lines& v) const;
+    u_int findLongestVectorInRows() const;
+    u_int findLongestVectorInCols() const;
+
+    void display() const;
 };
