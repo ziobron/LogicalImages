@@ -3,7 +3,6 @@
 #include "json.hpp"
 #include <vector>
 #include <iostream>
-#include "DisplayBoard.hpp"
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
@@ -37,8 +36,7 @@ public:
 
     int getLabelRowsWidth() const;
     int getLabelColsHeight() const;
-    friend void DisplayBoard::foo(Board& b);
-    void newDraw();
+    void display() const;
 
 };
 

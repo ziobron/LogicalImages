@@ -7,11 +7,27 @@ namespace
     std::string drawEmptyLine(const int width);
     std::string drawColumns(const int maxElementsInRows, const int colNumber, const int heightCol);
     std::string drawRow(const int maxElementsInRows);
+    std::stringstream drawBoard(const int width,
+                                const int height,
+                                const int widthRows,
+                                const int heightCol);
 }
-
 
 namespace DisplayBoard
 {
+    void displayInterface(const Board& b){
+        std::cout << b;
+    }
+}
+
+
+namespace
+{
+    const char HORIZONTAL = '-';
+    const char VERTICAL = '|';
+    const char INTERSECTION = '+';
+    const char PADDING = ' ';
+
     std::stringstream drawBoard(const int width,
                                 const int height,
                                 const int widthRows,
@@ -32,23 +48,6 @@ namespace DisplayBoard
         return ss;
     }
 
-    const void printBoard(const Board& b)
-    {
-        std::cout << b;
-    }
-
-    void foo(Board& b){
-        std::cout << b.rowNumber_;
-    }
-}
-
-
-namespace
-{
-    const char HORIZONTAL = '-';
-    const char VERTICAL = '|';
-    const char INTERSECTION = '+';
-    const char PADDING = ' ';
 
     std::string drawPadding(const int width)
     {
@@ -107,7 +106,7 @@ std::ostream& operator<<(std::ostream& os,const Board& b)
     int widthRows = b.getLabelRowsWidth();
     int heightCol = b.getLabelColsHeight();
 
-    std::stringstream tmp = DisplayBoard::drawBoard(width, height, widthRows, heightCol);
+    auto tmp = drawBoard(width, height, widthRows, heightCol);
     return os << tmp.str() << "\n";
 }
 

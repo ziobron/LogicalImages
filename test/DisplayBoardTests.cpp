@@ -52,7 +52,7 @@ TEST_F(DisplayBoardTests, checkDrawingEmptyRowsForMaxOneElementInRow)
 
 TEST_F(DisplayBoardTests, checkDrawingTable)
 {
-    std::string drawB = DisplayBoard::drawBoard(1,1,1,1).str();
+    std::string drawB = drawBoard(1,1,1,1).str();
     std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |  |\n+--+--+";
     ASSERT_EQ(drawB,compareBoard);
 }

@@ -3,20 +3,11 @@
 #include <iostream>
 #include "Board.hpp"
 
-class Board;
-
 std::ostream& operator<<(std::ostream& os,const Board& b);
 
 namespace DisplayBoard
 {
-    std::stringstream drawBoard(const int width,
-                                const int height,
-                                const int widthRows,
-                                const int heightCol);
-
-    const void printBoard(const Board& b);
-    void foo(Board& b);
-
+    void displayInterface(const Board& b);
 }
 
 

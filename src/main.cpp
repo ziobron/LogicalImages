@@ -14,7 +14,7 @@ int main()
                 {{3},{5},{6},{2,7}});
 
     std::cout << board;
-    board.newDraw();
+    board.display();
 
     return 0;
 }

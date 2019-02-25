@@ -3,6 +3,7 @@
 //#include "JSONFileReader.hpp"
 #include <fstream>
 #include <algorithm>
+#include "DisplayBoard.hpp"
 
 Board::Board(int rowNumber,
              int colNumber,
@@ -65,7 +66,7 @@ int Board::getLabelColsHeight() const
     return labelColsWidth_;
 }
 
-void Board::newDraw()
+void Board::display() const
 {
-    DisplayBoard::foo(*this);
+    DisplayBoard::displayInterface(*this);
 }
