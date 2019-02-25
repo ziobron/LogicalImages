@@ -76,22 +76,22 @@ TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
     ASSERT_EQ(board.getBoardLines().at(0)[0],FieldsEnum::UNKNOWN);
 }
 
-TEST_F(BoardTests, functionGetMaxNumbEleInRowReturnsMaximumNumberOfElementsInRow)
+TEST_F(BoardTests, findLongestVectorOfCluesInRows)
 {
     Board board(11,
                 13,
                 {{1},{3},{5},{7},{9},{11},{11},{11},{3,1,3},{3},{3},{5},{5}},
                 {{3},{5},{6},{2,7},{4,7},{13},{4,7},{2,7},{6},{5},{3}});
-    ASSERT_EQ(board.getMaxNumbEleInRow(),3);
+    ASSERT_EQ(board.findLongestVectorInRows(get),3);
 }
 
-TEST_F(BoardTests, functionGetMaxNumbEleInColReturnsMaximumNumberOfElementsInColumn)
+TEST_F(BoardTests, findLongestVectorOfCluesInCols)
 {
     Board board(8,
                 8,
                 {{4},{6},{2,2,2},{8},{1,4,1},{2,2},{6},{4}},
                 {{4},{3,2},{2,2,2},{2,5},{2,5},{2,2,2},{2,3},{4}});
-    ASSERT_EQ(board.getMaxNumbEleInCol(),3);
+    ASSERT_EQ(board.findLongestVectorInCols(),3);
 }
 
 TEST_F(BoardTests, checkDrawingTable)

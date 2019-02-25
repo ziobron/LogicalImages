@@ -29,7 +29,9 @@ public:
     int getColsNumber() const;
     BLines getBoardLines() const;
 
-    int getMaxNumbEleInRow() const;
-    int getMaxNumbEleInCol() const;
+    int findLongestVectorInLines(Lines &v) const;
+    int findLongestVectorInRows();
+    int findLongestVectorInCols();
+    
     std::stringstream drawBoard();
 };
