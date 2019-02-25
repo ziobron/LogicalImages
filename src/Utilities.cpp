@@ -3,7 +3,7 @@
 #include <iostream>
 #include <exception>
 
-std::ifstream openFileToRead(const std::string & filename)
+std::ifstream openFileToRead(const std::string& filename)
 {
     try
     {
@@ -18,7 +18,7 @@ std::ifstream openFileToRead(const std::string & filename)
     }
 }
 
-std::ofstream openFileToWrite(const std::string & filename)
+std::ofstream openFileToWrite(const std::string& filename)
 {
     try
     {
