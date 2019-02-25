@@ -6,16 +6,20 @@ struct BoardFileTests : public ::testing::Test
 {
 };
 
-TEST_F(BoardFileTests, whenWrongDirectoryPathIsGiven)
-{
-    std::string path = "./WrongPath.txt";
-
-    ASSERT_FALSE(loadFromFile(path));
-}
-
-TEST_F(BoardFileTests, whenEmptyFileIsGiven)
+TEST_F(BoardFileTests, whenFileToReadPathIsGiven)
 {
     std::string path = "./EmptyFile.txt";
 
-    ASSERT_FALSE(loadFromFile(path));
+    ASSERT_NO_THROW(openFileToRead(path));
 }
+
+TEST_F(BoardFileTests, whenWrongFileToReadPathIsGiven)
+{
+    std::string path = "./WrongPath.txt";
+
+    ASSERT_ANY_THROW(openFileToRead(path));
+}
+
+
+
+
