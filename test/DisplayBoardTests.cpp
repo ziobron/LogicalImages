@@ -58,8 +58,8 @@ TEST_F(DisplayBoardTests, checkDrawingEmptyRowsForMaxOneElementInRow)
 
 TEST_F(DisplayBoardTests, checkDrawingEmptyTable3x3)
 {
-    Board board(3, 3, {}, {});
-    std::string compareBoard = " +---+\n++---+\n||  |\n||  |\n||  |\n++---+";
+    Board board(3, 3, {{}}, {{}});
+    std::string compareBoard = " +------+\n++------+\n||??????|\n||??????|\n||??????|\n++------+";
 
-    ASSERT_EQ((board.drawBoard()).str(), compareBoard);
+    ASSERT_EQ(board.drawBoard().str(), compareBoard);
 }
