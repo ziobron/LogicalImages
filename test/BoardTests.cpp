@@ -82,7 +82,7 @@ TEST_F(BoardTests, findLongestVectorOfCluesInRows)
                 13,
                 {{1},{3},{5},{7},{9},{11},{11},{11},{3,1,3},{3},{3},{5},{5}},
                 {{3},{5},{6},{2,7},{4,7},{13},{4,7},{2,7},{6},{5},{3}});
-    ASSERT_EQ(board.findLongestVectorInRows(get),3);
+    ASSERT_EQ(board.findLongestVectorInRows(),3);
 }
 
 TEST_F(BoardTests, findLongestVectorOfCluesInCols)
