@@ -71,3 +71,15 @@ TEST_F(DisplayBoardTests, checkDrawingTable)
 
     ASSERT_EQ(DB::displayInterface(board), compareBoard);
 }
+
+TEST_F(DisplayBoardTests, checkDisplayBoard)
+{
+    Board board(1, 1, {{1}}, {{1}});
+    std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+\n";
+
+    testing::internal::CaptureStdout();
+    board.display();
+    std::string output = testing::internal::GetCapturedStdout();
+
+    ASSERT_EQ(output, compareBoard);
+}
