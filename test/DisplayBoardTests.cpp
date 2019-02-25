@@ -6,6 +6,7 @@ struct DisplayBoardTests : public ::testing::Test
 {
 
 };
+using namespace DisplayBoard;
 
 TEST_F(DisplayBoardTests, checkDrawPaddingFor2Elements)
 {
@@ -49,9 +50,4 @@ TEST_F(DisplayBoardTests, checkDrawingEmptyRowsForMaxOneElementInRow)
     ASSERT_EQ(drawR,compareRow);
 }
 
-TEST_F(DisplayBoardTests, checkDrawingTable)
-{
-    std::string drawB = DisplayBoard::drawBoard(1,1,1,1).str();
-    std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+";
-    ASSERT_EQ(drawB,compareBoard);
-}
+
