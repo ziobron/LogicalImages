@@ -11,9 +11,9 @@ std::ifstream openFileToRead(const std::string& filename)
         data.exceptions(std::ifstream::failbit);
         return data;
     }
-    catch (std::exception)
+    catch (const std::exception& e)
     {
-        std::cout << "Failed to open file: " << filename << std::endl;
+        std::cout << "Failed to open file: " << filename <<  ". " << e.what() << std::endl;
         throw;
     }
 }
@@ -26,9 +26,9 @@ std::ofstream openFileToWrite(const std::string& filename)
         data.exceptions(std::ofstream::failbit);
         return data;
     }
-    catch (std::exception)
+    catch (const std::exception& e)
     {
-        std::cout << "Failed to open file: " << filename << std::endl;
+        std::cout << "Failed to open file: " << filename << ". " << e.what() << std::endl;
         throw;
     }
 }
