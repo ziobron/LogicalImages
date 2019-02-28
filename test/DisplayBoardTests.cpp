@@ -4,6 +4,7 @@
 #include "json.hpp"
 #include <gtest/gtest.h>
 
+
 struct DisplayBoardTests : public ::testing::Test
 {
 };
@@ -58,18 +59,20 @@ TEST_F(DisplayBoardTests, checkDrawingEmptyRowsForMaxOneElementInRow)
 
 TEST_F(DisplayBoardTests, checkDrawingEmptyTable3x3)
 {
+    using namespace DisplayBoard;
     Board board(3, 3, {{}}, {{}});
     std::string compareBoard = " +------+\n++------+\n||??????|\n||??????|\n||??????|\n++------+";
 
-    ASSERT_EQ(DB::displayInterface(board), compareBoard);
+    ASSERT_EQ(displayInterface(board), compareBoard);
 }
 
 TEST_F(DisplayBoardTests, checkDrawingTable)
 {
+    using namespace DisplayBoard;
     Board board(1, 1, {{1}}, {{1}});
     std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+";
 
-    ASSERT_EQ(DB::displayInterface(board), compareBoard);
+    ASSERT_EQ(displayInterface(board), compareBoard);
 }
 
 TEST_F(DisplayBoardTests, checkDisplayBoard)

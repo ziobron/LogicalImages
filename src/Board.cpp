@@ -4,8 +4,8 @@
 #include <algorithm>
 #include "DisplayBoard.hpp"
 
-Board::Board(const u_int rowNumber,
-             const u_int colNumber,
+Board::Board(const unsigned int rowNumber,
+             const unsigned int colNumber,
              const Lines& rows,
              const Lines& cols) noexcept
     : rowNumber_(rowNumber),
@@ -20,12 +20,12 @@ Board::Board(const u_int rowNumber,
 
 Board::~Board() {}
 
-u_int Board::getRowsNumber() const
+unsigned int Board::getRowsNumber() const
 {
     return rowNumber_;
 }
 
-u_int Board::getColsNumber() const
+unsigned int Board::getColsNumber() const
 {
     return colNumber_;
 }
@@ -35,7 +35,7 @@ BLines Board::getBoardLines() const
     return board_;
 }
 
-u_int Board::findLongestVectorInLines(const Lines& v) const
+unsigned int Board::findLongestVectorInLines(const Lines& v) const
 {
     auto it = std::max_element(v.begin(),
                                v.end(),
@@ -43,17 +43,18 @@ u_int Board::findLongestVectorInLines(const Lines& v) const
     return it->size();
 }
 
-u_int Board::findLongestVectorInRows() const
+unsigned int Board::findLongestVectorInRows() const
 {
     return findLongestVectorInLines(rows_);
 }
 
-u_int Board::findLongestVectorInCols() const
+unsigned int Board::findLongestVectorInCols() const
 {
     return findLongestVectorInLines(cols_);
 }
 
 void Board::display() const
 {
-    DisplayBoard::displayInterface(*this);
+    auto tmp = DisplayBoard::displayInterface(*this);
+    std::cout << tmp << "\n";
 }

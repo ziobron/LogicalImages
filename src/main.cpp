@@ -1,10 +1,8 @@
 #include <iostream>
 #include "LogicalImages.hpp"
-#include "DisplayBoard.hpp"
 
 int main()
 {
-    std::cout << "LogicalImages!\n\n";
-
+    std::cout << "LogicalImages!\n";
     return 0;
 }

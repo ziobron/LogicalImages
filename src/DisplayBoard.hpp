@@ -7,6 +7,3 @@ namespace DisplayBoard
 {
     std::string displayInterface(const Board& b);
 }
-
-//alias to shortcut name in test files
-namespace DB = DisplayBoard;
