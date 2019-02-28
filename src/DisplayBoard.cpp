@@ -11,7 +11,7 @@ namespace
     std::string drawPadding(const unsigned int width,
                             const char sign = PADDING);
 
-    std::string drawEndLine(const unsigned int width);
+    std::string drawEndLine(const unsigned int widthRows, const unsigned int  width = 0);
     std::string drawEmptyLine(const unsigned int width,
                               const char sign = PADDING);
 
@@ -47,17 +47,15 @@ namespace
                                 const unsigned int heightCol)
     {
         std::stringstream ss;
-        std::string s = drawEndLine(widthRows);
-        s.pop_back();
 
         ss << drawColumns(widthRows, width, heightCol);
-        ss << s << drawEndLine(width) << "\n";
-        for (int i = height; i > 0; --i)
+        ss << drawEndLine(widthRows, width) << "\n";
+        for (int i = 0; i < height; i++)
         {
             ss << drawRow(widthRows);
             ss << drawEmptyLine(width, '?') << "\n";
         }
-        ss << s << drawEndLine(width);
+        ss << drawEndLine(widthRows, width);
         return ss;
     }
 
@@ -70,12 +68,18 @@ namespace
         return result;
     }
 
-    std::string drawEndLine(const unsigned int width)
+    std::string drawEndLine(const unsigned int widthRows, const unsigned int width)
     {
         std::string result {INTERSECTION};
-        for (auto it = 0; it < (width *2); it++)
-            result += HORIZONTAL;
+         for (auto it = 0; it < (widthRows *2); it++)
+             result += HORIZONTAL;
         result += INTERSECTION;
+        if(width > 0)
+        {
+            for (auto it = 0; it < (width *2); it++)
+                result += HORIZONTAL;
+            result += INTERSECTION;
+        }
         return result;
     }
 
