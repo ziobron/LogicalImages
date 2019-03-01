@@ -49,6 +49,7 @@ set(SRC_LIST
     src/JSONFileReader.hpp
     src/JSONFileReader.cpp
     src/FieldsEnum.hpp
+    src/Utilities.cpp
     src/Generator.hpp
     src/Generator.cpp
     src/DisplayBoard.cpp
@@ -70,6 +71,7 @@ set(TEST_SRC_LIST
     test/LogicalImagesTests.cpp
     test/BoardTests.cpp
     test/GeneratorTests.cpp
+    test/BoardFileTests.cpp
     test/test_main.cpp
     test/DisplayBoardTests.cpp
 )
