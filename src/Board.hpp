@@ -10,21 +10,21 @@ using BLines = std::vector<BLine>;
 
 class Board
 {
-    const unsigned int rowNumber_;
-    const unsigned int colNumber_;
+    const unsigned int sizeRows_;
+    const unsigned int sizeCols_;
     Lines rows_;
     Lines cols_;
     BLines board_;
 
 public:
-    Board(const unsigned int rowNumber,
-          const unsigned int colNumber,
+    Board(const unsigned int sizeRows,
+          const unsigned int sizeCols,
           const Lines& rows,
           const Lines& cols) noexcept;
     ~Board();
 
-    unsigned int getRowsNumber() const;
-    unsigned int getColsNumber() const;
+    unsigned int getRowSize() const;
+    unsigned int getColSize() const;
     BLines getBoardLines() const;
 
     unsigned int getLongestLineLenght(const Lines& v) const;

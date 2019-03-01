@@ -9,8 +9,8 @@ class JSONFileReader
     json j_;
 public:
     explicit JSONFileReader(std::string path);
-    int readRowsNumber();
-    int readColsNumber();
+    int readRowSize();
+    int readColSize();
     Lines readRows();
     Lines readCols();
 };

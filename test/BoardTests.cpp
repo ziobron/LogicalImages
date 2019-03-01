@@ -13,54 +13,54 @@ TEST_F(BoardTests, checkConstructorNoexception)
     json j;
     j["col"] = {{1, 1}, {1}};
     j["row"] = {{1}, {1}, {1}};
-    j["rowNum"] = 3;
-    j["colNum"] = 2;
+    j["rowSize"] = 3;
+    j["colSize"] = 2;
 
-    Board board(j["rowNum"], j["colNum"], j["row"], j["col"]);
+    Board board(j["rowSize"], j["colSize"], j["row"], j["col"]);
 }
 
 TEST_F(BoardTests, checkReadingJSON)
 {
     std::string path = "../test/ReadMeBoardTestFile.json";
     JSONFileReader jfr(path);
-    Board board(jfr.readRowsNumber(),
-                jfr.readColsNumber(),
+    Board board(jfr.readRowSize(),
+                jfr.readColSize(),
                 jfr.readRows(),
                 jfr.readCols());
 
-    ASSERT_EQ(board.getRowsNumber(), 3);
-    ASSERT_EQ(board.getColsNumber(), 3);
+    ASSERT_EQ(board.getRowSize(), 3);
+    ASSERT_EQ(board.getColSize(), 3);
 }
 
 TEST_F(BoardTests, checkJSONFileReaderExceptions)
 {
     std::string path;
 
-    path = "../test/JSONFileReaderWrongColNumberTestFile.json";
+    path = "../test/JSONFileReaderWrongColSizeTestFile.json";
     JSONFileReader jfr1(path);
-    ASSERT_THROW(Board board(jfr1.readRowsNumber(),
-                             jfr1.readColsNumber(),
+    ASSERT_THROW(Board board(jfr1.readRowSize(),
+                             jfr1.readColSize(),
                              jfr1.readRows(),
                              jfr1.readCols()), InvalidDimensions);
 
-    path = "../test/JSONFileReaderWrongRowNumberTestFile.json";
+    path = "../test/JSONFileReaderWrongRowSizeTestFile.json";
     JSONFileReader jfr2(path);
-    ASSERT_THROW(Board board(jfr2.readRowsNumber(),
-                             jfr2.readColsNumber(),
+    ASSERT_THROW(Board board(jfr2.readRowSize(),
+                             jfr2.readColSize(),
                              jfr2.readRows(),
                              jfr2.readCols()), InvalidDimensions);
 
     path = "../test/JSONFileReaderNumberOfLinesAndColsNoMatch.json";
     JSONFileReader jfr3(path);
-    ASSERT_THROW(Board board(jfr3.readRowsNumber(),
-                             jfr3.readColsNumber(),
+    ASSERT_THROW(Board board(jfr3.readRowSize(),
+                             jfr3.readColSize(),
                              jfr3.readRows(),
                              jfr3.readCols()), InvalidDimensions);
 
     path = "../test/JSONFileReaderNumberOfLinesAndRowsNoMatch.json";
     JSONFileReader jfr4(path);
-    ASSERT_THROW(Board board(jfr4.readRowsNumber(),
-                             jfr4.readColsNumber(),
+    ASSERT_THROW(Board board(jfr4.readRowSize(),
+                             jfr4.readColSize(),
                              jfr4.readRows(),
                              jfr4.readCols()), InvalidDimensions);
 }

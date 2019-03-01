@@ -16,7 +16,7 @@ namespace
                               const char sign = PADDING);
 
     std::string drawColumns(const unsigned int maxElementsInRows,
-                            const unsigned int colNumber,
+                            const unsigned int sizeCols,
                             const unsigned int heightCol);
 
     std::string drawRow(const unsigned int maxElementsInRows);
@@ -26,8 +26,8 @@ namespace DisplayBoard
 {
 std::string display(const Board& b)
 {
-    auto width = b.getRowsNumber();
-    auto height = b.getColsNumber();
+    auto width = b.getRowSize();
+    auto height = b.getColSize();
     auto widthRows = b.getLongestRowLenght();
     auto heightCol = b.getLongestColLenght();
     std::stringstream output;
@@ -90,18 +90,18 @@ std::string drawEmptyLine(const unsigned int width,
 }
 
 std::string drawColumns(const unsigned int maxElementsInRows,
-                        const unsigned int colNumber,
+                        const unsigned int sizeCols,
                         const unsigned int heightCol)
 {
     std::string columns;
 
     columns += PADDING + drawPadding(maxElementsInRows);
-    columns += drawEndLine(colNumber) + "\n";
+    columns += drawEndLine(sizeCols) + "\n";
 
     for (int i = heightCol; i > 0; --i)
     {
         columns += PADDING + drawPadding(maxElementsInRows);
-        columns += drawEmptyLine(colNumber);
+        columns += drawEmptyLine(sizeCols);
         columns += "\n";
     }
 

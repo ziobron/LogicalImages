@@ -14,8 +14,8 @@ A text file in JSON format representing input data, e.g.
 
 ```jason
 {
-  "rowNumber": 3,
-  "colNumber": 3,
+  "sizeRows": 3,
+  "sizeCols": 3,
   "rows": [
     [1, 1],
     [2],

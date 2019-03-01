@@ -1,6 +1,6 @@
 {
-  "rowNumber": 3,
-  "colNumber": 3,
+  "sizeRows": 3,
+  "sizeCols": 3,
   "rows": [
     [1, 1],
     [2],

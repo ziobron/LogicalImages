@@ -5,30 +5,30 @@
 #include <iostream>
 #include "DisplayBoard.hpp"
 
-Board::Board(const unsigned int rowNumber,
-             const unsigned int colNumber,
+Board::Board(const unsigned int sizeRows,
+             const unsigned int sizeCols,
              const Lines& rows,
              const Lines& cols) noexcept
-    : rowNumber_(rowNumber),
-      colNumber_(colNumber),
+    : sizeRows_(sizeRows),
+      sizeCols_(sizeCols),
       rows_(rows),
       cols_(cols)
 {
     BLine singleRow;
-    singleRow.assign(colNumber_, BoardFields::UNKNOWN);
-    board_.assign(rowNumber_, singleRow);
+    singleRow.assign(sizeCols_, BoardFields::UNKNOWN);
+    board_.assign(sizeRows_, singleRow);
 }
 
 Board::~Board() {}
 
-unsigned int Board::getRowsNumber() const
+unsigned int Board::getRowSize() const
 {
-    return rowNumber_;
+    return sizeRows_;
 }
 
-unsigned int Board::getColsNumber() const
+unsigned int Board::getColSize() const
 {
-    return colNumber_;
+    return sizeCols_;
 }
 
 BLines Board::getBoardLines() const
