@@ -1,42 +1,36 @@
 #pragma once
 #include "FieldsEnum.hpp"
 #include "json.hpp"
+#include "FieldsEnum.hpp"
 #include <vector>
-#include <iostream>
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
 using BLine = std::vector<FieldsEnum>;
 using BLines = std::vector<BLine>;
 
-extern void foo();
-
 class Board
 {
-    const int rowNumber_;
-    const int colNumber_;
+    const unsigned int rowNumber_;
+    const unsigned int colNumber_;
     Lines rows_;
     Lines cols_;
     BLines board_;
-    int labelRowsWidth_;
-    int labelColsWidth_;
-    int checkLabelRowsWidth() const;
-    int checkLabelColsHeight() const;
 
 public:
-    Board(int rowNumber,
-          int colNumber,
+    Board(const unsigned int rowNumber,
+          const unsigned int colNumber,
           const Lines& rows,
           const Lines& cols) noexcept;
     ~Board();
 
-    int getRowsNumber() const;
-    int getColsNumber() const;
+    unsigned int getRowsNumber() const;
+    unsigned int getColsNumber() const;
     BLines getBoardLines() const;
 
-    int getLabelRowsWidth() const;
-    int getLabelColsHeight() const;
+    unsigned int getLongestLineLenght(const Lines& v) const;
+    unsigned int getLongestRowLenght() const;
+    unsigned int getLongestColLenght() const;
+
     void display() const;
-
 };
-

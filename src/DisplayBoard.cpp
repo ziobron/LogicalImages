@@ -2,111 +2,125 @@
 
 namespace
 {
-    std::string drawPadding(const int width);
-    std::string drawEndLine(const int width);
-    std::string drawEmptyLine(const int width);
-    std::string drawColumns(const int maxElementsInRows, const int colNumber, const int heightCol);
-    std::string drawRow(const int maxElementsInRows);
-    std::stringstream drawBoard(const int width,
-                                const int height,
-                                const int widthRows,
-                                const int heightCol);
-}
-
-namespace DisplayBoard
-{
-    void displayInterface(const Board& b){
-        std::cout << b;
-    }
-}
-
-
-namespace
-{
     const char HORIZONTAL = '-';
     const char VERTICAL = '|';
     const char INTERSECTION = '+';
     const char PADDING = ' ';
 
-    std::stringstream drawBoard(const int width,
-                                const int height,
-                                const int widthRows,
-                                const int heightCol)
-    {
-        std::stringstream ss;
-        std::string s = drawEndLine(widthRows);
-        s.pop_back();
 
-        ss << drawColumns(widthRows, width, heightCol);
-        ss << s << drawEndLine(width) << "\n";
-        for (int i = height;i > 0 ; --i)
-        {
-            ss << drawRow(widthRows);
-            ss << drawEmptyLine(width) << "\n";
-        }
-        ss << s << drawEndLine(width);
-        return ss;
+    std::string drawPadding(const unsigned int width,
+                            const char sign = PADDING);
+
+    std::string drawEndLine(const unsigned int widthRows, const unsigned int width = 0);
+    std::string drawEmptyLine(const unsigned int width,
+                              const char sign = PADDING);
+
+    std::string drawColumns(const unsigned int maxElementsInRows,
+                            const unsigned int colNumber,
+                            const unsigned int heightCol);
+
+    std::string drawRow(const unsigned int maxElementsInRows);
+}
+
+namespace DisplayBoard
+{
+std::string display(const Board& b)
+{
+    auto width = b.getRowsNumber();
+    auto height = b.getColsNumber();
+    auto widthRows = b.getLongestRowLenght();
+    auto heightCol = b.getLongestColLenght();
+    std::stringstream output;
+
+    output << drawColumns(widthRows, width, heightCol);
+    output << drawEndLine(widthRows, width) << "\n";
+
+    for (int i = 0; i < height; i++)
+    {
+        output << drawRow(widthRows);
+        output << drawEmptyLine(width, '?') << "\n";
     }
+    output << drawEndLine(widthRows, width);
 
+    return output.str() + "\n";
+}
+}
 
-    std::string drawPadding(const int width)
+namespace
+{
+std::string drawPadding(const unsigned int width,
+                        const char sign /*= PADDING*/)
+{
+    std::string result;
+
+    for (auto it = 0; it < (width * 2); it++)
+        result += PADDING;
+
+    return result;
+}
+
+std::string drawEndLine(const unsigned int widthRows, const unsigned int width)
+{
+    std::string result {INTERSECTION};
+
+     for (auto it = 0; it < (widthRows *2); it++)
+         result += HORIZONTAL;
+    result += INTERSECTION;
+
+    if(width > 0)
     {
-        std::string result;
-        for (auto it = 0; it < (width * 2); it++)
-            result += PADDING;
-        return result;
-    }
-
-    std::string drawEndLine(const int width)
-    {
-        std::string result {INTERSECTION};
         for (auto it = 0; it < (width *2); it++)
             result += HORIZONTAL;
         result += INTERSECTION;
-        return result;
     }
 
-    std::string drawEmptyLine(const int width)
-    {
-        std::string result {VERTICAL};
-        for (auto it = 0; it < (width * 2); it++)
-            result += PADDING;
-        result += VERTICAL;
-        return result;
-    }
-
-    std::string drawColumns(const int maxElementsInRows, const int colNumber, const int heightCol)
-    {
-        std::string columns;
-        columns += " " + drawPadding(maxElementsInRows);
-        columns += drawEndLine(colNumber) + "\n";
-        for(int i = heightCol; i > 0; --i)
-        {
-            columns += " " + drawPadding(maxElementsInRows);
-            columns += drawEmptyLine(colNumber);
-            columns += "\n";
-        }
-        return columns;
-    }
-
-    std::string drawRow(const int maxElementsInRows)
-    {
-        std::string rows;
-        rows += VERTICAL;
-        rows += drawPadding(maxElementsInRows);
-        return rows;
-    }
-
+    return result;
 }
 
-std::ostream& operator<<(std::ostream& os,const Board& b)
+std::string drawEmptyLine(const unsigned int width,
+                          const char sign /*= PADDING*/)
 {
-    int width = b.getColsNumber();
-    int height = b.getRowsNumber();
-    int widthRows = b.getLabelRowsWidth();
-    int heightCol = b.getLabelColsHeight();
+    std::string result {VERTICAL};
 
-    auto tmp = drawBoard(width, height, widthRows, heightCol);
-    return os << tmp.str() << "\n";
+    for (auto it = 0; it < (width * 2); it++)
+        result += sign;
+    result += VERTICAL;
+
+    return result;
 }
 
+std::string drawColumns(const unsigned int maxElementsInRows,
+                        const unsigned int colNumber,
+                        const unsigned int heightCol)
+{
+    std::string columns;
+
+    columns += PADDING + drawPadding(maxElementsInRows);
+    columns += drawEndLine(colNumber) + "\n";
+
+    for (int i = heightCol; i > 0; --i)
+    {
+        columns += PADDING + drawPadding(maxElementsInRows);
+        columns += drawEmptyLine(colNumber);
+        columns += "\n";
+    }
+
+    return columns;
+}
+
+std::string drawRow(const unsigned int maxElementsInRows)
+{
+    std::string rows;
+
+    rows += VERTICAL;
+    rows += drawPadding(maxElementsInRows);
+
+    return rows;
+}
+
+}
+
+std::ostream& operator<<(std::ostream& os, const Board& b)
+{
+    return os << DisplayBoard::display(b);
+}

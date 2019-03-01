@@ -7,7 +7,6 @@ std::ostream& operator<<(std::ostream& os,const Board& b);
 
 namespace DisplayBoard
 {
-    void displayInterface(const Board& b);
+    std::string display(const Board& b);
 }
-
 
