@@ -5,5 +5,5 @@
 
 namespace DisplayBoard
 {
-    std::string displayInterface(const Board& b);
+    std::string display(const Board& b);
 }

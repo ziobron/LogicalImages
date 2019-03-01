@@ -28,37 +28,30 @@ namespace
 
 namespace DisplayBoard
 {
-    std::string displayInterface(const Board& b){
+    std::string display(const Board& b)
+    {
         auto width = b.getRowsNumber();
         auto height = b.getColsNumber();
         auto widthRows = b.findLongestVectorInRows();
         auto heightCol = b.findLongestVectorInCols();
+        std::stringstream output;
 
-        auto tmp = drawBoard(width, height, widthRows, heightCol);
-        return tmp.str();
+        output << drawColumns(widthRows, width, heightCol);
+        output << drawEndLine(widthRows, width) << "\n";
+
+        for (int i = 0; i < height; i++)
+        {
+            output << drawRow(widthRows);
+            output << drawEmptyLine(width, '?') << "\n";
+        }
+        output << drawEndLine(widthRows, width);
+
+        return output.str() + "\n";
     }
 }
 
 namespace
 {
-    std::stringstream drawBoard(const unsigned int width,
-                                const unsigned int height,
-                                const unsigned int widthRows,
-                                const unsigned int heightCol)
-    {
-        std::stringstream ss;
-
-        ss << drawColumns(widthRows, width, heightCol);
-        ss << drawEndLine(widthRows, width) << "\n";
-        for (int i = 0; i < height; i++)
-        {
-            ss << drawRow(widthRows);
-            ss << drawEmptyLine(width, '?') << "\n";
-        }
-        ss << drawEndLine(widthRows, width);
-        return ss;
-    }
-
     std::string drawPadding(const unsigned int width,
                             const char sign /*= PADDING*/)
     {

@@ -55,6 +55,5 @@ unsigned int Board::findLongestVectorInCols() const
 
 void Board::display() const
 {
-    auto tmp = DisplayBoard::displayInterface(*this);
-    std::cout << tmp << "\n";
+    std::cout << DisplayBoard::display(*this);
 }
