@@ -32,8 +32,8 @@ namespace DisplayBoard
     {
         auto width = b.getRowsNumber();
         auto height = b.getColsNumber();
-        auto widthRows = b.findLongestVectorInRows();
-        auto heightCol = b.findLongestVectorInCols();
+        auto widthRows = b.getLongestRowLenght();
+        auto heightCol = b.getLongestColLenght();
         std::stringstream output;
 
         output << drawColumns(widthRows, width, heightCol);

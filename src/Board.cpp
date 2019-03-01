@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include <fstream>
 #include <algorithm>
+#include <iostream>
 #include "DisplayBoard.hpp"
 
 Board::Board(const unsigned int rowNumber,
@@ -35,7 +36,7 @@ BLines Board::getBoardLines() const
     return board_;
 }
 
-unsigned int Board::findLongestVectorInLines(const Lines& v) const
+unsigned int Board::getLongestLineLenght(const Lines& v) const
 {
     auto it = std::max_element(v.begin(),
                                v.end(),
@@ -43,14 +44,14 @@ unsigned int Board::findLongestVectorInLines(const Lines& v) const
     return it->size();
 }
 
-unsigned int Board::findLongestVectorInRows() const
+unsigned int Board::getLongestRowLenght() const
 {
-    return findLongestVectorInLines(rows_);
+    return getLongestLineLenght(rows_);
 }
 
-unsigned int Board::findLongestVectorInCols() const
+unsigned int Board::getLongestColLenght() const
 {
-    return findLongestVectorInLines(cols_);
+    return getLongestLineLenght(cols_);
 }
 
 void Board::display() const

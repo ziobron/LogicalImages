@@ -3,7 +3,6 @@
 #include "json.hpp"
 #include "FieldsEnum.hpp"
 #include <vector>
-#include <iostream>
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
@@ -29,9 +28,9 @@ public:
     unsigned int getColsNumber() const;
     BLines getBoardLines() const;
 
-    unsigned int findLongestVectorInLines(const Lines& v) const;
-    unsigned int findLongestVectorInRows() const;
-    unsigned int findLongestVectorInCols() const;
+    unsigned int getLongestLineLenght(const Lines& v) const;
+    unsigned int getLongestRowLenght() const;
+    unsigned int getLongestColLenght() const;
 
     void display() const;
 };
