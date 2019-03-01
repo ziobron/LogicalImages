@@ -20,10 +20,6 @@ namespace
                             const unsigned int heightCol);
 
     std::string drawRow(const unsigned int maxElementsInRows);
-    std::stringstream drawBoard(const unsigned int width,
-                                const unsigned int height,
-                                const unsigned int widthRows,
-                                const unsigned int heightCol);
 }
 
 namespace DisplayBoard
