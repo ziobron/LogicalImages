@@ -29,5 +29,9 @@ TEST_F(DisplayBoardTests, checkDisplayBoard)
     Board board(1, 1, {{1}}, {{1}});
     std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+\n";
 
-    ASSERT_EQ(display(board), compareBoard);
+    testing::internal::CaptureStdout();
+    board.display();
+    std::string output = testing::internal::GetCapturedStdout();
+
+    ASSERT_EQ(output, compareBoard);
 }

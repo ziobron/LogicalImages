@@ -3,6 +3,6 @@
 
 int main()
 {
-    std::cout << "LogicalImages!\n";
+    std::cout << "LogicalImages!" << std::endl;
     return 0;
 }
