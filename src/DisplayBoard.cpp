@@ -54,7 +54,7 @@ std::string drawPadding(const unsigned int width,
     std::string result;
 
     for (auto it = 0; it < (width * 2); it++)
-        result += PADDING;
+        result += sign;
 
     return result;
 }
