@@ -21,16 +21,16 @@ int JSONFileReader::readColSize()
     return j_["sizeCols"];
 }
 
-Lines JSONFileReader::readRows()
+Lines JSONFileReader::readCluesRows()
 {
-    if (j_["sizeRows"] != j_["rows"].size())
+    if (j_["sizeRows"] != j_["cluesRows"].size())
         throw InvalidDimensions();
-    return j_["rows"];
+    return j_["cluesRows"];
 }
 
-Lines JSONFileReader::readCols()
+Lines JSONFileReader::readCluesCols()
 {
-    if (j_["sizeCols"] != j_["cols"].size())
+    if (j_["sizeCols"] != j_["cluesCols"].size())
         throw InvalidDimensions();
-    return j_["cols"];
+    return j_["cluesCols"];
 }

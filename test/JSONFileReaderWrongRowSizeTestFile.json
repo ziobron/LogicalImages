@@ -1,11 +1,11 @@
 {
   "sizeRows": 2,
   "sizeCols": 3,
-  "rows": [
+  "cluesRows": [
     [1, 1],
     [2]
   ],
-  "cols": [
+  "cluesCols": [
     [1, 1],
     [1, 1],
     [2]

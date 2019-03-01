@@ -7,12 +7,12 @@
 
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
-             const Lines& rows,
-             const Lines& cols) noexcept
+             const Lines& cluesRows,
+             const Lines& cluesCols) noexcept
     : sizeRows_(sizeRows),
       sizeCols_(sizeCols),
-      rows_(rows),
-      cols_(cols)
+      cluesRows_(cluesRows),
+      cluesCols_(cluesCols)
 {
     BLine singleRow;
     singleRow.assign(sizeCols_, BoardFields::UNKNOWN);
@@ -44,14 +44,14 @@ unsigned int Board::getLongestLineLenght(const Lines& v) const
     return it->size();
 }
 
-unsigned int Board::getLongestRowLenght() const
+unsigned int Board::getLongestCluesLenghtInRows() const
 {
-    return getLongestLineLenght(rows_);
+    return getLongestLineLenght(cluesRows_);
 }
 
-unsigned int Board::getLongestColLenght() const
+unsigned int Board::getLongestCluesLenghtInCols() const
 {
-    return getLongestLineLenght(cols_);
+    return getLongestLineLenght(cluesCols_);
 }
 
 void Board::display() const

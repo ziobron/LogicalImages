@@ -12,8 +12,8 @@ class Board
 {
     const unsigned int sizeRows_;
     const unsigned int sizeCols_;
-    Lines rows_;
-    Lines cols_;
+    Lines cluesRows_;
+    Lines cluesCols_;
     BLines board_;
 
 public:
@@ -28,8 +28,8 @@ public:
     BLines getBoardLines() const;
 
     unsigned int getLongestLineLenght(const Lines& v) const;
-    unsigned int getLongestRowLenght() const;
-    unsigned int getLongestColLenght() const;
+    unsigned int getLongestCluesLenghtInRows() const;
+    unsigned int getLongestCluesLenghtInCols() const;
 
     void display() const;
 };

@@ -16,12 +16,12 @@ A text file in JSON format representing input data, e.g.
 {
   "sizeRows": 3,
   "sizeCols": 3,
-  "rows": [
+  "cluesRows": [
     [1, 1],
     [2],
     [1, 1]
   ],
-  "cols": [
+  "cluesCols": [
     [1, 1],
     [1],
     [3]

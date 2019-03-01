@@ -28,8 +28,8 @@ std::string display(const Board& b)
 {
     auto width = b.getRowSize();
     auto height = b.getColSize();
-    auto widthRows = b.getLongestRowLenght();
-    auto heightCol = b.getLongestColLenght();
+    auto widthRows = b.getLongestCluesLenghtInRows();
+    auto heightCol = b.getLongestCluesLenghtInCols();
     std::stringstream output;
 
     output << drawColumns(widthRows, width, heightCol);

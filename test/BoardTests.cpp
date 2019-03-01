@@ -11,12 +11,12 @@ struct BoardTests : public ::testing::Test
 TEST_F(BoardTests, checkConstructorNoexception)
 {
     json j;
-    j["col"] = {{1, 1}, {1}};
-    j["row"] = {{1}, {1}, {1}};
+    j["cluesCols"] = {{1, 1}, {1}};
+    j["cluesRows"] = {{1}, {1}, {1}};
     j["rowSize"] = 3;
     j["colSize"] = 2;
 
-    Board board(j["rowSize"], j["colSize"], j["row"], j["col"]);
+    Board board(j["rowSize"], j["colSize"], j["cluesRows"], j["cluesCols"]);
 }
 
 TEST_F(BoardTests, checkReadingJSON)
@@ -25,8 +25,8 @@ TEST_F(BoardTests, checkReadingJSON)
     JSONFileReader jfr(path);
     Board board(jfr.readRowSize(),
                 jfr.readColSize(),
-                jfr.readRows(),
-                jfr.readCols());
+                jfr.readCluesRows(),
+                jfr.readCluesCols());
 
     ASSERT_EQ(board.getRowSize(), 3);
     ASSERT_EQ(board.getColSize(), 3);
@@ -40,29 +40,29 @@ TEST_F(BoardTests, checkJSONFileReaderExceptions)
     JSONFileReader jfr1(path);
     ASSERT_THROW(Board board(jfr1.readRowSize(),
                              jfr1.readColSize(),
-                             jfr1.readRows(),
-                             jfr1.readCols()), InvalidDimensions);
+                             jfr1.readCluesRows(),
+                             jfr1.readCluesCols()), InvalidDimensions);
 
     path = "../test/JSONFileReaderWrongRowSizeTestFile.json";
     JSONFileReader jfr2(path);
     ASSERT_THROW(Board board(jfr2.readRowSize(),
                              jfr2.readColSize(),
-                             jfr2.readRows(),
-                             jfr2.readCols()), InvalidDimensions);
+                             jfr2.readCluesRows(),
+                             jfr2.readCluesCols()), InvalidDimensions);
 
     path = "../test/JSONFileReaderNumberOfLinesAndColsNoMatch.json";
     JSONFileReader jfr3(path);
     ASSERT_THROW(Board board(jfr3.readRowSize(),
                              jfr3.readColSize(),
-                             jfr3.readRows(),
-                             jfr3.readCols()), InvalidDimensions);
+                             jfr3.readCluesRows(),
+                             jfr3.readCluesCols()), InvalidDimensions);
 
     path = "../test/JSONFileReaderNumberOfLinesAndRowsNoMatch.json";
     JSONFileReader jfr4(path);
     ASSERT_THROW(Board board(jfr4.readRowSize(),
                              jfr4.readColSize(),
-                             jfr4.readRows(),
-                             jfr4.readCols()), InvalidDimensions);
+                             jfr4.readCluesRows(),
+                             jfr4.readCluesCols()), InvalidDimensions);
 }
 TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
 {
@@ -76,20 +76,20 @@ TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
     ASSERT_EQ(board.getBoardLines().at(0)[0],BoardFields::UNKNOWN);
 }
 
-TEST_F(BoardTests, findLongestVectorOfCluesInRows)
+TEST_F(BoardTests, findLongestVectorLenghtOfCluesInRows)
 {
     Board board(4,
                 5,
                 {{1}, {1, 2}, {1, 2, 3, 4}, {1, 2, 3}},
                 {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
-    ASSERT_EQ(board.getLongestRowLenght(), 4);
+    ASSERT_EQ(board.getLongestCluesLenghtInRows(), 4);
 }
 
-TEST_F(BoardTests, findLongestVectorOfCluesInCols)
+TEST_F(BoardTests, findLongestVectorLenghtOfCluesInCols)
 {
     Board board(4,
                 5,
                 {{1}, {1, 2}, {1, 2, 3, 4}, {1, 2, 3}},
                 {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
-    ASSERT_EQ(board.getLongestColLenght(), 5);
+    ASSERT_EQ(board.getLongestCluesLenghtInCols(), 5);
 }

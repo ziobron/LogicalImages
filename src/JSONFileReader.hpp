@@ -11,8 +11,8 @@ public:
     explicit JSONFileReader(std::string path);
     int readRowSize();
     int readColSize();
-    Lines readRows();
-    Lines readCols();
+    Lines readCluesRows();
+    Lines readCluesCols();
 };
 
 struct InvalidDimensions : public std::out_of_range
