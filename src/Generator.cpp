@@ -23,7 +23,7 @@ BLines ConvertIntToFieldEnum(const Lines& board)
     {
         BLine row(line.size());
         std::transform(line.begin(), line.end(), row.begin(),
-            [](int elem){return (elem ? FieldsEnum::BLACK : FieldsEnum::WHITE);});
+            [](int elem){return (elem ? BoardFields::BLACK : BoardFields::WHITE);});
 
         result.emplace_back(row);
     }

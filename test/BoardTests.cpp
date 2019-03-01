@@ -70,10 +70,10 @@ TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
     Lines vec2 = {vec, vec};
 
     Board board(3, 3, vec2, vec2);
-    ASSERT_EQ(board.getBoardLines().at(1)[1],FieldsEnum::UNKNOWN);
-    ASSERT_EQ(board.getBoardLines().at(1)[0],FieldsEnum::UNKNOWN);
-    ASSERT_EQ(board.getBoardLines().at(0)[1],FieldsEnum::UNKNOWN);
-    ASSERT_EQ(board.getBoardLines().at(0)[0],FieldsEnum::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1)[1],BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1)[0],BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0)[1],BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0)[0],BoardFields::UNKNOWN);
 }
 
 TEST_F(BoardTests, findLongestVectorOfCluesInRows)

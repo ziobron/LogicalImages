@@ -8,11 +8,11 @@
 //     bool - true when permutation with hihgest value has been reached, false otherwise
 bool nextPermutation(Line& row);
 
-// Fuction converts given board of values from range {0, 1} to corensponding valies of FieldsEnum
+// Fuction converts given board of values from range {0, 1} to corensponding valies of BoardFields
 // input:
 //     Lines board - board of int values to be converted
 // output:
-//     Blines result - board of FieldsEnum values
+//     Blines result - board of BoardFields values
 BLines ConvertIntToFieldEnum(const Lines& board);
 
 // Function to generate all permutation for board of given size.

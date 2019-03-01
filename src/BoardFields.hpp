@@ -1,6 +1,6 @@
 #pragma once
 
-enum class FieldsEnum : unsigned char
+enum class BoardFields : unsigned char
 {
     BLACK,
     WHITE,

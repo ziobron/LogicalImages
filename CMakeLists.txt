@@ -48,7 +48,7 @@ set(SRC_LIST
     src/Board.cpp
     src/JSONFileReader.hpp
     src/JSONFileReader.cpp
-    src/FieldsEnum.hpp
+    src/BoardFields.hpp
     src/Utilities.cpp
     src/Generator.hpp
     src/Generator.cpp

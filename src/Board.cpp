@@ -15,7 +15,7 @@ Board::Board(const unsigned int rowNumber,
       cols_(cols)
 {
     BLine singleRow;
-    singleRow.assign(colNumber_, FieldsEnum::UNKNOWN);
+    singleRow.assign(colNumber_, BoardFields::UNKNOWN);
     board_.assign(rowNumber_, singleRow);
 }
 
