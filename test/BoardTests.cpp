@@ -66,8 +66,8 @@ TEST_F(BoardTests, checkJSONFileReaderExceptions)
 }
 TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
 {
-    std::vector<int> vec = {1,2};
-    std::vector<std::vector<int>> vec2 = {vec,vec};
+    Line vec = {1, 2};
+    Lines vec2 = {vec, vec};
 
     Board board(3, 3, vec2, vec2);
     ASSERT_EQ(board.getBoardLines().at(1)[1],FieldsEnum::UNKNOWN);
