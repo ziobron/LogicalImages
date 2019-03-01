@@ -1,7 +1,6 @@
 #pragma once
 #include "FieldsEnum.hpp"
 #include "json.hpp"
-#include "FieldsEnum.hpp"
 #include <vector>
 
 using Line = std::vector<int>;
