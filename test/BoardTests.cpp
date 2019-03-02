@@ -64,3 +64,32 @@ TEST_F(BoardTests, checkJSONFileReaderExceptions)
                              jfr4.readRows(),
                              jfr4.readCols()), InvalidDimensions);
 }
+TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
+{
+    Line vec = {1, 2};
+    Lines vec2 = {vec, vec};
+
+    Board board(3, 3, vec2, vec2);
+    ASSERT_EQ(board.getBoardLines().at(1)[1],FieldsEnum::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1)[0],FieldsEnum::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0)[1],FieldsEnum::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0)[0],FieldsEnum::UNKNOWN);
+}
+
+TEST_F(BoardTests, findLongestVectorOfCluesInRows)
+{
+    Board board(4,
+                5,
+                {{1}, {1, 2}, {1, 2, 3, 4}, {1, 2, 3}},
+                {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
+    ASSERT_EQ(board.getLongestRowLenght(), 4);
+}
+
+TEST_F(BoardTests, findLongestVectorOfCluesInCols)
+{
+    Board board(4,
+                5,
+                {{1}, {1, 2}, {1, 2, 3, 4}, {1, 2, 3}},
+                {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
+    ASSERT_EQ(board.getLongestColLenght(), 5);
+}

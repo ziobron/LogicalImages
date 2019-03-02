@@ -52,6 +52,8 @@ set(SRC_LIST
     src/Utilities.cpp
     src/Generator.hpp
     src/Generator.cpp
+    src/DisplayBoard.cpp
+    src/DisplayBoard.hpp
 )
 
 include_directories(src)
@@ -71,6 +73,7 @@ set(TEST_SRC_LIST
     test/GeneratorTests.cpp
     test/BoardFileTests.cpp
     test/test_main.cpp
+    test/DisplayBoardTests.cpp
 )
 
 link_libraries(gtest)

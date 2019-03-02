@@ -1,6 +1,6 @@
 #pragma once
-#include "json.hpp"
 #include "FieldsEnum.hpp"
+#include "json.hpp"
 #include <vector>
 
 using Line = std::vector<int>;
@@ -10,19 +10,26 @@ using BLines = std::vector<BLine>;
 
 class Board
 {
-    const int rowNumber_;
-    const int colNumber_;
+    const unsigned int rowNumber_;
+    const unsigned int colNumber_;
     Lines rows_;
     Lines cols_;
-    Lines board_;
+    BLines board_;
 
 public:
-    Board(int rowNumber,
-          int colNumber,
+    Board(const unsigned int rowNumber,
+          const unsigned int colNumber,
           const Lines& rows,
           const Lines& cols) noexcept;
     ~Board();
 
-    int getRowsNumber() const;
-    int getColsNumber() const;
+    unsigned int getRowsNumber() const;
+    unsigned int getColsNumber() const;
+    BLines getBoardLines() const;
+
+    unsigned int getLongestLineLenght(const Lines& v) const;
+    unsigned int getLongestRowLenght() const;
+    unsigned int getLongestColLenght() const;
+
+    void display() const;
 };
