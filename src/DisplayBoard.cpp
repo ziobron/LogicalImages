@@ -54,7 +54,7 @@ std::string drawPadding(const unsigned int width,
     std::string result;
 
     for (auto it = 0; it < (width * 2); it++)
-        result += PADDING;
+        result += sign;
 
     return result;
 }
@@ -117,7 +117,6 @@ std::string drawRow(const unsigned int maxElementsInRows)
 
     return rows;
 }
-
 }
 
 std::ostream& operator<<(std::ostream& os, const Board& b)

@@ -9,4 +9,3 @@ namespace DisplayBoard
 {
     std::string display(const Board& b);
 }
-
