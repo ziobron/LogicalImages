@@ -23,8 +23,8 @@ public:
           const Lines& cols) noexcept;
     ~Board();
 
-    unsigned int getRowSize() const;
-    unsigned int getColSize() const;
+    unsigned int getSizeRows() const;
+    unsigned int getSizeCols() const;
     BLines getBoardLines() const;
 
     unsigned int getLongestLineLenght(const Lines& v) const;

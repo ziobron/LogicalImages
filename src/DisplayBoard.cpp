@@ -26,8 +26,8 @@ namespace DisplayBoard
 {
 std::string display(const Board& b)
 {
-    auto width = b.getRowSize();
-    auto height = b.getColSize();
+    auto width = b.getSizeRows();
+    auto height = b.getSizeCols();
     auto widthRows = b.getLongestCluesLenghtInRows();
     auto heightCol = b.getLongestCluesLenghtInCols();
     std::stringstream output;

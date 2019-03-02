@@ -28,8 +28,8 @@ TEST_F(BoardTests, checkReadingJSON)
                 jfr.readCluesRows(),
                 jfr.readCluesCols());
 
-    ASSERT_EQ(board.getRowSize(), 3);
-    ASSERT_EQ(board.getColSize(), 3);
+    ASSERT_EQ(board.getSizeRows(), 3);
+    ASSERT_EQ(board.getSizeCols(), 3);
 }
 
 TEST_F(BoardTests, checkJSONFileReaderExceptions)

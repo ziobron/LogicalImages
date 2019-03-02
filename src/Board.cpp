@@ -21,12 +21,12 @@ Board::Board(const unsigned int sizeRows,
 
 Board::~Board() {}
 
-unsigned int Board::getRowSize() const
+unsigned int Board::getSizeRows() const
 {
     return sizeRows_;
 }
 
-unsigned int Board::getColSize() const
+unsigned int Board::getSizeCols() const
 {
     return sizeCols_;
 }
