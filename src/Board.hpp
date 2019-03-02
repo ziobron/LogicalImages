@@ -33,3 +33,5 @@ public:
 
     void display() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Board& b);
