@@ -7,6 +7,7 @@ using Line = std::vector<int>;
 using Lines = std::vector<Line>;
 using BLine = std::vector<FieldsEnum>;
 using BLines = std::vector<BLine>;
+using json = nlohmann::json;
 
 class Board
 {
@@ -21,8 +22,16 @@ public:
           int colNumber,
           const Lines& rows,
           const Lines& cols) noexcept;
+    Board(std::string filename);
     ~Board();
 
     int getRowsNumber() const;
     int getColsNumber() const;
+    json getJson() const;
 };
+
+/*inline json fromJason(const json & j, Board & b)
+{
+    b = j.at.("rowNumber").get<int>;
+    return b;
+}*/
