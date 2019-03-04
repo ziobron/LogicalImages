@@ -35,3 +35,15 @@ TEST_F(DisplayBoardTests, checkDisplayBoard)
 
     ASSERT_EQ(output, compareBoard);
 }
+
+TEST_F(DisplayBoardTests, checkOverloadedOstreamOperator)
+{
+    Board board(1, 1, {{1}}, {{1}});
+    std::string compareBoard = "   +--+\n   |  |\n+--+--+\n|  |??|\n+--+--+\n";
+
+    testing::internal::CaptureStdout();
+    std::cout << board;
+    std::string output = testing::internal::GetCapturedStdout();
+
+    ASSERT_EQ(output, compareBoard);
+}

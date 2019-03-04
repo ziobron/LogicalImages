@@ -118,3 +118,8 @@ std::string drawRow(const unsigned int maxElementsInRows)
     return rows;
 }
 }
+
+std::ostream& operator<<(std::ostream& os, const Board& b)
+{
+    return os << DisplayBoard::display(b);
+}
