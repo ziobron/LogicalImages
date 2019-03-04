@@ -25,6 +25,7 @@ namespace
                            std::vector<std::string> clues);
 
 
+
     std::string drawRow(const unsigned int maxElementsInRows, Line row);
 }
 
