@@ -11,12 +11,12 @@ struct GeneratorParamTests : public ::testing::TestWithParam<std::tuple<int, int
 {
 };
 
-TEST_F(GeneratorTests, checkConversionFromIntToFieldsEnum)
+TEST_F(GeneratorTests, checkConversionFromIntToBoardFields)
 {
     Lines input = {{1, 1, 0},
                    {0, 1, 0}};
-    BLines result = {{FieldsEnum::BLACK, FieldsEnum::BLACK, FieldsEnum::WHITE},
-                     {FieldsEnum::WHITE, FieldsEnum::BLACK, FieldsEnum::WHITE}};
+    BLines result = {{BoardFields::BLACK, BoardFields::BLACK, BoardFields::WHITE},
+                     {BoardFields::WHITE, BoardFields::BLACK, BoardFields::WHITE}};
 
     ASSERT_EQ(result, ConvertIntToFieldEnum(input));
 }

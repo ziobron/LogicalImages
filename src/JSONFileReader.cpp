@@ -7,30 +7,30 @@ JSONFileReader::JSONFileReader(std::string path)
     inputFile >> j_;
 }
 
-int JSONFileReader::readRowsNumber()
+int JSONFileReader::readRowSize()
 {
-    if (j_["rowNumber"] < 3)
+    if (j_["sizeRows"] < 3)
         throw InvalidDimensions();
-    return j_["rowNumber"];
+    return j_["sizeRows"];
 }
 
-int JSONFileReader::readColsNumber()
+int JSONFileReader::readColSize()
 {
-    if (j_["colNumber"] < 3)
+    if (j_["sizeCols"] < 3)
         throw InvalidDimensions();
-    return j_["colNumber"];
+    return j_["sizeCols"];
 }
 
-Lines JSONFileReader::readRows()
+Lines JSONFileReader::readCluesRows()
 {
-    if (j_["rowNumber"] != j_["rows"].size())
+    if (j_["sizeRows"] != j_["cluesRows"].size())
         throw InvalidDimensions();
-    return j_["rows"];
+    return j_["cluesRows"];
 }
 
-Lines JSONFileReader::readCols()
+Lines JSONFileReader::readCluesCols()
 {
-    if (j_["colNumber"] != j_["cols"].size())
+    if (j_["sizeCols"] != j_["cluesCols"].size())
         throw InvalidDimensions();
-    return j_["cols"];
+    return j_["cluesCols"];
 }

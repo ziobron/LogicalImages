@@ -14,14 +14,14 @@ A text file in JSON format representing input data, e.g.
 
 ```jason
 {
-  "rowNumber": 3,
-  "colNumber": 3,
-  "rows": [
+  "sizeRows": 3,
+  "sizeCols": 3,
+  "cluesRows": [
     [1, 1],
     [2],
     [1, 1]
   ],
-  "cols": [
+  "cluesCols": [
     [1, 1],
     [1],
     [3]

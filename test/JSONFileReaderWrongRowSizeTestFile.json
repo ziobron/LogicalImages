@@ -1,12 +1,13 @@
 {
-  "sizeRows": 3,
+  "sizeRows": 2,
   "sizeCols": 3,
   "cluesRows": [
-    [1, 1]
+    [1, 1],
+    [2]
   ],
   "cluesCols": [
     [1, 1],
-    [1],
+    [1, 1],
     [2]
   ]
 }

@@ -1,35 +1,35 @@
 #pragma once
-#include "FieldsEnum.hpp"
+#include "BoardFields.hpp"
 #include "json.hpp"
 #include <vector>
 
 using Line = std::vector<int>;
 using Lines = std::vector<Line>;
-using BLine = std::vector<FieldsEnum>;
+using BLine = std::vector<BoardFields>;
 using BLines = std::vector<BLine>;
 
 class Board
 {
-    const unsigned int rowNumber_;
-    const unsigned int colNumber_;
-    Lines rows_;
-    Lines cols_;
+    const unsigned int sizeRows_;
+    const unsigned int sizeCols_;
+    Lines cluesRows_;
+    Lines cluesCols_;
     BLines board_;
 
 public:
-    Board(const unsigned int rowNumber,
-          const unsigned int colNumber,
+    Board(const unsigned int sizeRows,
+          const unsigned int sizeCols,
           const Lines& rows,
           const Lines& cols) noexcept;
     ~Board();
 
-    unsigned int getRowsNumber() const;
-    unsigned int getColsNumber() const;
+    unsigned int getSizeRows() const;
+    unsigned int getSizeCols() const;
     BLines getBoardLines() const;
 
     unsigned int getLongestLineLenght(const Lines& v) const;
-    unsigned int getLongestRowLenght() const;
-    unsigned int getLongestColLenght() const;
+    unsigned int getLongestCluesLenghtInRows() const;
+    unsigned int getLongestCluesLenghtInCols() const;
 
     Lines getCluesCols() const;
     Lines getCluesRows() const;
