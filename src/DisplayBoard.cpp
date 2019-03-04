@@ -17,7 +17,13 @@ namespace
 
     std::string drawColumns(const unsigned int maxElementsInRows,
                             const unsigned int colNumber,
-                            const unsigned int heightCol);
+                            const unsigned int heightCol,
+                            const std::vector<std::string> stringClues);
+    std::vector<std::string> getStringFromColumns(const unsigned int sizeCols,
+                                                  const Lines cluesCols);
+    std::string drawRowOfColumns(const unsigned pos,
+                           std::vector<std::string> clues);
+
 
     std::string drawRow(const unsigned int maxElementsInRows);
 }
@@ -30,9 +36,11 @@ std::string display(const Board& b)
     auto height = b.getColsNumber();
     auto widthRows = b.getLongestRowLenght();
     auto heightCol = b.getLongestColLenght();
+    const Lines cluesCols = b.getCluesCols();
+    std::vector<std::string> stringClues = getStringFromColumns(heightCol, cluesCols);
     std::stringstream output;
 
-    output << drawColumns(widthRows, width, heightCol);
+    output << drawColumns(widthRows, width, heightCol, stringClues);
     output << drawEndLine(widthRows, width) << "\n";
 
     for (int i = 0; i < height; i++)
@@ -91,20 +99,61 @@ std::string drawEmptyLine(const unsigned int width,
 
 std::string drawColumns(const unsigned int maxElementsInRows,
                         const unsigned int colNumber,
-                        const unsigned int heightCol)
+                        const unsigned int heightCol,
+                        const std::vector<std::string> stringClues)
 {
     std::string columns;
 
     columns += PADDING + drawPadding(maxElementsInRows);
     columns += drawEndLine(colNumber) + "\n";
 
-    for (int i = heightCol; i > 0; --i)
+    for (unsigned i = heightCol; i > 0; --i)
     {
         columns += PADDING + drawPadding(maxElementsInRows);
-        columns += drawEmptyLine(colNumber);
+        if(stringClues.size() == 0)
+            columns += drawEmptyLine(colNumber);
+        else
+        {
+            columns += VERTICAL;
+            columns += drawRowOfColumns(i,stringClues);
+            columns += VERTICAL;
+         }
         columns += "\n";
     }
+    return columns;
+}
 
+std::vector<std::string> getStringFromColumns(const unsigned int sizeCols,
+                                              const Lines cluesCols)
+{
+    std::vector<std::string> stringLines;
+    std::for_each(cluesCols.begin(), cluesCols.end(),
+                  [&](const auto line)
+    {
+        std::string strline = {};
+        std::for_each(line.begin(), line.end(),
+                     [&](const auto i)
+        {
+            strline += std::to_string(i);
+        });
+        if(strline.size() < sizeCols)
+            while (strline.size() != sizeCols) {
+                strline.push_back(' ');
+            }
+        stringLines.emplace_back(strline);
+    });
+    return stringLines;
+}
+
+std::string drawRowOfColumns(const unsigned pos,
+                       std::vector<std::string> clues)
+{
+    std::string columns {};
+    std::string s = " ";
+    for(auto line : clues)
+    {
+        columns += s + line.at(pos-1);
+    }
     return columns;
 }
 

@@ -31,5 +31,6 @@ public:
     unsigned int getLongestRowLenght() const;
     unsigned int getLongestColLenght() const;
 
+    Lines getCluesCols() const;
     void display() const;
 };
