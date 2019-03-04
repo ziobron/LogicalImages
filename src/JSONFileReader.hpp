@@ -9,10 +9,10 @@ class JSONFileReader
     json j_;
 public:
     explicit JSONFileReader(std::string path);
-    int readRowsNumber();
-    int readColsNumber();
-    Lines readRows();
-    Lines readCols();
+    int readRowSize();
+    int readColSize();
+    Lines readCluesRows();
+    Lines readCluesCols();
 };
 
 struct InvalidDimensions : public std::out_of_range

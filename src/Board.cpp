@@ -5,30 +5,30 @@
 #include <iostream>
 #include "DisplayBoard.hpp"
 
-Board::Board(const unsigned int rowNumber,
-             const unsigned int colNumber,
-             const Lines& rows,
-             const Lines& cols) noexcept
-    : rowNumber_(rowNumber),
-      colNumber_(colNumber),
-      rows_(rows),
-      cols_(cols)
+Board::Board(const unsigned int sizeRows,
+             const unsigned int sizeCols,
+             const Lines& cluesRows,
+             const Lines& cluesCols) noexcept
+    : sizeRows_(sizeRows),
+      sizeCols_(sizeCols),
+      cluesRows_(cluesRows),
+      cluesCols_(cluesCols)
 {
     BLine singleRow;
-    singleRow.assign(colNumber_, FieldsEnum::UNKNOWN);
-    board_.assign(rowNumber_, singleRow);
+    singleRow.assign(sizeCols_, BoardFields::UNKNOWN);
+    board_.assign(sizeRows_, singleRow);
 }
 
 Board::~Board() {}
 
-unsigned int Board::getRowsNumber() const
+unsigned int Board::getSizeRows() const
 {
-    return rowNumber_;
+    return sizeRows_;
 }
 
-unsigned int Board::getColsNumber() const
+unsigned int Board::getSizeCols() const
 {
-    return colNumber_;
+    return sizeCols_;
 }
 
 BLines Board::getBoardLines() const
@@ -44,14 +44,14 @@ unsigned int Board::getLongestLineLenght(const Lines& v) const
     return it->size();
 }
 
-unsigned int Board::getLongestRowLenght() const
+unsigned int Board::getLongestCluesLenghtInRows() const
 {
-    return getLongestLineLenght(rows_);
+    return getLongestLineLenght(cluesRows_);
 }
 
-unsigned int Board::getLongestColLenght() const
+unsigned int Board::getLongestCluesLenghtInCols() const
 {
-    return getLongestLineLenght(cols_);
+    return getLongestLineLenght(cluesCols_);
 }
 
 void Board::display() const
