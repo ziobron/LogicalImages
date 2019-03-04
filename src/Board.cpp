@@ -59,6 +59,11 @@ Lines Board::getCluesCols() const
     return cols_;
 }
 
+Lines Board::getCluesRows() const
+{
+    return rows_;
+}
+
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
