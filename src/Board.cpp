@@ -54,6 +54,11 @@ unsigned int Board::getLongestColLenght() const
     return getLongestLineLenght(cols_);
 }
 
+Lines Board::getCluesCols() const
+{
+    return cols_;
+}
+
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
