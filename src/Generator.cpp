@@ -1,4 +1,5 @@
 #include "Generator.hpp"
+#include "Utilities.hpp"
 
 bool nextPermutation(Line& row)
 {
@@ -13,21 +14,6 @@ bool nextPermutation(Line& row)
             break;
     }
     return false;
-}
-
-BLines ConvertIntToFieldEnum(const Lines& board)
-{
-    BLines result;
-
-    for(auto line : board)
-    {
-        BLine row(line.size());
-        std::transform(line.begin(), line.end(), row.begin(),
-            [](int elem){return (elem ? BoardFields::BLACK : BoardFields::WHITE);});
-
-        result.emplace_back(row);
-    }
-    return result;
 }
 
 std::vector<Lines> GenerateAllBoardPermutations(unsigned int rowSize, unsigned int colSize)
