@@ -29,9 +29,3 @@ public:
     int getColsNumber() const;
     json getJson() const;
 };
-
-/*inline json fromJason(const json & j, Board & b)
-{
-    b = j.at.("rowNumber").get<int>;
-    return b;
-}*/

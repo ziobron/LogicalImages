@@ -64,3 +64,14 @@ TEST_F(BoardTests, checkJSONFileReaderExceptions)
                              jfr4.readRows(),
                              jfr4.readCols()), InvalidDimensions);
 }
+
+TEST_F(BoardTests, checkConstructorJSONFile)
+{
+    json j;
+    j["col"] = {{1, 1}, {1}, {1}};
+    j["row"] = {{1}, {1}, {1}};
+    j["rowNum"] = 3;
+    j["colNum"] = 3;
+
+    ASSERT_ANY_THROW(Board board(j));
+}
