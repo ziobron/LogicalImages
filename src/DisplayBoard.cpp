@@ -7,11 +7,12 @@ namespace
     const char INTERSECTION = '+';
     const char PADDING = ' ';
 
-
     std::string drawPadding(const unsigned int width,
                             const char sign = PADDING);
 
-    std::string drawEndLine(const unsigned int widthRows, const unsigned int width = 0);
+    std::string drawEndLine(const unsigned int widthRows,
+                            const unsigned int width = 0);
+
     std::string drawEmptyLine(const unsigned int width,
                               const char sign = PADDING);
 
@@ -19,12 +20,12 @@ namespace
                             const unsigned int sizeCols,
                             const unsigned int heightCol,
                             const std::vector<std::string> stringClues);
-    std::vector<std::string> getStringFromColumns(const unsigned int sizeCols,
+
+    std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
                                                   const Lines cluesCols);
+
     std::string drawRowOfColumns(const unsigned pos,
                            std::vector<std::string> clues);
-
-
 
     std::string drawRow(const unsigned int maxElementsInRows, Line row);
 }
@@ -38,7 +39,7 @@ std::string display(const Board& b)
     auto widthRows = b.getLongestCluesLenghtInRows();
     auto heightCol = b.getLongestCluesLenghtInCols();
     const Lines cluesCols = b.getCluesCols();
-    std::vector<std::string> stringClues = getStringFromColumns(heightCol, cluesCols);
+    std::vector<std::string> stringClues = getFormattedColumns(heightCol, cluesCols);
     const Lines cluesRows = b.getCluesRows();
     std::stringstream output;
 
@@ -128,7 +129,7 @@ std::string drawColumns(const unsigned int maxElementsInRows,
     return columns;
 }
 
-std::vector<std::string> getStringFromColumns(const unsigned int sizeCols,
+std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
                                               const Lines cluesCols)
 {
     std::vector<std::string> stringLines {};
@@ -155,11 +156,13 @@ std::string drawRowOfColumns(const unsigned pos,
                        std::vector<std::string> clues)
 {
     std::string columns {};
-    std::string s = " ";
     if(clues.empty() == false)
     for(auto line : clues)
     {
-        columns += s + line.at(pos-1);
+        if(line.empty() == false)
+            columns += PADDING + line.at(pos-1);
+        else
+            columns += PADDING + PADDING;
     }
     return columns;
 }
