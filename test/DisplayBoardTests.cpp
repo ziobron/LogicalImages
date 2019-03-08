@@ -46,4 +46,14 @@ TEST_F(DisplayBoardTests, checkDrawingTableWithCluesForColumns)
     Board board2(3, 3, {{1},{},{2}}, {{2},{},{1}});
     compareBoard = "   +------+\n   | 2   1|\n+--+------+\n| 1|??????|\n|  |??????|\n| 2|??????|\n+--+------+\n";
     ASSERT_EQ(display(board2), compareBoard);
+
+    Board board3(3, 3, {{},{1},{2}}, {{},{2},{1}});
+    compareBoard = "   +------+\n   |   2 1|\n+--+------+\n|  |??????|\n| 1|??????|\n| 2|??????|\n+--+------+\n";
+    ASSERT_EQ(display(board3), compareBoard);
+    std::cout << display(board3) << std::endl;
+
+    Board board4(3, 3, {{1},{2,1},{}}, {{2,1},{1},{}});
+    compareBoard = "     +------+\n     | 1    |\n     | 2 1  |\n+----+------+\n|   1|??????|\n| 2 1|??????|\n|    |??????|\n+----+------+\n";
+    std::cout << display(board4);
+    ASSERT_EQ(display(board4), compareBoard);
 }
