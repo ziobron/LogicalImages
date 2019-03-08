@@ -156,13 +156,14 @@ std::string drawRowOfColumns(const unsigned pos,
                        std::vector<std::string> clues)
 {
     std::string columns {};
+    std::string s = " ";
     if(clues.empty() == false)
     for(auto line : clues)
     {
         if(line.empty() == false)
-            columns += PADDING + line.at(pos-1);
+            columns += s + line.at(pos-1);
         else
-            columns += PADDING + PADDING;
+            columns += s + s;
     }
     return columns;
 }
