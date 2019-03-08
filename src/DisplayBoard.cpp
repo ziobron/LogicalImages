@@ -173,6 +173,14 @@ std::string drawRow(const unsigned int maxElementsInRows, Line row)
         rows += drawPadding(maxElementsInRows);
     }else
     {
+        if(row.size()< maxElementsInRows)
+        {
+            for(int i = maxElementsInRows - row.size(); i > 0; i--)
+            {
+                rows.push_back(PADDING);
+                rows.push_back(PADDING);
+            }
+        }
         try
         {
             std::for_each(row.begin(), row.end(),
@@ -184,7 +192,6 @@ std::string drawRow(const unsigned int maxElementsInRows, Line row)
         {
             std::cerr << "drawRow :" << e.what() << '\n';
         }
-
     }
     return rows;
 }
