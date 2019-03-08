@@ -116,14 +116,9 @@ std::string drawColumns(const unsigned int maxElementsInRows,
     for (int i = heightCol; i > 0; --i)
     {
         columns += PADDING + drawPadding(maxElementsInRows);
-        if(stringClues.empty() == true)
-            columns += drawEmptyLine(sizeCols);
-        else
-        {
-            columns += VERTICAL;
-            columns += drawRowOfColumns(i,stringClues);
-            columns += VERTICAL;
-         }
+        columns += VERTICAL;
+        columns += drawRowOfColumns(i,stringClues);
+        columns += VERTICAL;
         columns += "\n";
     }
     return columns;
