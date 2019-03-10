@@ -181,17 +181,11 @@ std::string drawRow(const unsigned int maxElementsInRows, Line row)
                 rows.push_back(PADDING);
             }
         }
-        try
+        std::for_each(row.begin(), row.end(),
+                      [&](auto i)
         {
-            std::for_each(row.begin(), row.end(),
-                          [&](auto i)
-            {
-                rows += " " + std::to_string(i);
-            });
-        } catch (std::out_of_range const& e)
-        {
-            std::cerr << "drawRow :" << e.what() << '\n';
-        }
+            rows += " " + std::to_string(i);
+        });
     }
     return rows;
 }
