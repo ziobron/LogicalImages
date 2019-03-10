@@ -154,12 +154,7 @@ std::string drawRowOfColumns(const unsigned pos,
     std::string s = " ";
     if(clues.empty() == false)
     for(auto line : clues)
-    {
-        if(line.empty() == false)
-            columns += s + line.at(pos-1);
-        else
-            columns += s + s;
-    }
+        columns += s + line.at(pos-1);
     return columns;
 }
 
