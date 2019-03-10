@@ -117,7 +117,7 @@ std::string drawColumns(const unsigned int maxElementsInRows,
     {
         columns += PADDING + drawPadding(maxElementsInRows);
         columns += VERTICAL;
-        columns += drawRowOfColumns(i,stringClues);
+        columns += drawRowOfColumns(i, stringClues);
         columns += VERTICAL;
         columns += "\n";
     }
@@ -132,7 +132,7 @@ std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
         std::for_each(cluesCols.begin(), cluesCols.end(),
                       [&](const auto line)
         {
-            std::string strline = {};
+            std::string strline {};
             std::for_each(line.begin(), line.end(),
                          [&](const auto i)
             {
@@ -140,7 +140,7 @@ std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
             });
             if(strline.size() < sizeCols)
                 while (strline.size() != sizeCols) {
-                    strline.push_back(' ');
+                    strline.push_back(PADDING);
                 }
             stringLines.emplace_back(strline);
         });
@@ -154,7 +154,7 @@ std::string drawRowOfColumns(const unsigned pos,
     std::string s = " ";
     if(clues.empty() == false)
     for(auto line : clues)
-        columns += s + line.at(pos-1);
+        columns += s + line.at(pos - 1);
     return columns;
 }
 
@@ -166,9 +166,9 @@ std::string drawRow(const unsigned int maxElementsInRows, Line row)
     if(row.empty() == true)
     {
         rows += drawPadding(maxElementsInRows);
-    }else
+    } else
     {
-        if(row.size()< maxElementsInRows)
+        if(row.size() < maxElementsInRows)
         {
             for(int i = maxElementsInRows - row.size(); i > 0; i--)
             {
