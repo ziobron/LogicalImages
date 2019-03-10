@@ -127,7 +127,7 @@ std::string drawColumns(const unsigned int maxElementsInRows,
 std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
                                               const Lines cluesCols)
 {
-    std::vector<std::string> stringLines {};
+    std::vector<std::string> stringLines;
     if(cluesCols.empty() == false)
         std::for_each(cluesCols.begin(), cluesCols.end(),
                       [&](const auto line)
@@ -150,7 +150,7 @@ std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
 std::string drawRowOfColumns(const unsigned pos,
                        std::vector<std::string> clues)
 {
-    std::string columns {};
+    std::string columns;
     std::string s = " ";
     if(clues.empty() == false)
     for(auto line : clues)
