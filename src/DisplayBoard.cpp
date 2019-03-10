@@ -19,7 +19,7 @@ namespace
     std::string drawColumns(const unsigned int maxElementsInRows,
                             const unsigned int sizeCols,
                             const unsigned int heightCol,
-                            const std::vector<std::string> stringClues);
+                            const std::vector<std::string>& stringClues);
 
     std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
                                                   const Lines cluesCols);
@@ -106,7 +106,7 @@ std::string drawEmptyLine(const unsigned int width,
 std::string drawColumns(const unsigned int maxElementsInRows,
                         const unsigned int sizeCols,
                         const unsigned int heightCol,
-                        const std::vector<std::string> stringClues)
+                        const std::vector<std::string>& stringClues)
 {
     std::string columns;
 
