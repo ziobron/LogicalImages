@@ -19,15 +19,15 @@ namespace
     std::string drawColumns(const unsigned int maxElementsInRows,
                             const unsigned int sizeCols,
                             const unsigned int heightCol,
-                            const std::vector<std::string>& stringClues);
+                            const std::vector<std::string> & stringClues);
 
     std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
-                                                  const Lines cluesCols);
+                                                  const Lines & cluesCols);
 
     std::string drawRowOfColumns(const unsigned pos,
-                           std::vector<std::string> clues);
+                           const std::vector<std::string> & clues);
 
-    std::string drawRow(const unsigned int maxElementsInRows, Line row);
+    std::string drawRow(const unsigned int maxElementsInRows,const Line & row);
 }
 
 namespace DisplayBoard
@@ -106,7 +106,7 @@ std::string drawEmptyLine(const unsigned int width,
 std::string drawColumns(const unsigned int maxElementsInRows,
                         const unsigned int sizeCols,
                         const unsigned int heightCol,
-                        const std::vector<std::string>& stringClues)
+                        const std::vector<std::string> & stringClues)
 {
     std::string columns;
 
@@ -125,10 +125,10 @@ std::string drawColumns(const unsigned int maxElementsInRows,
 }
 
 std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
-                                              const Lines cluesCols)
+                                              const Lines & cluesCols)
 {
     std::vector<std::string> stringLines;
-    if(cluesCols.empty() == false)
+    if(not cluesCols.empty())
         std::for_each(cluesCols.begin(), cluesCols.end(),
                       [&](const auto line)
         {
@@ -148,22 +148,22 @@ std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
 }
 
 std::string drawRowOfColumns(const unsigned pos,
-                       std::vector<std::string> clues)
+                       const std::vector<std::string> & clues)
 {
     std::string columns;
     std::string s = " ";
-    if(clues.empty() == false)
-    for(auto line : clues)
+    if(not clues.empty())
+    for(const auto & line : clues)
         columns += s + line.at(pos - 1);
     return columns;
 }
 
-std::string drawRow(const unsigned int maxElementsInRows, Line row)
+std::string drawRow(const unsigned int maxElementsInRows, const Line & row)
 {
     std::string rows;
 
     rows += VERTICAL;
-    if(row.empty() == true)
+    if(row.empty())
     {
         rows += drawPadding(maxElementsInRows);
     } else
