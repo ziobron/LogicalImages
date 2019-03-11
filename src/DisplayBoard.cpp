@@ -1,6 +1,5 @@
 #include "DisplayBoard.hpp"
 #include <algorithm>
-#include <charconv>
 
 namespace
 {
