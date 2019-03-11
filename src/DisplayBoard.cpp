@@ -1,4 +1,6 @@
 #include "DisplayBoard.hpp"
+#include <algorithm>
+#include <charconv>
 
 namespace
 {
@@ -38,12 +40,10 @@ std::string display(const Board& b)
     auto height = b.getSizeCols();
     auto widthRows = b.getLongestCluesLenghtInRows();
     auto heightCol = b.getLongestCluesLenghtInCols();
-    const Lines cluesCols = b.getCluesCols();
-    std::vector<std::string> stringClues = getFormattedColumns(heightCol, cluesCols);
     const Lines cluesRows = b.getCluesRows();
     std::stringstream output;
 
-    output << drawColumns(widthRows, width, heightCol, stringClues);
+    output << drawColumns(widthRows, width, heightCol, getFormattedColumns(heightCol,b.getCluesCols()));
     output << drawEndLine(widthRows, width) << "\n";
 
     for (int i = 0; i < height; i++)
@@ -129,21 +129,20 @@ std::vector<std::string> getFormattedColumns(const unsigned int sizeCols,
 {
     std::vector<std::string> stringLines;
     if(not cluesCols.empty())
-        std::for_each(cluesCols.begin(), cluesCols.end(),
-                      [&](const auto line)
+        for(const auto & clueCol : cluesCols)
         {
             std::string strline {};
-            std::for_each(line.begin(), line.end(),
+            std::transform(clueCol.begin(), clueCol.end(), std::back_inserter(strline),
                          [&](const auto i)
             {
-                strline += std::to_string(i);
+                return std::to_string(i).at(0);
             });
             if(strline.size() < sizeCols)
                 while (strline.size() != sizeCols) {
                     strline.push_back(PADDING);
                 }
             stringLines.emplace_back(strline);
-        });
+        }
     return stringLines;
 }
 
@@ -153,8 +152,8 @@ std::string drawRowOfColumns(const unsigned pos,
     std::string columns;
     std::string s = " ";
     if(not clues.empty())
-    for(const auto & line : clues)
-        columns += s + line.at(pos - 1);
+        for(const auto & line : clues)
+            columns += s + line.at(pos - 1);
     return columns;
 }
 
