@@ -25,6 +25,7 @@ LogicalImages::LogicalImages(std::string const path,
     catch(InvalidDimensions const& ex)
     {
         std::cout << "Invalid JSON file: " << ex.what() << std::endl;
+        throw;
     }
 }
 
