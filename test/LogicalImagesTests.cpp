@@ -2,17 +2,7 @@
 #include "json.hpp"
 #include "LogicalImages.hpp"
 #include "JSONFileReader.hpp"
-
-class AlgorithmA : public Algorithm
-{
-public:
-    AlgorithmA() {}
-
-    bool solve(std::shared_ptr<Board> b)
-    {
-        return true;
-    }
-};
+#include "AlgorithmStub.hpp"
 
 struct LogicalImagesTests : public ::testing::Test
 {
@@ -36,7 +26,7 @@ TEST_F(LogicalImagesTests, checkFirstConstructorNoexception)
                                      jfr.readColSize(),
                                      jfr.readCluesRows(),
                                      jfr.readCluesCols());
-    auto a = std::make_shared<AlgorithmA>();
+    auto a = std::make_shared<AlgorithmStubA>();
 
     LogicalImages li(b, a);
 }
@@ -44,7 +34,7 @@ TEST_F(LogicalImagesTests, checkFirstConstructorNoexception)
 TEST_F(LogicalImagesTests, checkSecondConstructorNoexception)
 {
     std::string path = "../test/ReadMeBoardTestFile.json";
-    auto a = std::make_shared<AlgorithmA>();
+    auto a = std::make_shared<AlgorithmStubA>();
 
     LogicalImages li(path, a);
 }
@@ -52,7 +42,7 @@ TEST_F(LogicalImagesTests, checkSecondConstructorNoexception)
 TEST_F(LogicalImagesTests, checkSecondConstructorExceptions)
 {
     std::string path;
-    auto a = std::make_shared<AlgorithmA>();
+    auto a = std::make_shared<AlgorithmStubA>();
 
     path = "../test/JSONFileReaderWrongColSizeTestFile.json";
     ASSERT_THROW(LogicalImages li1(path, a), InvalidDimensions);
@@ -71,7 +61,20 @@ TEST_F(LogicalImagesTests, checkSolveAlgorithmA)
 {
     std::string path = "../test/ReadMeBoardTestFile.json";
     std::string solution = "Puzzle solved!";
-    auto a = std::make_shared<AlgorithmA>();
+    auto a = std::make_shared<AlgorithmStubA>();
+    testing::internal::CaptureStdout();
+
+    LogicalImages li(path, a);
+    li.solve();
+    std::string output = testing::internal::GetCapturedStdout();
+    ASSERT_NE(output.find(solution), std::string::npos);
+}
+
+TEST_F(LogicalImagesTests, checkSolveFailure)
+{
+    std::string path = "../test/ReadMeBoardTestFile.json";
+    std::string solution = "Solution wasn't found";
+    auto a = std::make_shared<AlgorithmStubB>();
     testing::internal::CaptureStdout();
 
     LogicalImages li(path, a);
