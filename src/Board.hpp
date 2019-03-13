@@ -27,6 +27,9 @@ public:
     unsigned int getSizeCols() const;
     BLines& getBoardLines();
 
+    BoardFields getField(unsigned int row, unsigned int col);
+    void setField(unsigned int row, unsigned int col, BoardFields value);
+
     unsigned int getLongestLineLenght(const Lines& v) const;
     unsigned int getLongestCluesLenghtInRows() const;
     unsigned int getLongestCluesLenghtInCols() const;

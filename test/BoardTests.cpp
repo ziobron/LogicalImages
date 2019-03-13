@@ -76,6 +76,58 @@ TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
     ASSERT_EQ(board.getBoardLines().at(0)[0], BoardFields::UNKNOWN);
 }
 
+TEST_F(BoardTests, checkBoardSetField)
+{
+    Board board(3, 2, {}, {});
+    board.setField(0, 0, BoardFields::BLACK);
+    board.setField(1, 0, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getBoardLines().at(0).at(0), BoardFields::BLACK);
+    ASSERT_EQ(board.getBoardLines().at(1).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(2).at(0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1).at(0), BoardFields::WHITE);
+    ASSERT_EQ(board.getBoardLines().at(2).at(1), BoardFields::UNKNOWN);
+
+    board.setField(0, 0, BoardFields::UNKNOWN);
+    board.setField(2, 0, BoardFields::BLACK);
+    board.setField(1, 0, BoardFields::UNKNOWN);
+    board.setField(2, 1, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getBoardLines().at(0).at(0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(2).at(0), BoardFields::BLACK);
+    ASSERT_EQ(board.getBoardLines().at(0).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1).at(0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(2).at(1), BoardFields::WHITE);
+}
+
+TEST_F(BoardTests, checkBoardGetField)
+{
+    Board board(3, 2, {}, {});
+    board.setField(0, 0, BoardFields::BLACK);
+    board.setField(0, 1, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getField(1, 1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getField(1, 0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getField(0, 1), BoardFields::WHITE);
+    ASSERT_EQ(board.getField(0, 0), BoardFields::BLACK);
+}
+
+TEST_F(BoardTests, checkBoardSetFieldException)
+{
+    Board board(2, 3, {}, {});
+    ASSERT_THROW(board.setField(2, 0, BoardFields::BLACK), std::out_of_range);
+    ASSERT_THROW(board.setField(0, 3, BoardFields::BLACK), std::out_of_range);
+}
+
+TEST_F(BoardTests, checkBoardGetFieldException)
+{
+    Board board(2, 3, {}, {});
+    ASSERT_THROW(board.getField(2, 0), std::out_of_range);
+    ASSERT_THROW(board.getField(0, 3), std::out_of_range);
+}
+
 TEST_F(BoardTests, findLongestVectorLenghtOfCluesInRows)
 {
     Board board(4,

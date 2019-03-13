@@ -36,6 +36,32 @@ BLines& Board::getBoardLines()
     return board_;
 }
 
+void Board::setField(unsigned int row, unsigned int col, BoardFields value)
+{
+    try
+    {
+        board_.at(row).at(col) = value;
+    }
+    catch(std::out_of_range const& ex)
+    {
+        std::cerr << "Dimensions ouf of range: " << ex.what() << std::endl;
+        throw;
+    }
+}
+
+BoardFields Board::getField(unsigned int row, unsigned int col)
+{
+    try
+    {
+        return board_.at(row).at(col);
+    }
+    catch(std::out_of_range const& ex)
+    {
+        std::cerr << "Dimensions ouf of range: " << ex.what() << std::endl;
+        throw;
+    }
+}
+
 unsigned int Board::getLongestLineLenght(const Lines& v) const
 {
     auto it = std::max_element(v.begin(),
