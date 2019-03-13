@@ -49,6 +49,28 @@ void Board::setField(unsigned int row, unsigned int col, BoardFields value)
     }
 }
 
+void Board::setRow(unsigned int row, BLine values)
+{
+    try
+    {
+        if(board_.at(row).size() != values.size())
+        {
+            std::string msg = "input size (which is " + std::to_string(values.size()) +
+                              ") have to be the same as row size (which is " +
+                              std::to_string(board_.at(row).size()) + ")";
+            throw std::out_of_range(msg);
+        }
+
+        for(int i = 0; i < values.size() ; i++)
+            setField(row, i, values.at(i));
+    }
+    catch(std::out_of_range const& ex)
+    {
+        std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
+        throw;
+    }
+}
+
 BoardFields Board::getField(unsigned int row, unsigned int col)
 {
     try
@@ -58,6 +80,19 @@ BoardFields Board::getField(unsigned int row, unsigned int col)
     catch(std::out_of_range const& ex)
     {
         std::cerr << "Dimensions ouf of range: " << ex.what() << std::endl;
+        throw;
+    }
+}
+
+BLine Board::getRow(unsigned int row)
+{
+    try
+    {
+        return board_.at(row);
+    }
+    catch(std::out_of_range const& ex)
+    {
+        std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
         throw;
     }
 }

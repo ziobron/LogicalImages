@@ -128,6 +128,46 @@ TEST_F(BoardTests, checkBoardGetFieldException)
     ASSERT_THROW(board.getField(0, 3), std::out_of_range);
 }
 
+TEST_F(BoardTests, checkBoardGetRow)
+{
+    Board board(3, 2, {}, {});
+    BLine result1 = {BoardFields::BLACK, BoardFields::UNKNOWN};
+    BLine result2 = {BoardFields::WHITE, BoardFields::UNKNOWN};
+
+    board.setField(0, 0, BoardFields::BLACK);
+    board.setField(1, 0, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getRow(0), result1);
+    ASSERT_EQ(board.getRow(1), result2);
+}
+
+TEST_F(BoardTests, checkBoardSetRow)
+{
+    Board board(3, 2, {}, {});
+    BLine result = {BoardFields::UNKNOWN, BoardFields::WHITE};
+
+    board.setRow(1, result);
+    ASSERT_EQ(board.getRow(1), result);
+}
+
+TEST_F(BoardTests, checkBoardGetRowException)
+{
+    Board board(2, 4, {}, {});
+    ASSERT_THROW(board.getRow(3), std::out_of_range);
+}
+
+TEST_F(BoardTests, checkBoardSetRowException)
+{
+    Board board(2, 4, {}, {});
+    BLine lineTooBig = {BoardFields::UNKNOWN, BoardFields::WHITE, BoardFields::UNKNOWN};
+    BLine lineTooShort = {BoardFields::UNKNOWN};
+    BLine lineGood = {BoardFields::UNKNOWN, BoardFields::WHITE};
+
+    ASSERT_THROW(board.setRow(1, lineTooBig), std::out_of_range);
+    ASSERT_THROW(board.setRow(1, lineTooShort), std::out_of_range);
+    ASSERT_THROW(board.setRow(3, lineGood), std::out_of_range);
+}
+
 TEST_F(BoardTests, findLongestVectorLenghtOfCluesInRows)
 {
     Board board(4,
