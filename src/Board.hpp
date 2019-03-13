@@ -25,11 +25,12 @@ public:
 
     unsigned int getSizeRows() const;
     unsigned int getSizeCols() const;
-    BLines getBoardLines() const;
+    BLines& getBoardLines();
 
     unsigned int getLongestLineLenght(const Lines& v) const;
     unsigned int getLongestCluesLenghtInRows() const;
     unsigned int getLongestCluesLenghtInCols() const;
 
+    bool isSolved() const;
     void display() const;
 };

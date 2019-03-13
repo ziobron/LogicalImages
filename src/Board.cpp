@@ -31,7 +31,7 @@ unsigned int Board::getSizeCols() const
     return sizeCols_;
 }
 
-BLines Board::getBoardLines() const
+BLines& Board::getBoardLines()
 {
     return board_;
 }
