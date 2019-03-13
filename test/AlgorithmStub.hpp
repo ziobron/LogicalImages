@@ -3,8 +3,6 @@
 class AlgorithmStubA : public Algorithm
 {
 public:
-    AlgorithmStubA() {}
-
     bool solve(std::shared_ptr<Board> b)
     {
         return true;
@@ -14,8 +12,6 @@ public:
 class AlgorithmStubB : public Algorithm
 {
 public:
-    AlgorithmStubB() {}
-
     bool solve(std::shared_ptr<Board> b)
     {
         return false;
