@@ -93,3 +93,10 @@ TEST_F(BoardTests, findLongestVectorLenghtOfCluesInCols)
                 {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
     ASSERT_EQ(board.getLongestCluesLenghtInCols(), 5);
 }
+
+TEST_F(BoardTests, checkSecondBoardConstructorNoexception)
+{
+    std::string path = "../test/ReadMeBoardTestFile.json";
+
+    Board board(path);
+}
