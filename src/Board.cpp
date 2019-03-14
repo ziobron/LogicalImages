@@ -53,20 +53,42 @@ void Board::setRow(unsigned int row, BLine values)
 {
     try
     {
-        if(board_.at(row).size() != values.size())
+        if(sizeCols_ != values.size())
         {
             std::string msg = "input size (which is " + std::to_string(values.size()) +
                               ") have to be the same as row size (which is " +
-                              std::to_string(board_.at(row).size()) + ")";
+                              std::to_string(sizeCols_) + ")";
             throw std::out_of_range(msg);
         }
 
-        for(int i = 0; i < values.size() ; i++)
+        for(int i = 0; i < sizeCols_; i++)
             setField(row, i, values.at(i));
     }
     catch(std::out_of_range const& ex)
     {
         std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
+        throw;
+    }
+}
+
+void Board::setCol(unsigned int col, BLine values)
+{
+    try
+    {
+        if(sizeRows_ != values.size())
+        {
+            std::string msg = "input size (which is " + std::to_string(values.size()) +
+                              ") have to be the same as column size (which is " +
+                              std::to_string(sizeRows_) + ")";
+            throw std::out_of_range(msg);
+        }
+
+        for(int i = 0; i < sizeRows_; i++)
+            setField(i, col, values.at(i));
+    }
+    catch(std::out_of_range const& ex)
+    {
+        std::cerr << "Invalid dimensions (setCol): " << ex.what() << std::endl;
         throw;
     }
 }
@@ -89,6 +111,25 @@ BLine Board::getRow(unsigned int row)
     try
     {
         return board_.at(row);
+    }
+    catch(std::out_of_range const& ex)
+    {
+        std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
+        throw;
+    }
+}
+
+BLine Board::getCol(unsigned int col)
+{
+    try
+    {
+        BLine result(sizeRows_);
+
+        for(int i = 0; i < sizeRows_; i++)
+        {
+            result[i] = board_.at(i).at(col);
+        }
+        return result;
     }
     catch(std::out_of_range const& ex)
     {
