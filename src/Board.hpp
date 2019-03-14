@@ -10,8 +10,8 @@ using BLines = std::vector<BLine>;
 
 class Board
 {
-    const unsigned int sizeRows_;
-    const unsigned int sizeCols_;
+    unsigned int sizeRows_;
+    unsigned int sizeCols_;
     Lines cluesRows_;
     Lines cluesCols_;
     BLines board_;
@@ -21,6 +21,7 @@ public:
           const unsigned int sizeCols,
           const Lines& rows,
           const Lines& cols) noexcept;
+    Board(std::string filename);
     ~Board();
 
     unsigned int getSizeRows() const;
