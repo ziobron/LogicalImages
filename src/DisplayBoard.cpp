@@ -28,7 +28,7 @@ namespace
     std::string drawRowOfColumns(const unsigned pos,
                            const std::vector<std::string> & clues);
 
-    std::string drawRow(const unsigned int maxElementsInRows,const Line & row);
+    std::string drawRow(const unsigned int maxElementsInRows, const Line & row);
 }
 
 namespace DisplayBoard
@@ -42,7 +42,7 @@ std::string display(const Board& b)
     const Lines cluesRows = b.getCluesRows();
     std::stringstream output;
 
-    output << drawColumns(widthRows, width, heightCol, getFormattedColumns(heightCol,b.getCluesCols()));
+    output << drawColumns(widthRows, width, heightCol, getFormattedColumns(heightCol, b.getCluesCols()));
     output << drawEndLine(widthRows, width) << "\n";
 
     for (int i = 0; i < height; i++)
@@ -152,7 +152,10 @@ std::string drawRowOfColumns(const unsigned pos,
     std::string s = " ";
     if(not clues.empty())
         for(const auto & line : clues)
-            columns += s + line.at(pos - 1);
+        {
+            columns += PADDING;
+            columns += line.at(pos - 1);
+        }
     return columns;
 }
 
@@ -164,7 +167,8 @@ std::string drawRow(const unsigned int maxElementsInRows, const Line & row)
     if(row.empty())
     {
         rows += drawPadding(maxElementsInRows);
-    } else
+    }
+    else
     {
         if(row.size() < maxElementsInRows)
         {
