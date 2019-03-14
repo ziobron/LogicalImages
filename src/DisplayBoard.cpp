@@ -149,7 +149,6 @@ std::string drawRowOfColumns(const unsigned pos,
                        const std::vector<std::string> & clues)
 {
     std::string columns;
-    std::string s = " ";
     if(not clues.empty())
         for(const auto & line : clues)
         {
@@ -181,7 +180,7 @@ std::string drawRow(const unsigned int maxElementsInRows, const Line & row)
         std::for_each(row.begin(), row.end(),
                       [&](auto i)
         {
-            rows += " " + std::to_string(i);
+            rows += PADDING + std::to_string(i);
         });
     }
     return rows;
