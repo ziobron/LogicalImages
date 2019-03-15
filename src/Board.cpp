@@ -67,6 +67,16 @@ unsigned int Board::getLongestCluesLenghtInCols() const
     return getLongestLineLenght(cluesCols_);
 }
 
+Lines Board::getCluesCols() const
+{
+    return cluesCols_;
+}
+
+Lines Board::getCluesRows() const
+{
+    return cluesRows_;
+}
+
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
