@@ -15,7 +15,7 @@ namespace
                             const unsigned int width = 0);
 
     std::string drawEmptyLine(const unsigned int width,
-                              const char sign = PADDING);
+                              BLine boardLine = {});
 
     std::string drawColumns(const unsigned int maxElementsInRows,
                             const unsigned int sizeCols,
@@ -51,7 +51,7 @@ std::string display(const Board& b)
             output << drawRow(widthRows, {});
         else
             output << drawRow(widthRows, cluesRows.at(i));
-        output << drawEmptyLine(width, '?') << "\n";
+        output << drawEmptyLine(width, b.getBoardLines().at(i)) << "\n";
     }
     output << drawEndLine(widthRows, width);
 
@@ -90,15 +90,15 @@ std::string drawEndLine(const unsigned int widthRows, const unsigned int width)
     return result;
 }
 
-std::string drawEmptyLine(const unsigned int width,
-                          const char sign /*= PADDING*/)
+std::string drawEmptyLine(const unsigned int width, BLine boardLine)
 {
     std::string result {VERTICAL};
-
-    for (auto it = 0; it < (width * 2); it++)
-        result += sign;
+    for (const auto & it : boardLine)
+    {
+        result += static_cast<char>(it);
+        result += static_cast<char>(it);
+    }
     result += VERTICAL;
-
     return result;
 }
 
