@@ -21,7 +21,7 @@ public:
           const unsigned int sizeCols,
           const Lines& rows,
           const Lines& cols) noexcept;
-    Board(std::string filename);
+    explicit Board(std::string filename);
     ~Board();
 
     unsigned int getSizeRows() const;
