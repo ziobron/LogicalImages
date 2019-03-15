@@ -54,6 +54,8 @@ set(SRC_LIST
     src/Generator.cpp
     src/DisplayBoard.cpp
     src/DisplayBoard.hpp
+    src/Algorithm.cpp
+    src/Algorithm.hpp
 )
 
 include_directories(src)
