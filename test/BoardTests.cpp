@@ -6,6 +6,7 @@
 struct BoardTests : public ::testing::Test
 {
     using json = nlohmann::json;
+    std::string path;
 };
 
 TEST_F(BoardTests, checkConstructorNoexception)
@@ -21,7 +22,7 @@ TEST_F(BoardTests, checkConstructorNoexception)
 
 TEST_F(BoardTests, checkReadingJSON)
 {
-    std::string path = "../test/ReadMeBoardTestFile.json";
+    path = "../test/ReadMeBoardTestFile.json";
     JSONFileReader jfr(path);
     Board board(jfr.readRowSize(),
                 jfr.readColSize(),
@@ -34,8 +35,6 @@ TEST_F(BoardTests, checkReadingJSON)
 
 TEST_F(BoardTests, checkJSONFileReaderExceptions)
 {
-    std::string path;
-
     path = "../test/JSONFileReaderWrongColSizeTestFile.json";
     JSONFileReader jfr1(path);
     ASSERT_THROW(Board board(jfr1.readRowSize(),
@@ -96,7 +95,24 @@ TEST_F(BoardTests, findLongestVectorLenghtOfCluesInCols)
 
 TEST_F(BoardTests, checkSecondBoardConstructorNoexception)
 {
-    std::string path = "../test/ReadMeBoardTestFile.json";
-
+    path = "../test/ReadMeBoardTestFile.json";
     Board board(path);
+}
+
+TEST_F(BoardTests, checkSecondBoardConstructorExceptions)
+{
+    path = "../test/ReadMeBoardTestFile.json";
+    Board board(path);
+
+    path = "../test/JSONFileReaderWrongColSizeTestFile.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+
+    path = "../test/JSONFileReaderWrongRowSizeTestFile.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+
+    path = "../test/JSONFileReaderNumberOfLinesAndColsNoMatch.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+
+    path = "../test/JSONFileReaderNumberOfLinesAndRowsNoMatch.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
 }
