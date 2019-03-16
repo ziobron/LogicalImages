@@ -42,5 +42,6 @@ public:
     Lines getCluesCols() const;
     Lines getCluesRows() const;
 
+    bool isSolved();
     void display() const;
 };

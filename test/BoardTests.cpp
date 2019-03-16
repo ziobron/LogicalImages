@@ -203,3 +203,12 @@ TEST_F(BoardTests, findLongestVectorLenghtOfCluesInCols)
                 {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
     ASSERT_EQ(board.getLongestCluesLenghtInCols(), 5);
 }
+
+TEST_F(BoardTests, checkBoardIsSolved)
+{
+    Board board(4,
+                3,
+                {{1, 1}, {3}, {1}, {}},
+                {{2}, {2}, {2}});
+    ASSERT_EQ(board.isSolved(), false);
+}

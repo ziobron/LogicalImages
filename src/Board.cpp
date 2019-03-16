@@ -148,6 +148,11 @@ Lines Board::getCluesRows() const
     return cluesRows_;
 }
 
+bool Board::isSolved()
+{
+    return false;
+}
+
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
