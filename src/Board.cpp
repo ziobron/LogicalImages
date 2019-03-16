@@ -150,7 +150,17 @@ Lines Board::getCluesRows() const
 
 bool Board::isSolved()
 {
-    return false;
+    for(auto line : board_)
+        if (std::any_of(line.cbegin(),
+                        line.cend(),
+                        [](const auto elem)
+                        {
+                            return elem == BoardFields::UNKNOWN;
+                        }))
+        {
+            return false;
+        }
+    return true;
 }
 
 void Board::display() const
