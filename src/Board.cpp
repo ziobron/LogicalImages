@@ -157,9 +157,40 @@ bool Board::isSolved()
                         {
                             return elem == BoardFields::UNKNOWN;
                         }))
-        {
             return false;
+
+    for(int row = 0; row < sizeRows_; row++)
+    {
+        // if(not verifyLine(board.getRow(row), cluesRows_(row)))
+        //     return false;
+        BLine line = getRow(row);
+        Line clues = cluesRows_[row];
+        Line result;
+        bool continous = false;
+        unsigned int cnt = 0;
+
+        for(auto elem : line)
+        {
+            if(elem == BoardFields::BLACK)
+            {
+                cnt++;
+                continous = true;
+            }
+            else if(continous == true)
+            {
+                result.emplace_back(cnt);
+                cnt = 0;
+                continous = false;
+            }
         }
+
+        if(continous == true) 
+            result.emplace_back(cnt);
+
+        if (result != clues)
+            return false;
+    }
+
     return true;
 }
 

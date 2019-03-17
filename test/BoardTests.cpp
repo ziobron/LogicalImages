@@ -214,14 +214,17 @@ TEST_F(BoardTests, checkBoardIsSolved)
     BLine row1 = {BoardFields::BLACK, BoardFields::BLACK, BoardFields::BLACK};
     BLine row2 = {BoardFields::WHITE, BoardFields::BLACK, BoardFields::WHITE};
     BLine row3 = {BoardFields::WHITE, BoardFields::UNKNOWN, BoardFields::WHITE};
-    BLine row4 = {BoardFields::WHITE, BoardFields::BLACK, BoardFields::BLACK};
+    BLine row4ok = {BoardFields::WHITE, BoardFields::BLACK, BoardFields::BLACK};
+    BLine row4err = {BoardFields::BLACK, BoardFields::BLACK, BoardFields::WHITE};
 
     board.setRow(0, row0);
     board.setRow(1, row1);
     board.setRow(2, row2);
     board.setRow(3, row3);
-    board.setRow(4, row4);
-
+    board.setRow(4, row4err);
     ASSERT_EQ(board.isSolved(), false);
+
+    board.setField(3, 1, BoardFields::WHITE);
+    ASSERT_EQ(board.isSolved(), true);
 
 }
