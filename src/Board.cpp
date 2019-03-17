@@ -31,9 +31,93 @@ unsigned int Board::getSizeCols() const
     return sizeCols_;
 }
 
-BLines Board::getBoardLines() const
+BLines& Board::getBoardLines()
 {
     return board_;
+}
+
+void Board::setField(unsigned int row, unsigned int col, BoardFields value) try
+{
+    board_.at(row).at(col) = value;
+}
+catch(std::out_of_range const& ex)
+{
+    std::cerr << "Dimensions ouf of range: " << ex.what() << std::endl;
+    throw;
+}
+
+void Board::setRow(unsigned int row, BLine values) try
+{
+    if(sizeCols_ != values.size())
+    {
+        std::string msg = "input size (which is " + std::to_string(values.size()) +
+                          ") have to be the same as row size (which is " +
+                          std::to_string(sizeCols_) + ")";
+        throw std::out_of_range(msg);
+    }
+
+    for(int i = 0; i < sizeCols_; i++)
+        setField(row, i, values.at(i));
+}
+catch(std::out_of_range const& ex)
+{
+    std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
+    throw;
+}
+
+void Board::setCol(unsigned int col, BLine values) try
+{
+    if(sizeRows_ != values.size())
+    {
+        std::string msg = "input size (which is " + std::to_string(values.size()) +
+                          ") have to be the same as column size (which is " +
+                          std::to_string(sizeRows_) + ")";
+        throw std::out_of_range(msg);
+    }
+
+    for(int i = 0; i < sizeRows_; i++)
+        setField(i, col, values.at(i));
+}
+catch(std::out_of_range const& ex)
+{
+    std::cerr << "Invalid dimensions (setCol): " << ex.what() << std::endl;
+    throw;
+}
+
+BoardFields Board::getField(unsigned int row, unsigned int col) try
+{
+    return board_.at(row).at(col);
+}
+catch(std::out_of_range const& ex)
+{
+    std::cerr << "Dimensions ouf of range: " << ex.what() << std::endl;
+    throw;
+}
+
+BLine Board::getRow(unsigned int row) try
+{
+    return board_.at(row);
+}
+catch(std::out_of_range const& ex)
+{
+    std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
+    throw;
+}
+
+BLine Board::getCol(unsigned int col) try
+{
+    BLine result(sizeRows_);
+
+    for(int i = 0; i < sizeRows_; i++)
+    {
+        result[i] = board_.at(i).at(col);
+    }
+    return result;
+}
+catch(std::out_of_range const& ex)
+{
+    std::cerr << "Invalid dimensions: " << ex.what() << std::endl;
+    throw;
 }
 
 unsigned int Board::getLongestLineLenght(const Lines& v) const

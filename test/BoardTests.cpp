@@ -70,10 +70,120 @@ TEST_F(BoardTests, checkBoardArgumentBoard_WithGetBoardLinesFunction)
     Lines vec2 = {vec, vec};
 
     Board board(3, 3, vec2, vec2);
-    ASSERT_EQ(board.getBoardLines().at(1)[1],BoardFields::UNKNOWN);
-    ASSERT_EQ(board.getBoardLines().at(1)[0],BoardFields::UNKNOWN);
-    ASSERT_EQ(board.getBoardLines().at(0)[1],BoardFields::UNKNOWN);
-    ASSERT_EQ(board.getBoardLines().at(0)[0],BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1)[1], BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1)[0], BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0)[1], BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0)[0], BoardFields::UNKNOWN);
+}
+
+TEST_F(BoardTests, checkBoardSetGetField)
+{
+    Board board(3, 2, {}, {});
+    board.setField(0, 0, BoardFields::BLACK);
+    board.setField(1, 0, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getBoardLines().at(0).at(0), BoardFields::BLACK);
+    ASSERT_EQ(board.getBoardLines().at(1).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(2).at(0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(0).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1).at(0), BoardFields::WHITE);
+    ASSERT_EQ(board.getBoardLines().at(2).at(1), BoardFields::UNKNOWN);
+
+    board.setField(0, 0, BoardFields::UNKNOWN);
+    board.setField(2, 0, BoardFields::BLACK);
+    board.setField(1, 0, BoardFields::UNKNOWN);
+    board.setField(2, 1, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getBoardLines().at(0).at(0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(2).at(0), BoardFields::BLACK);
+    ASSERT_EQ(board.getBoardLines().at(0).at(1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(1).at(0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getBoardLines().at(2).at(1), BoardFields::WHITE);
+
+    ASSERT_EQ(board.getField(0, 0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getField(1, 0), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getField(2, 0), BoardFields::BLACK);
+    ASSERT_EQ(board.getField(0, 1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getField(1, 1), BoardFields::UNKNOWN);
+    ASSERT_EQ(board.getField(2, 1), BoardFields::WHITE);
+}
+
+TEST_F(BoardTests, checkBoardSetGetFieldException)
+{
+    Board board(2, 3, {}, {});
+    ASSERT_THROW(board.setField(2, 0, BoardFields::BLACK), std::out_of_range);
+    ASSERT_THROW(board.setField(0, 3, BoardFields::BLACK), std::out_of_range);
+    ASSERT_THROW(board.getField(2, 0), std::out_of_range);
+    ASSERT_THROW(board.getField(0, 3), std::out_of_range);
+}
+
+TEST_F(BoardTests, checkBoardSetGetRow)
+{
+    Board board(3, 2, {}, {});
+    BLine result1 = {BoardFields::BLACK, BoardFields::UNKNOWN};
+    BLine result2 = {BoardFields::WHITE, BoardFields::UNKNOWN};
+
+    board.setField(0, 0, BoardFields::BLACK);
+    board.setField(1, 0, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getRow(0), result1);
+    ASSERT_EQ(board.getRow(1), result2);
+
+    board.setRow(0, result2);
+    board.setRow(1, result1);
+
+    ASSERT_EQ(board.getRow(0), result2);
+    ASSERT_EQ(board.getRow(1), result1);
+}
+
+TEST_F(BoardTests, checkBoardSetGetRowException)
+{
+    Board board(2, 4, {}, {});
+    BLine lineTooBig = {BoardFields::UNKNOWN, BoardFields::WHITE, BoardFields::UNKNOWN};
+    BLine lineTooShort = {BoardFields::UNKNOWN};
+    BLine lineGood = {BoardFields::UNKNOWN, BoardFields::WHITE};
+
+    ASSERT_THROW(board.getRow(3), std::out_of_range);
+    ASSERT_THROW(board.setRow(1, lineTooBig), std::out_of_range);
+    ASSERT_THROW(board.setRow(1, lineTooShort), std::out_of_range);
+    ASSERT_THROW(board.setRow(3, lineGood), std::out_of_range);
+}
+
+TEST_F(BoardTests, checkBoardSetGetCol)
+{
+    Board board(2, 3, {}, {});
+    BLine result1 = {BoardFields::BLACK, BoardFields::UNKNOWN};
+    BLine result2 = {BoardFields::UNKNOWN, BoardFields::UNKNOWN};
+    BLine result3 = {BoardFields::UNKNOWN, BoardFields::WHITE};
+
+    board.setField(0, 0, BoardFields::BLACK);
+    board.setField(1, 2, BoardFields::WHITE);
+
+    ASSERT_EQ(board.getCol(0), result1);
+    ASSERT_EQ(board.getCol(1), result2);
+    ASSERT_EQ(board.getCol(2), result3);
+
+    board.setCol(0, result3);
+    board.setCol(1, result1);
+    board.setCol(2, result2);
+
+    ASSERT_EQ(board.getCol(0), result3);
+    ASSERT_EQ(board.getCol(1), result1);
+    ASSERT_EQ(board.getCol(2), result2);
+}
+
+TEST_F(BoardTests, checkBoardSetGetColException)
+{
+    Board board(4, 2, {}, {});
+    BLine lineTooBig = {BoardFields::UNKNOWN, BoardFields::WHITE, BoardFields::UNKNOWN};
+    BLine lineTooShort = {BoardFields::UNKNOWN};
+    BLine lineGood = {BoardFields::UNKNOWN, BoardFields::WHITE};
+
+    ASSERT_THROW(board.getCol(3), std::out_of_range);
+    ASSERT_THROW(board.setCol(1, lineTooBig), std::out_of_range);
+    ASSERT_THROW(board.setCol(1, lineTooShort), std::out_of_range);
+    ASSERT_THROW(board.setCol(3, lineGood), std::out_of_range);
 }
 
 TEST_F(BoardTests, findLongestVectorLenghtOfCluesInRows)
