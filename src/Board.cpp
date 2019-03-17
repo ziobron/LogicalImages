@@ -5,6 +5,8 @@
 #include <iostream>
 #include "DisplayBoard.hpp"
 
+bool verifyLine(BLine line, Line clues);
+
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
              const Lines& cluesRows,
@@ -160,36 +162,12 @@ bool Board::isSolved()
             return false;
 
     for(int row = 0; row < sizeRows_; row++)
-    {
-        // if(not verifyLine(board.getRow(row), cluesRows_(row)))
-        //     return false;
-        BLine line = getRow(row);
-        Line clues = cluesRows_[row];
-        Line result;
-        bool continous = false;
-        unsigned int cnt = 0;
-
-        for(auto elem : line)
-        {
-            if(elem == BoardFields::BLACK)
-            {
-                cnt++;
-                continous = true;
-            }
-            else if(continous == true)
-            {
-                result.emplace_back(cnt);
-                cnt = 0;
-                continous = false;
-            }
-        }
-
-        if(continous == true) 
-            result.emplace_back(cnt);
-
-        if (result != clues)
+        if(not verifyLine(getRow(row), cluesRows_[row]))
             return false;
-    }
+
+    for(int col = 0; col < sizeCols_; col++)
+        if(not verifyLine(getCol(col), cluesCols_[col]))
+            return false;
 
     return true;
 }
@@ -197,4 +175,34 @@ bool Board::isSolved()
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
+}
+
+bool verifyLine(BLine line, Line clues)
+{
+    Line result;
+    bool continous = false;
+    unsigned int cnt = 0;
+
+    for(auto elem : line)
+    {
+        if(elem == BoardFields::BLACK)
+        {
+            cnt++;
+            continous = true;
+        }
+        else if(continous == true)
+        {
+            result.emplace_back(cnt);
+            cnt = 0;
+            continous = false;
+        }
+    }
+
+    if(continous == true)
+        result.emplace_back(cnt);
+
+    if (result == clues)
+        return true;
+    else
+        return false;
 }
