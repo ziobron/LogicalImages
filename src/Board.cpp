@@ -5,12 +5,6 @@
 #include <iostream>
 #include "DisplayBoard.hpp"
 
-bool checkIfAnyFieldIsUnknown(BLines const& board);
-bool verifyRows(Board & board);
-bool verifyCols(Board & board);
-bool verifyLine(BLine line, Line clues);
-Line countContinousBlackFields(BLine line);
-
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
              const Lines& cluesRows,
@@ -156,10 +150,9 @@ Lines Board::getCluesRows() const
 
 bool Board::isSolved()
 {
-    if((not checkIfAnyFieldIsUnknown(board_)) && verifyRows(*this) && verifyCols(*this))
-        return true;
-
-    return false;
+    return (not checkIfAnyFieldIsUnknown()) &&
+                verifyRows() &&
+                verifyCols();
 }
 
 void Board::display() const
@@ -167,9 +160,9 @@ void Board::display() const
     std::cout << DisplayBoard::display(*this);
 }
 
-bool checkIfAnyFieldIsUnknown(BLines const& board)
+bool Board::checkIfAnyFieldIsUnknown()
 {
-    for(auto line : board)
+    for(auto line : board_)
         if (std::any_of(line.cbegin(),
                         line.cend(),
                         [](const auto elem)
@@ -181,30 +174,30 @@ bool checkIfAnyFieldIsUnknown(BLines const& board)
     return false;
 }
 
-bool verifyRows(Board & board)
+bool Board::verifyRows()
 {
-    for(int row = 0; row < board.getSizeRows(); row++)
-        if(not verifyLine(board.getRow(row), board.getCluesRows()[row]))
+    for(int row = 0; row < getSizeRows(); row++)
+        if(not verifyLine(getRow(row), getCluesRows()[row]))
             return false;
 
     return true;
 }
 
-bool verifyCols(Board & board)
+bool Board::verifyCols()
 {
-    for(int col = 0; col < board.getSizeCols(); col++)
-        if(not verifyLine(board.getCol(col), board.getCluesCols()[col]))
+    for(int col = 0; col < getSizeCols(); col++)
+        if(not verifyLine(getCol(col), getCluesCols()[col]))
             return false;
 
     return true;
 }
 
-bool verifyLine(BLine line, Line clues)
+bool Board::verifyLine(BLine line, Line clues)
 {
     return clues == countContinousBlackFields(line);
 }
 
-Line countContinousBlackFields(BLine line)
+Line Board::countContinousBlackFields(BLine line)
 {
     Line result;
     bool continous = false;
