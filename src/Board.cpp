@@ -156,16 +156,10 @@ Lines Board::getCluesRows() const
 
 bool Board::isSolved()
 {
-    if(checkIfAnyFieldIsUnknown(board_))
-        return false;
+    if((not checkIfAnyFieldIsUnknown(board_)) && verifyRows(*this) && verifyCols(*this))
+        return true;
 
-    if(not verifyRows(*this))
-        return false;
-
-    if(not verifyCols(*this))
-        return false;
-
-    return true;
+    return false;
 }
 
 void Board::display() const
