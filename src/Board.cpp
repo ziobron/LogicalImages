@@ -6,10 +6,9 @@
 #include "DisplayBoard.hpp"
 
 bool checkIfAnyFieldIsUnknown(BLines const& board);
-bool verifyRows();
-bool verifyCols();
+bool verifyRows(Board & board);
+bool verifyCols(Board & board);
 bool verifyLine(BLine line, Line clues);
-Line countContinousBlackFields();
 
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
@@ -159,13 +158,11 @@ bool Board::isSolved()
     if(checkIfAnyFieldIsUnknown(board_))
         return false;
 
-    for(int row = 0; row < sizeRows_; row++)
-        if(not verifyLine(getRow(row), cluesRows_[row]))
-            return false;
+    if(not verifyRows(*this))
+        return false;
 
-    for(int col = 0; col < sizeCols_; col++)
-        if(not verifyLine(getCol(col), cluesCols_[col]))
-            return false;
+    if(not verifyCols(*this))
+        return false;
 
     return true;
 }
@@ -189,33 +186,47 @@ bool checkIfAnyFieldIsUnknown(BLines const& board)
     return false;
 }
 
+bool verifyRows(Board & board)
+{
+    for(int row = 0; row < board.getSizeRows(); row++)
+        if(not verifyLine(board.getRow(row), board.getCluesRows()[row]))
+            return false;
+
+    return true;
+}
+
+bool verifyCols(Board & board)
+{
+    for(int col = 0; col < board.getSizeCols(); col++)
+        if(not verifyLine(board.getCol(col), board.getCluesCols()[col]))
+            return false;
+
+    return true;
+}
+
 bool verifyLine(BLine line, Line clues)
 {
     Line result;
     bool continous = false;
-    unsigned int cnt = 0;
+    unsigned int counter = 0;
 
     for(auto elem : line)
     {
         if(elem == BoardFields::BLACK)
         {
-            cnt++;
+            counter++;
             continous = true;
         }
         else if(continous == true)
         {
-            result.emplace_back(cnt);
-            cnt = 0;
+            result.emplace_back(counter);
+            counter = 0;
             continous = false;
         }
     }
 
     if(continous == true)
-        result.emplace_back(cnt);
+        result.emplace_back(counter);
 
     return result == clues;
 }
-
-// bool verifyRows();
-// bool verifyCols();
-// Line countContinousBlackFields();
