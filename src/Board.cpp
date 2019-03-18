@@ -9,6 +9,7 @@ bool checkIfAnyFieldIsUnknown(BLines const& board);
 bool verifyRows(Board & board);
 bool verifyCols(Board & board);
 bool verifyLine(BLine line, Line clues);
+Line countContinousBlackFields(BLine line);
 
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
@@ -206,6 +207,11 @@ bool verifyCols(Board & board)
 
 bool verifyLine(BLine line, Line clues)
 {
+    return clues == countContinousBlackFields(line);
+}
+
+Line countContinousBlackFields(BLine line)
+{
     Line result;
     bool continous = false;
     unsigned int counter = 0;
@@ -228,5 +234,5 @@ bool verifyLine(BLine line, Line clues)
     if(continous == true)
         result.emplace_back(counter);
 
-    return result == clues;
+    return result;
 }
