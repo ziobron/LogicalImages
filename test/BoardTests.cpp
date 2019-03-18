@@ -224,6 +224,9 @@ TEST_F(BoardTests, checkBoardIsSolved)
     board.setRow(4, row4err);
     ASSERT_EQ(board.isSolved(), false);
 
+    board.setField(3, 1, BoardFields::BLACK);
+    ASSERT_EQ(board.isSolved(), false);
+
     board.setField(3, 1, BoardFields::WHITE);
     ASSERT_EQ(board.isSolved(), false);
 
