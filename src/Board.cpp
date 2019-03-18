@@ -5,7 +5,11 @@
 #include <iostream>
 #include "DisplayBoard.hpp"
 
+bool checkIfAnyFieldIsUnknown(BLines const& board);
+bool verifyRows();
+bool verifyCols();
 bool verifyLine(BLine line, Line clues);
+Line countContinousBlackFields();
 
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
@@ -152,14 +156,8 @@ Lines Board::getCluesRows() const
 
 bool Board::isSolved()
 {
-    for(auto line : board_)
-        if (std::any_of(line.cbegin(),
-                        line.cend(),
-                        [](const auto elem)
-                        {
-                            return elem == BoardFields::UNKNOWN;
-                        }))
-            return false;
+    if(checkIfAnyFieldIsUnknown(board_))
+        return false;
 
     for(int row = 0; row < sizeRows_; row++)
         if(not verifyLine(getRow(row), cluesRows_[row]))
@@ -175,6 +173,20 @@ bool Board::isSolved()
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
+}
+
+bool checkIfAnyFieldIsUnknown(BLines const& board)
+{
+    for(auto line : board)
+        if (std::any_of(line.cbegin(),
+                        line.cend(),
+                        [](const auto elem)
+                        {
+                            return elem == BoardFields::UNKNOWN;
+                        }))
+            return true;
+
+    return false;
 }
 
 bool verifyLine(BLine line, Line clues)
@@ -201,8 +213,9 @@ bool verifyLine(BLine line, Line clues)
     if(continous == true)
         result.emplace_back(cnt);
 
-    if (result == clues)
-        return true;
-    else
-        return false;
+    return result == clues;
 }
+
+// bool verifyRows();
+// bool verifyCols();
+// Line countContinousBlackFields();
