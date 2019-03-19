@@ -209,7 +209,7 @@ TEST_F(BoardTests, checkSecondBoardConstructorNoexception)
     Board board(path);
 }
 
-TEST_F(BoardTests, checkSecondBoardConstructorNoexceptions)
+TEST_F(BoardTests, checkSecondBoardConstructorExceptions)
 {
     path = "../test/ReadMeBoardTestFile.json";
     Board board(path);
