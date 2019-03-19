@@ -57,6 +57,8 @@ set(SRC_LIST
     src/DisplayBoard.hpp
     src/Algorithm.cpp
     src/Algorithm.hpp
+    src/JZSolver.cpp
+    src/JZSolver.hpp
 )
 
 include_directories(src)
@@ -77,6 +79,7 @@ set(TEST_SRC_LIST
     test/BoardFileTests.cpp
     test/test_main.cpp
     test/DisplayBoardTests.cpp
+    test/JZSolverTests.cpp
 )
 
 link_libraries(gtest)
