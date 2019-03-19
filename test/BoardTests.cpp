@@ -209,7 +209,7 @@ TEST_F(BoardTests, checkSecondBoardConstructorNoexception)
     Board board(path);
 }
 
-TEST_F(BoardTests, checkSecondBoardConstructorExceptions)
+TEST_F(BoardTests, checkSecondBoardConstructorNoexceptions)
 {
     path = "../test/ReadMeBoardTestFile.json";
     Board board(path);
@@ -226,3 +226,14 @@ TEST_F(BoardTests, checkSecondBoardConstructorExceptions)
     path = "../test/JSONFileReaderNumberOfLinesAndRowsNoMatch.json";
     ASSERT_THROW(Board board(path), InvalidDimensions);
 }
+
+TEST_F(BoardTests, checkSecondBoardConstructorSize)
+{
+    path = "../test/ReadMeBoardTestFile.json";
+    Board board(path);
+    ASSERT_EQ(board.getSizeCols(), 3);
+    ASSERT_EQ(board.getSizeRows(), 3);
+    ASSERT_EQ(board.getCluesCols().at(0)[0], 1);
+    ASSERT_EQ(board.getCluesRows().at(0)[0], 1);
+}
+
