@@ -1,7 +1,7 @@
-#include <fstream>
-#include <string>
+#include "Utilities.hpp"
 #include <iostream>
 #include <exception>
+#include <algorithm>
 
 std::ifstream openFileToRead(const std::string& filename)
 {
@@ -31,4 +31,19 @@ std::ofstream openFileToWrite(const std::string& filename)
         std::cout << "Failed to open file: " << filename << ". " << e.what() << std::endl;
         throw;
     }
+}
+
+BLines ConvertIntToFieldEnum(const Lines& board)
+{
+    BLines result;
+
+    for(auto line : board)
+    {
+        BLine row(line.size());
+        std::transform(line.begin(), line.end(), row.begin(),
+            [](int elem){return (elem ? BoardFields::BLACK : BoardFields::WHITE);});
+
+        result.emplace_back(row);
+    }
+    return result;
 }

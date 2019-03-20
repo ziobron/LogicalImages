@@ -16,6 +16,12 @@ class Board
     Lines cluesCols_;
     BLines board_;
 
+    bool checkIfAnyFieldIsUnknown();
+    bool verifyRows();
+    bool verifyCols();
+    bool verifyLine(BLine line, Line clues);
+    Line countContinousBlackFields(BLine line);
+
 public:
     Board(const unsigned int sizeRows,
           const unsigned int sizeCols,
@@ -43,5 +49,6 @@ public:
     Lines getCluesCols() const;
     Lines getCluesRows() const;
 
+    bool isSolved();
     void display() const;
 };
