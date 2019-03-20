@@ -51,7 +51,7 @@ std::string display(const Board& b)
             output << drawRow(widthRows, {});
         else
             output << drawRow(widthRows, cluesRows.at(i));
-        output << drawBoardLine(width, b.getBoardLines().at(i)) << "\n";
+        output << drawBoardLine(width, const_cast<Board&>(b).getBoardLines().at(i)) << "\n";
     }
     output << drawEndLine(widthRows, width);
 
