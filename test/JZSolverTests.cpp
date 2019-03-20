@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "JZSolver.hpp"
+#include <memory>
 
 struct JZSolverTests : public ::testing::Test
 {
@@ -34,4 +35,15 @@ TEST_F(JZSolverTests, checkJZSolverConstructor)
     ASSERT_THROW(solver.solve(std::make_shared<Board>(board_col_count_err)), std::length_error);
     ASSERT_THROW(solver.solve(std::make_shared<Board>(board_row_count_err)), std::length_error);
     ASSERT_NO_THROW(solver.solve(std::make_shared<Board>(board_ok)));
+}
+
+TEST_F(JZSolverTests, checkSolvingBoardWithAllFullClueLines)
+{
+    auto board = std::make_shared<Board>(Board(5,
+                                               3,
+                                               {{3}, {1}, {1, 1}, {1}, {3}},
+                                               {{1, 1, 1}, {2, 2}, {1, 1, 1}}));
+
+    EXPECT_EQ(solver.solve(board), true);
+    EXPECT_EQ(solver.getStepCounter(), 0);
 }

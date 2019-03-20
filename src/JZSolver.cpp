@@ -6,7 +6,21 @@ bool JZSolver::solve(std::shared_ptr<Board> b)
 {
     verifyBoardClues(b);
     findAndFillCompleteLines(b);
-    return true;
+
+    while(not b->isSolved())
+    {
+        stepCounter_++;
+        // methods to solve puzzle
+        // if method changes something at board then start loop from beginning
+        // if all methods haven't changed anything then break loop and admit failure
+        break;
+    }
+    return b->isSolved();
+}
+
+unsigned int JZSolver::getStepCounter()
+{
+    return stepCounter_;
 }
 
 void JZSolver::verifyBoardClues(std::shared_ptr<Board> b)
@@ -73,8 +87,7 @@ void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> b)
     }
 #if DEBUG
     std::cout << "findAndFillCompleteLines: " << lineCounter << " complete lines found in clues" << std::endl;
-    //b->display();
-    b->show();
+    b->display();
 #endif
 }
 
