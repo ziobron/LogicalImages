@@ -59,3 +59,20 @@ TEST_F(DisplayBoardTests, checkDisplayBoardWithClues)
     compareBoard = "     +------+\n     |     1|\n     |     1|\n     | 1   1|\n+----+------+\n|   1|??????|\n|   1|??????|\n| 1 1|??????|\n+----+------+\n";
     ASSERT_EQ(display(board5), compareBoard);
 }
+
+TEST_F(DisplayBoardTests, checkDisplayBoardWithDifferentBoardFields)
+{
+    Board board(2, 2, {{1},{1}}, {{1},{1}});
+    std::string compareBoard = "   +----+\n   | 1 1|\n+--+----+\n| 1|????|\n| 1|????|\n+--+----+\n";
+    ASSERT_EQ(display(board), compareBoard);
+
+    board.setField(1,1,BoardFields::BLACK);
+    board.setField(1,0,BoardFields::WHITE);
+    compareBoard = "   +----+\n   | 1 1|\n+--+----+\n| 1|????|\n| 1|  ##|\n+--+----+\n";
+    ASSERT_EQ(display(board), compareBoard);
+
+    board.setField(0,0,BoardFields::BLACK);
+    board.setField(0,1,BoardFields::WHITE);
+    compareBoard = "   +----+\n   | 1 1|\n+--+----+\n| 1|##  |\n| 1|  ##|\n+--+----+\n";
+    ASSERT_EQ(display(board), compareBoard);
+}
