@@ -148,7 +148,75 @@ Lines Board::getCluesRows() const
     return cluesRows_;
 }
 
+bool Board::isSolved()
+{
+    return (not checkIfAnyFieldIsUnknown()) &&
+                verifyRows() &&
+                verifyCols();
+}
+
 void Board::display() const
 {
     std::cout << DisplayBoard::display(*this);
+}
+
+bool Board::checkIfAnyFieldIsUnknown()
+{
+    return std::all_of(board_.begin(), board_.end(), [](const auto line)
+    {
+        return std::any_of(line.cbegin(),  line.cend(), [](const auto elem)
+        {
+            return elem == BoardFields::UNKNOWN;
+        });
+    });
+}
+
+bool Board::verifyRows()
+{
+    for(int row = 0; row < getSizeRows(); row++)
+        if(not verifyLine(getRow(row), getCluesRows()[row]))
+            return false;
+
+    return true;
+}
+
+bool Board::verifyCols()
+{
+    for(int col = 0; col < getSizeCols(); col++)
+        if(not verifyLine(getCol(col), getCluesCols()[col]))
+            return false;
+
+    return true;
+}
+
+bool Board::verifyLine(BLine line, Line clues)
+{
+    return clues == countContinousBlackFields(line);
+}
+
+Line Board::countContinousBlackFields(BLine line)
+{
+    Line result;
+    bool continous = false;
+    unsigned int counter = 0;
+
+    for(auto elem : line)
+    {
+        if(elem == BoardFields::BLACK)
+        {
+            counter++;
+            continous = true;
+        }
+        else if(continous == true)
+        {
+            result.emplace_back(counter);
+            counter = 0;
+            continous = false;
+        }
+    }
+
+    if(continous == true)
+        result.emplace_back(counter);
+
+    return result;
 }
