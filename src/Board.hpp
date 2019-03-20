@@ -16,6 +16,12 @@ class Board
     Lines cluesCols_;
     BLines board_;
 
+    bool checkIfAnyFieldIsUnknown();
+    bool verifyRows();
+    bool verifyCols();
+    bool verifyLine(BLine line, Line clues);
+    Line countContinousBlackFields(BLine line);
+
 public:
     Board(const unsigned int sizeRows,
           const unsigned int sizeCols,
@@ -25,7 +31,15 @@ public:
 
     unsigned int getSizeRows() const;
     unsigned int getSizeCols() const;
-    BLines getBoardLines() const;
+    BLines& getBoardLines();
+
+    BoardFields getField(unsigned int row, unsigned int col);
+    BLine getCol(unsigned int col);
+    BLine getRow(unsigned int row);
+
+    void setField(unsigned int row, unsigned int col, BoardFields value);
+    void setCol(unsigned int col, BLine values);
+    void setRow(unsigned int row, BLine values);
 
     unsigned int getLongestLineLenght(const Lines& v) const;
     unsigned int getLongestCluesLenghtInRows() const;
@@ -34,5 +48,6 @@ public:
     Lines getCluesCols() const;
     Lines getCluesRows() const;
 
+    bool isSolved();
     void display() const;
 };

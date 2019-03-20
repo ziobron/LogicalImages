@@ -50,6 +50,7 @@ set(SRC_LIST
     src/JSONFileReader.cpp
     src/BoardFields.hpp
     src/Utilities.cpp
+    src/Utilities.hpp
     src/Generator.hpp
     src/Generator.cpp
     src/DisplayBoard.cpp
