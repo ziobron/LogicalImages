@@ -16,18 +16,16 @@ class Board
     Lines cluesCols_;
     BLines board_;
 
-    bool checkIfAnyFieldIsUnknown();
-    bool verifyRows();
-    bool verifyCols();
-    bool verifyLine(BLine line, Line clues);
-    Line countContinousBlackFields(BLine line);
-
 public:
     Board(const unsigned int sizeRows,
           const unsigned int sizeCols,
           const Lines& rows,
           const Lines& cols) noexcept;
+<<<<<<< HEAD
     explicit Board(std::string filename);
+=======
+    Board(std::string filename);
+>>>>>>> US7 JSON file as a argument
     ~Board();
 
     unsigned int getSizeRows() const;
@@ -49,6 +47,5 @@ public:
     Lines getCluesCols() const;
     Lines getCluesRows() const;
 
-    bool isSolved();
     void display() const;
 };
