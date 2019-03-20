@@ -162,16 +162,13 @@ void Board::display() const
 
 bool Board::checkIfAnyFieldIsUnknown()
 {
-    for(auto line : board_)
-        if (std::any_of(line.cbegin(),
-                        line.cend(),
-                        [](const auto elem)
-                        {
-                            return elem == BoardFields::UNKNOWN;
-                        }))
-            return true;
-
-    return false;
+    return std::all_of(board_.begin(), board_.end(), [](const auto line)
+    {
+        return std::any_of(line.cbegin(),  line.cend(), [](const auto elem)
+        {
+            return elem == BoardFields::UNKNOWN;
+        });
+    });
 }
 
 bool Board::verifyRows()
