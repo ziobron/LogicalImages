@@ -6,6 +6,7 @@
 struct BoardTests : public ::testing::Test
 {
     using json = nlohmann::json;
+    std::string path;
 };
 
 TEST_F(BoardTests, checkConstructorNoexception)
@@ -21,7 +22,7 @@ TEST_F(BoardTests, checkConstructorNoexception)
 
 TEST_F(BoardTests, checkReadingJSON)
 {
-    std::string path = "../test/ReadMeBoardTestFile.json";
+    path = "../test/ReadMeBoardTestFile.json";
     JSONFileReader jfr(path);
     Board board(jfr.readRowSize(),
                 jfr.readColSize(),
@@ -34,8 +35,6 @@ TEST_F(BoardTests, checkReadingJSON)
 
 TEST_F(BoardTests, checkJSONFileReaderExceptions)
 {
-    std::string path;
-
     path = "../test/JSONFileReaderWrongColSizeTestFile.json";
     JSONFileReader jfr1(path);
     ASSERT_THROW(Board board(jfr1.readRowSize(),
@@ -202,6 +201,40 @@ TEST_F(BoardTests, findLongestVectorLenghtOfCluesInCols)
                 {{1}, {1, 2}, {1, 2, 3, 4}, {1, 2, 3}},
                 {{1}, {1, 2, 3, 4 ,5}, {1}, {1, 2}, {1}});
     ASSERT_EQ(board.getLongestCluesLenghtInCols(), 5);
+}
+
+TEST_F(BoardTests, checkSecondBoardConstructorNoexception)
+{
+    path = "../test/ReadMeBoardTestFile.json";
+    Board board(path);
+}
+
+TEST_F(BoardTests, checkSecondBoardConstructorExceptions)
+{
+    path = "../test/ReadMeBoardTestFile.json";
+    Board board(path);
+
+    path = "../test/JSONFileReaderWrongColSizeTestFile.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+
+    path = "../test/JSONFileReaderWrongRowSizeTestFile.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+
+    path = "../test/JSONFileReaderNumberOfLinesAndColsNoMatch.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+
+    path = "../test/JSONFileReaderNumberOfLinesAndRowsNoMatch.json";
+    ASSERT_THROW(Board board(path), InvalidDimensions);
+}
+
+TEST_F(BoardTests, checkSecondBoardConstructorSize)
+{
+    path = "../test/ReadMeBoardTestFile.json";
+    Board board(path);
+    ASSERT_EQ(board.getSizeCols(), 3);
+    ASSERT_EQ(board.getSizeRows(), 3);
+    ASSERT_EQ(board.getCluesCols().at(0)[0], 1);
+    ASSERT_EQ(board.getCluesRows().at(0)[0], 1);
 }
 
 TEST_F(BoardTests, checkBoardIsSolved)
