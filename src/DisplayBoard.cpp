@@ -15,7 +15,7 @@ namespace
                             const unsigned int width = 0);
 
     std::string drawBoardLine(const unsigned int width,
-                              BLine boardLine = {});
+                              const BLine & boardLine = {});
 
     std::string drawColumns(const unsigned int maxElementsInRows,
                             const unsigned int sizeCols,
@@ -51,7 +51,7 @@ std::string display(const Board& b)
             output << drawRow(widthRows, {});
         else
             output << drawRow(widthRows, cluesRows.at(i));
-        output << drawBoardLine(width, const_cast<Board&>(b).getBoardLines().at(i)) << "\n";
+        output << drawBoardLine(width, b.getBoardLines().at(i)) << "\n";
     }
     output << drawEndLine(widthRows, width);
 
@@ -90,7 +90,7 @@ std::string drawEndLine(const unsigned int widthRows, const unsigned int width)
     return result;
 }
 
-std::string drawBoardLine(const unsigned int width, BLine boardLine)
+std::string drawBoardLine(const unsigned int width, const BLine & boardLine)
 {
     std::string result {VERTICAL};
     for (const auto & it : boardLine)
