@@ -2,7 +2,7 @@
 
 enum class BoardFields : unsigned char
 {
-    BLACK,
-    WHITE,
-    UNKNOWN
+    BLACK = '#',
+    WHITE = ' ',
+    UNKNOWN = '?'
 };
