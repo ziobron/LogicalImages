@@ -2,7 +2,7 @@
 #include <numeric>
 #include <iostream>
 
-bool JZSolver::solve(std::shared_ptr<Board> b)
+bool JZSolver::solve(std::shared_ptr<Board> & b)
 {
     verifyBoardClues(b);
     findAndFillCompleteLines(b);
@@ -23,7 +23,7 @@ unsigned int JZSolver::getStepCounter()
     return stepCounter_;
 }
 
-void JZSolver::verifyBoardClues(std::shared_ptr<Board> b)
+void JZSolver::verifyBoardClues(std::shared_ptr<Board> & b)
 {
     if(b->getCluesCols().size() != b->getSizeCols())
         throw std::length_error("Invalid clues: some columns are missing clues.");
@@ -53,7 +53,7 @@ void JZSolver::verifyBoardClues(std::shared_ptr<Board> b)
     }
 }
 
-void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> b)
+void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> & b)
 {
 #if DEBUG
     unsigned int lineCounter = 0;
@@ -61,7 +61,8 @@ void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> b)
     for(int rowCnt = 0; rowCnt < b->getSizeRows(); rowCnt++)
     {
         auto row =  b->getCluesRows()[rowCnt];
-        unsigned int cluesResult = std::accumulate(row.begin(), row.end(), 0) + row.size() - 1;
+        auto spaces = row.size() - 1;
+        unsigned int cluesResult = std::accumulate(row.begin(), row.end(), 0) + spaces;
 
         if(b->getSizeCols() == cluesResult)
         {
