@@ -32,7 +32,7 @@ public:
 
     unsigned int getSizeRows() const;
     unsigned int getSizeCols() const;
-    BLines& getBoardLines();
+    const BLines& getBoardLines() const;
 
     BoardFields getField(unsigned int row, unsigned int col);
     BLine getCol(unsigned int col);
