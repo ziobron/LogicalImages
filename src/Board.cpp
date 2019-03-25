@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include "DisplayBoard.hpp"
+#include "JSONFileReader.hpp"
 
 Board::Board(const unsigned int sizeRows,
              const unsigned int sizeCols,
@@ -14,6 +15,18 @@ Board::Board(const unsigned int sizeRows,
       cluesRows_(cluesRows),
       cluesCols_(cluesCols)
 {
+    BLine singleRow;
+    singleRow.assign(sizeCols_, BoardFields::UNKNOWN);
+    board_.assign(sizeRows_, singleRow);
+}
+
+Board::Board(std::string filename)
+{
+    JSONFileReader jfr(filename);
+    sizeRows_ = jfr.readRowSize();
+    sizeCols_ = jfr.readColSize();
+    cluesRows_ = jfr.readCluesRows();
+    cluesCols_ = jfr.readCluesCols();
     BLine singleRow;
     singleRow.assign(sizeCols_, BoardFields::UNKNOWN);
     board_.assign(sizeRows_, singleRow);
