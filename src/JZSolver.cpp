@@ -55,9 +55,6 @@ void JZSolver::verifyBoardClues(std::shared_ptr<Board> & b)
 
 void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> & b)
 {
-#if DEBUG
-    unsigned int lineCounter = 0;
-#endif
     for(int rowCnt = 0; rowCnt < b->getSizeRows(); rowCnt++)
     {
         auto row =  b->getCluesRows()[rowCnt];
@@ -67,9 +64,6 @@ void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> & b)
         if(b->getSizeCols() == cluesResult)
         {
             b->setRow(rowCnt, returnComleteBLineFromFullClues(row));
-#if DEBUG
-            lineCounter++;
-#endif
         }
     }
 
@@ -81,15 +75,8 @@ void JZSolver::findAndFillCompleteLines(std::shared_ptr<Board> & b)
         if(b->getSizeRows() == cluesResult)
         {
             b->setCol(colCnt, returnComleteBLineFromFullClues(col));
-#if DEBUG
-            lineCounter++;
-#endif
         }
     }
-#if DEBUG
-    std::cout << "findAndFillCompleteLines: " << lineCounter << " complete lines found in clues" << std::endl;
-    b->display();
-#endif
 }
 
 BLine JZSolver::returnComleteBLineFromFullClues(Line clues)

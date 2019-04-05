@@ -1,7 +1,5 @@
 #include "Algorithm.hpp"
 
-#define DEBUG 0
-
 class JZSolver : Algorithm
 {
     unsigned int stepCounter_ = 0;
