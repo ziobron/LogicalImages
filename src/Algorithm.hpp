@@ -7,5 +7,5 @@ public:
     Algorithm();
     virtual ~Algorithm();
 
-    virtual bool solve(std::shared_ptr<Board> b) = 0;
+    virtual bool solve(std::shared_ptr<Board> & b) = 0;
 };

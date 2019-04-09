@@ -3,7 +3,7 @@
 class AlgorithmStubA : public Algorithm
 {
 public:
-    bool solve(std::shared_ptr<Board> b)
+    bool solve(std::shared_ptr<Board> & b)
     {
         return true;
     }
@@ -12,7 +12,7 @@ public:
 class AlgorithmStubB : public Algorithm
 {
 public:
-    bool solve(std::shared_ptr<Board> b)
+    bool solve(std::shared_ptr<Board> & b)
     {
         return false;
     }
