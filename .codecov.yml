@@ -15,8 +15,3 @@ coverage:
             patch:
                 default:
                     enabled: no
-
-
-ignore:
-    - "json/*"
-    - "test/*"
