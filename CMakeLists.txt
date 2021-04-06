@@ -34,7 +34,7 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "-g -O0 --coverage")
@@ -42,26 +42,18 @@ set(CMAKE_CXX_FLAGS "-g -O0 --coverage")
 project(LogicalImages)
 
 set(SRC_LIST
-    src/LogicalImages.hpp
     src/LogicalImages.cpp
-    src/Board.hpp
     src/Board.cpp
-    src/JSONFileReader.hpp
     src/JSONFileReader.cpp
-    src/BoardFields.hpp
     src/Utilities.cpp
-    src/Utilities.hpp
-    src/Generator.hpp
     src/Generator.cpp
     src/DisplayBoard.cpp
-    src/DisplayBoard.hpp
     src/Algorithm.cpp
-    src/Algorithm.hpp
     src/JZSolver.cpp
-    src/JZSolver.hpp
 )
 
 include_directories(src)
+include_directories(include)
 add_library(${PROJECT_NAME}-lib ${SRC_LIST})
 add_executable(${PROJECT_NAME} src/main.cpp)
 include_directories(json)

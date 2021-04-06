@@ -18,9 +18,10 @@ matrix:
 
 install: 
   # C++17
-  - sudo apt-get install -qq g++-6
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-  - sudo pip install codecov
+  - g++ --version
+  - sudo apt-get install -qq g++-9
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 90
+  - g++ --version
 
 os:
   - linux
@@ -37,9 +38,11 @@ script:
   - ./LogicalImages-ut
 
 after_success:
+    # Create report
     - cd ${TRAVIS_BUILD_DIR}
     - lcov --directory . --capture --output-file coverage.info
     - lcov --remove coverage.info '/user/*' --output-file coverage.info
     - lcov --list coverage.info
+    # Upload report to CodeCov
     - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
 
