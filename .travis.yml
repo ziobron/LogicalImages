@@ -1,20 +1,21 @@
-sudo: required
 language: cpp
-compiler: gcc
+os: linux
 dist: trusty
+  
+compiler:
+  - g++
+  - clang
+
+addons:
+  apt:
+    update: true
+    packages:
+      - lcov
 
 before_install:
   # C++17
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
-matrix:
-    include:
-        addons:
-            apt:
-                update: true
-                package:
-                    - lcov
-
 
 install: 
   # C++17
@@ -23,14 +24,10 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 90
   - g++ --version
 
-os:
-  - linux
-
-compiler:
-  - g++
-  - clang
-
 script:
+  - g++ --version
+  - lcov --version
+  - gcov --version
   - mkdir build
   - cd build
   - cmake ..
@@ -44,5 +41,5 @@ after_success:
     - lcov --remove coverage.info '/user/*' --output-file coverage.info
     - lcov --list coverage.info
     # Upload report to CodeCov
-    - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+    - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-9 || echo "Codecov did not collect coverage reports"
 
